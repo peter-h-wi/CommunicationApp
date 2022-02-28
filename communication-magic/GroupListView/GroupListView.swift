@@ -1,24 +1,23 @@
 //
-//  MemberView.swift
+//  GroupListView.swift
 //  communication-magic
 //
-//  Created by peter wi on 2/23/22.
+//  Created by peter wi on 2/28/22.
 //
 
 import SwiftUI
 
-struct MemberView: View {
-    let members: [MemberModel]
-    
+struct GroupListView: View {
+    let group: GroupModel
     var body: some View {
-        if (members.count==1) {
+        if (group.members.count==1) {
             HStack {
                 Circle()
                     .frame(width: 50, height: 50)
                 VStack(alignment: .leading) {
-                    Text(members[0].name)
+                    Text(group.members[0].name)
                         .font(.headline)
-                    Text(members[0].role)
+                    Text(group.members[0].role)
                         .foregroundColor(.secondary)
                 }
                 Spacer()
@@ -42,7 +41,7 @@ struct MemberView: View {
                             .frame(width: 25, height: 25)
                     }
                 }
-                Text(members[0].role)
+                Text(group.group_name)
                     .font(.headline)
                 Spacer()
                 Text("3/10")
@@ -54,8 +53,8 @@ struct MemberView: View {
     }
 }
 
-struct MemberView_Previews: PreviewProvider {
+struct GroupListView_Previews: PreviewProvider {
     static var previews: some View {
-        MemberView(members: [.example])
+        GroupListView(group: GroupModel.example)
     }
 }

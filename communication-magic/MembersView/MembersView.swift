@@ -8,16 +8,28 @@
 import SwiftUI
 
 struct MembersView: View {
-    //let members: [Member]
+    @StateObject private var vm = MembersViewModel()
+    
     var body: some View {
         NavigationView {
             ScrollView(.vertical, showsIndicators: false) {
                 VStack(alignment: .leading) {
                     MemberView(members: [.example])
                     Divider()
-                    Text("Favorite Group")
+                    Text("Favorite Groups")
                         .font(.headline)
                         .foregroundColor(.secondary)
+                    ForEach(vm.getFavoriteGroups(), id: \.self) { group in
+                        GroupListView(group: group)
+                    }
+                    Divider()
+                    Text("All Groups")
+                        .font(.headline)
+                        .foregroundColor(.secondary)
+                    ForEach(vm.getAllGroups(), id: \.self) { group in
+                        GroupListView(group: group)
+                    }
+                    
                 }
             }
         }
