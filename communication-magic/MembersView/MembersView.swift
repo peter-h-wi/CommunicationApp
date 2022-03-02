@@ -31,7 +31,27 @@ struct MembersView: View {
                     }
                 }
             }
-            .navigationTitle("Members")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Text("Members")
+                        .font(.largeTitle)
+                        .bold()
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: {
+                        // search
+                    }) {
+                        Image(systemName: "magnifyingglass")
+                    }
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: {
+                        // search
+                    }) {
+                        Image(systemName: "plus")
+                    }
+                }
+            }
         }
     }
 }
