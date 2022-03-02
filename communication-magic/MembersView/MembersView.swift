@@ -29,9 +29,9 @@ struct MembersView: View {
                     ForEach(vm.getAllGroups(), id: \.self) { group in
                         GroupListView(group: group)
                     }
-                    
                 }
             }
+            .navigationTitle("Members")
         }
     }
 }

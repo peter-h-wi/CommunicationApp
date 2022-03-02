@@ -22,6 +22,10 @@
 		FEDCA02927C6DA7500291D70 /* DefaultMembers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDCA02827C6DA7500291D70 /* DefaultMembers.swift */; };
 		FEDCA02B27C6DBF400291D70 /* MembersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDCA02A27C6DBF400291D70 /* MembersView.swift */; };
 		FEDCA02E27C6DCBC00291D70 /* MemberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDCA02D27C6DCBC00291D70 /* MemberView.swift */; };
+		FEE36B3E27CFB9B60078B1B5 /* ChatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE36B3D27CFB9B60078B1B5 /* ChatsView.swift */; };
+		FEE36B4027CFB9C40078B1B5 /* NotAnsweredView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE36B3F27CFB9C40078B1B5 /* NotAnsweredView.swift */; };
+		FEE36B4227CFBB300078B1B5 /* ChatsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE36B4127CFBB300078B1B5 /* ChatsViewModel.swift */; };
+		FEE36B4427CFBBA60078B1B5 /* NotAnsweredViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE36B4327CFBBA60078B1B5 /* NotAnsweredViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +45,10 @@
 		FEDCA02827C6DA7500291D70 /* DefaultMembers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultMembers.swift; sourceTree = "<group>"; };
 		FEDCA02A27C6DBF400291D70 /* MembersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembersView.swift; sourceTree = "<group>"; };
 		FEDCA02D27C6DCBC00291D70 /* MemberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberView.swift; sourceTree = "<group>"; };
+		FEE36B3D27CFB9B60078B1B5 /* ChatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsView.swift; sourceTree = "<group>"; };
+		FEE36B3F27CFB9C40078B1B5 /* NotAnsweredView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotAnsweredView.swift; sourceTree = "<group>"; };
+		FEE36B4127CFBB300078B1B5 /* ChatsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsViewModel.swift; sourceTree = "<group>"; };
+		FEE36B4327CFBBA60078B1B5 /* NotAnsweredViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotAnsweredViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +124,8 @@
 		FEDCA01E27C6D8FB00291D70 /* ChatsView */ = {
 			isa = PBXGroup;
 			children = (
+				FEE36B3D27CFB9B60078B1B5 /* ChatsView.swift */,
+				FEE36B4127CFBB300078B1B5 /* ChatsViewModel.swift */,
 			);
 			path = ChatsView;
 			sourceTree = "<group>";
@@ -123,6 +133,8 @@
 		FEDCA01F27C6D90700291D70 /* NotAnsweredView */ = {
 			isa = PBXGroup;
 			children = (
+				FEE36B3F27CFB9C40078B1B5 /* NotAnsweredView.swift */,
+				FEE36B4327CFBBA60078B1B5 /* NotAnsweredViewModel.swift */,
 			);
 			path = NotAnsweredView;
 			sourceTree = "<group>";
@@ -226,7 +238,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FEE36B3E27CFB9B60078B1B5 /* ChatsView.swift in Sources */,
 				FEDCA02E27C6DCBC00291D70 /* MemberView.swift in Sources */,
+				FEE36B4427CFBBA60078B1B5 /* NotAnsweredViewModel.swift in Sources */,
 				FE1521C227CD2494007F95A2 /* DefaultGroups.swift in Sources */,
 				FE1521C027CD21EC007F95A2 /* MyInfoModel.swift in Sources */,
 				FE1521B627CD1AD8007F95A2 /* GroupModel.swift in Sources */,
@@ -236,8 +250,10 @@
 				FEDCA01227C6D8B200291D70 /* ContentView.swift in Sources */,
 				FEDCA02627C6D9DC00291D70 /* MemberModel.swift in Sources */,
 				FEDCA01027C6D8B200291D70 /* communication_magicApp.swift in Sources */,
+				FEE36B4027CFB9C40078B1B5 /* NotAnsweredView.swift in Sources */,
 				FE1521C727CD2D8C007F95A2 /* GroupListView.swift in Sources */,
 				FE1521BA27CD2089007F95A2 /* MessageModel.swift in Sources */,
+				FEE36B4227CFBB300078B1B5 /* ChatsViewModel.swift in Sources */,
 				FEDCA02927C6DA7500291D70 /* DefaultMembers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
