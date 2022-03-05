@@ -87,4 +87,32 @@ fastlane/test_output
 # After new code Injection tools there's a generated folder /iOSInjectionProject
 # https://github.com/johnno1962/injectionforxcode
 
+# Created by https://www.toptal.com/developers/gitignore/api/firebase
+# Edit at https://www.toptal.com/developers/gitignore?templates=firebase
+
+### Firebase ###
+.idea
+**/node_modules/*
+**/.firebaserc
+
+### Firebase Patch ###
+.runtimeconfig.json
+.firebase/
+
+# End of https://www.toptal.com/developers/gitignore/api/firebase
+
+# Created by https://www.toptal.com/developers/gitignore/api/swiftpackagemanager
+# Edit at https://www.toptal.com/developers/gitignore?templates=swiftpackagemanager
+
+### SwiftPackageManager ###
+Packages
+.build/
+xcuserdata
+DerivedData/
+*.xcodeproj
+
+
+# End of https://www.toptal.com/developers/gitignore/api/swiftpackagemanager
+
+
 iOSInjectionProject/

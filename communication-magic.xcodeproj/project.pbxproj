@@ -26,6 +26,7 @@
 		FEE36B4027CFB9C40078B1B5 /* NotAnsweredView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE36B3F27CFB9C40078B1B5 /* NotAnsweredView.swift */; };
 		FEE36B4227CFBB300078B1B5 /* ChatsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE36B4127CFBB300078B1B5 /* ChatsViewModel.swift */; };
 		FEE36B4427CFBBA60078B1B5 /* NotAnsweredViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE36B4327CFBBA60078B1B5 /* NotAnsweredViewModel.swift */; };
+		FEE36B4627CFBDEF0078B1B5 /* DefaultMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE36B4527CFBDEF0078B1B5 /* DefaultMessages.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,7 @@
 		FEE36B3F27CFB9C40078B1B5 /* NotAnsweredView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotAnsweredView.swift; sourceTree = "<group>"; };
 		FEE36B4127CFBB300078B1B5 /* ChatsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsViewModel.swift; sourceTree = "<group>"; };
 		FEE36B4327CFBBA60078B1B5 /* NotAnsweredViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotAnsweredViewModel.swift; sourceTree = "<group>"; };
+		FEE36B4527CFBDEF0078B1B5 /* DefaultMessages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultMessages.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +158,7 @@
 			children = (
 				FEDCA02827C6DA7500291D70 /* DefaultMembers.swift */,
 				FE1521C127CD2494007F95A2 /* DefaultGroups.swift */,
+				FEE36B4527CFBDEF0078B1B5 /* DefaultMessages.swift */,
 			);
 			path = "Default Content";
 			sourceTree = "<group>";
@@ -255,6 +258,7 @@
 				FE1521BA27CD2089007F95A2 /* MessageModel.swift in Sources */,
 				FEE36B4227CFBB300078B1B5 /* ChatsViewModel.swift in Sources */,
 				FEDCA02927C6DA7500291D70 /* DefaultMembers.swift in Sources */,
+				FEE36B4627CFBDEF0078B1B5 /* DefaultMessages.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

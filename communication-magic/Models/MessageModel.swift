@@ -14,4 +14,5 @@ struct MessageModel: Identifiable {
     let timestamp: String
     let received_flag = false
     let group_id: String
+    let group_name: String
 }
