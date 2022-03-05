@@ -14,6 +14,7 @@
 		FE1521C227CD2494007F95A2 /* DefaultGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1521C127CD2494007F95A2 /* DefaultGroups.swift */; };
 		FE1521C427CD2AF5007F95A2 /* MembersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1521C327CD2AF5007F95A2 /* MembersViewModel.swift */; };
 		FE1521C727CD2D8C007F95A2 /* GroupListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1521C627CD2D8C007F95A2 /* GroupListView.swift */; };
+		FE7963B627D3C9C5001FB6E2 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7963B527D3C9C5001FB6E2 /* NetworkService.swift */; };
 		FEDCA01027C6D8B200291D70 /* communication_magicApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDCA00F27C6D8B200291D70 /* communication_magicApp.swift */; };
 		FEDCA01227C6D8B200291D70 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDCA01127C6D8B200291D70 /* ContentView.swift */; };
 		FEDCA01427C6D8B300291D70 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FEDCA01327C6D8B300291D70 /* Assets.xcassets */; };
@@ -37,6 +38,7 @@
 		FE1521C127CD2494007F95A2 /* DefaultGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultGroups.swift; sourceTree = "<group>"; };
 		FE1521C327CD2AF5007F95A2 /* MembersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembersViewModel.swift; sourceTree = "<group>"; };
 		FE1521C627CD2D8C007F95A2 /* GroupListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListView.swift; sourceTree = "<group>"; };
+		FE7963B527D3C9C5001FB6E2 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		FEDCA00C27C6D8B200291D70 /* communication-magic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "communication-magic.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEDCA00F27C6D8B200291D70 /* communication_magicApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = communication_magicApp.swift; sourceTree = "<group>"; };
 		FEDCA01127C6D8B200291D70 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -72,6 +74,14 @@
 			path = GroupListView;
 			sourceTree = "<group>";
 		};
+		FE7963B427D3C9B6001FB6E2 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				FE7963B527D3C9C5001FB6E2 /* NetworkService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		FEDCA00327C6D8B200291D70 = {
 			isa = PBXGroup;
 			children = (
@@ -91,6 +101,7 @@
 		FEDCA00E27C6D8B200291D70 /* communication-magic */ = {
 			isa = PBXGroup;
 			children = (
+				FE7963B427D3C9B6001FB6E2 /* Services */,
 				FE1521C527CD2D79007F95A2 /* GroupListView */,
 				FEDCA02C27C6DCAC00291D70 /* MemberView */,
 				FEDCA02727C6DA5C00291D70 /* Default Content */,
@@ -256,6 +267,7 @@
 				FEE36B4027CFB9C40078B1B5 /* NotAnsweredView.swift in Sources */,
 				FE1521C727CD2D8C007F95A2 /* GroupListView.swift in Sources */,
 				FE1521BA27CD2089007F95A2 /* MessageModel.swift in Sources */,
+				FE7963B627D3C9C5001FB6E2 /* NetworkService.swift in Sources */,
 				FEE36B4227CFBB300078B1B5 /* ChatsViewModel.swift in Sources */,
 				FEDCA02927C6DA7500291D70 /* DefaultMembers.swift in Sources */,
 				FEE36B4627CFBDEF0078B1B5 /* DefaultMessages.swift in Sources */,
