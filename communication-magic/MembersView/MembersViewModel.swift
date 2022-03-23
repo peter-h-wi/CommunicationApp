@@ -13,6 +13,7 @@ final class MembersViewModel: ObservableObject {
     init() {
         Task {
             await test()
+            await post()
         }
     }
     
@@ -29,7 +30,17 @@ final class MembersViewModel: ObservableObject {
     func test() async {
         do {
             let ans = try await NetworkService.getMessages()
-            print(ans + "Test")
+            print(ans)
+        } catch (let error){
+            print(error.localizedDescription)
+        }
+        
+    }
+    
+    func post() async {
+        do {
+            let ans = try await NetworkService.postMessages()
+            print(ans)
         } catch (let error){
             print(error.localizedDescription)
         }

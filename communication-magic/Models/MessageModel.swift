@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MessageModel: Identifiable {
+struct MessageModel: Identifiable, Codable {
     let id = UUID()
     let audio_url: String
     let sender_name: String
