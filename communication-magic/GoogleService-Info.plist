@@ -14,20 +14,22 @@
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>peter-h-wi.communication-magic</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Need microphone access for uploading audio</string>
 	<key>PROJECT_ID</key>
 	<string>clinical-communication</string>
 	<key>STORAGE_BUCKET</key>
 	<string>clinical-communication.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
-	<false></false>
+	<false/>
 	<key>IS_ANALYTICS_ENABLED</key>
-	<false></false>
+	<false/>
 	<key>IS_APPINVITE_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>IS_GCM_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>IS_SIGNIN_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>GOOGLE_APP_ID</key>
 	<string>1:157794821826:ios:ef71d68b2adde4aa1b3d5b</string>
 </dict>

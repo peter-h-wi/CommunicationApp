@@ -10,7 +10,7 @@ import Foundation
 final class ChatsViewModel: ObservableObject {
     @Published var groups = GroupList.defaultGroups
     
-    func getAllGroups() -> [GroupModel] {
+    func getAllGroups() -> [Group] {
         return groups
     }
 }

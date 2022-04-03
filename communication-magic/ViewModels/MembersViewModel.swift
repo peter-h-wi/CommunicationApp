@@ -17,13 +17,13 @@ final class MembersViewModel: ObservableObject {
         }
     }
     
-    func getFavoriteGroups() -> [GroupModel] {
+    func getFavoriteGroups() -> [Group] {
         return groups.filter { group in
             return group.is_favorite == true
         }
     }
     
-    func getAllGroups() -> [GroupModel] {
+    func getAllGroups() -> [Group] {
         return groups
     }
     

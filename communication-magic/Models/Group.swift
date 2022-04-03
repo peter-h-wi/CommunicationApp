@@ -1,14 +1,14 @@
 //
-//  GroupModel.swift
+//  Group.swift
 //  communication-magic
 //
-//  Created by peter wi on 2/28/22.
+//  Created by George Andrade on 4/2/22.
 //
 
 import Foundation
 
-struct GroupModel: Identifiable, Hashable {
-    static func == (lhs: GroupModel, rhs: GroupModel) -> Bool {
+struct Group: Identifiable, Hashable {
+    static func == (lhs: Group, rhs: Group) -> Bool {
         return lhs.id == rhs.id
     }
     
@@ -19,7 +19,7 @@ struct GroupModel: Identifiable, Hashable {
     let id = UUID()
     
     var group_name: String = ""
-    var members: [MemberModel] = []
-    var active_messages: [MessageModel] = []
+    var members: [Member] = []
+    var active_messages: [Message] = []
     var is_favorite: Bool = false
 }

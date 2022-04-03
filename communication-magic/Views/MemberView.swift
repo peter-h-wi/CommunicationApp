@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MemberView: View {
-    let members: [MemberModel]
+    let members: [Member]
     
     var body: some View {
         if (members.count==1) {

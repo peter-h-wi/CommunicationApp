@@ -1,13 +1,13 @@
 //
-//  MyInfoModel.swift
+//  UserInfo.swift
 //  communication-magic
 //
-//  Created by peter wi on 2/28/22.
+//  Created by George Andrade on 4/2/22.
 //
 
 import Foundation
 
-struct MyInfoModel: Identifiable {
+struct UserInfo: Identifiable {
     let id = UUID()
     let name: String
     let login_id: String

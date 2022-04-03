@@ -24,11 +24,19 @@
 		2C32B35427D3D00D00A4FACE /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 2C32B35327D3D00D00A4FACE /* FirebaseStorage */; };
 		2C32B35627D3D00D00A4FACE /* FirebaseStorageSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 2C32B35527D3D00D00A4FACE /* FirebaseStorageSwift-Beta */; };
 		2C379A5927EAB0FE003857BD /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C379A5827EAB0FE003857BD /* NetworkManager.swift */; };
-		FE1521B627CD1AD8007F95A2 /* GroupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1521B527CD1AD8007F95A2 /* GroupModel.swift */; };
-		FE1521BA27CD2089007F95A2 /* MessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1521B927CD2089007F95A2 /* MessageModel.swift */; };
+		2C56C04827F8E1C800246407 /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C56C04727F8E1C800246407 /* Member.swift */; };
+		2C56C04B27F8E1E800246407 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C56C04A27F8E1E800246407 /* Group.swift */; };
+		2C56C04E27F8E21500246407 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C56C04D27F8E21500246407 /* Message.swift */; };
+		2C56C05027F8E23800246407 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C56C04F27F8E23800246407 /* UserInfo.swift */; };
+		2C56C05327F8E2C600246407 /* DummyMembers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C56C05227F8E2C600246407 /* DummyMembers.swift */; };
+		2C56C05527F8E2D000246407 /* DummyGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C56C05427F8E2D000246407 /* DummyGroups.swift */; };
+		2C56C05727F8E2DC00246407 /* DummyMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C56C05627F8E2DC00246407 /* DummyMessages.swift */; };
+		2C5F35A227F8AC5500546247 /* RecordVoiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5F359A27F8AC5500546247 /* RecordVoiceView.swift */; };
+		2C5F35A327F8AC5500546247 /* RecordingListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5F359B27F8AC5500546247 /* RecordingListView.swift */; };
+		2C5F35A427F8AC5500546247 /* Recording.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5F359D27F8AC5500546247 /* Recording.swift */; };
+		2C5F35A627F8AC5500546247 /* VoiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5F359F27F8AC5500546247 /* VoiceViewModel.swift */; };
+		2C5F35A727F8AC5500546247 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5F35A127F8AC5500546247 /* FirebaseManager.swift */; };
 		FE1521BE27CD21AE007F95A2 /* SentMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1521BD27CD21AE007F95A2 /* SentMessageModel.swift */; };
-		FE1521C027CD21EC007F95A2 /* MyInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1521BF27CD21EC007F95A2 /* MyInfoModel.swift */; };
-		FE1521C227CD2494007F95A2 /* DefaultGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1521C127CD2494007F95A2 /* DefaultGroups.swift */; };
 		FE1521C427CD2AF5007F95A2 /* MembersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1521C327CD2AF5007F95A2 /* MembersViewModel.swift */; };
 		FE1521C727CD2D8C007F95A2 /* GroupListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1521C627CD2D8C007F95A2 /* GroupListView.swift */; };
 		FE7963B627D3C9C5001FB6E2 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7963B527D3C9C5001FB6E2 /* NetworkService.swift */; };
@@ -36,25 +44,28 @@
 		FEDCA01227C6D8B200291D70 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDCA01127C6D8B200291D70 /* ContentView.swift */; };
 		FEDCA01427C6D8B300291D70 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FEDCA01327C6D8B300291D70 /* Assets.xcassets */; };
 		FEDCA01727C6D8B300291D70 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FEDCA01627C6D8B300291D70 /* Preview Assets.xcassets */; };
-		FEDCA02627C6D9DC00291D70 /* MemberModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDCA02527C6D9DC00291D70 /* MemberModel.swift */; };
-		FEDCA02927C6DA7500291D70 /* DefaultMembers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDCA02827C6DA7500291D70 /* DefaultMembers.swift */; };
 		FEDCA02B27C6DBF400291D70 /* MembersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDCA02A27C6DBF400291D70 /* MembersView.swift */; };
 		FEDCA02E27C6DCBC00291D70 /* MemberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDCA02D27C6DCBC00291D70 /* MemberView.swift */; };
 		FEE36B3E27CFB9B60078B1B5 /* ChatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE36B3D27CFB9B60078B1B5 /* ChatsView.swift */; };
-		FEE36B4027CFB9C40078B1B5 /* NotAnsweredView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE36B3F27CFB9C40078B1B5 /* NotAnsweredView.swift */; };
 		FEE36B4227CFBB300078B1B5 /* ChatsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE36B4127CFBB300078B1B5 /* ChatsViewModel.swift */; };
-		FEE36B4427CFBBA60078B1B5 /* NotAnsweredViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE36B4327CFBBA60078B1B5 /* NotAnsweredViewModel.swift */; };
-		FEE36B4627CFBDEF0078B1B5 /* DefaultMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE36B4527CFBDEF0078B1B5 /* DefaultMessages.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2C32B33827D3CF1900A4FACE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2C379A5827EAB0FE003857BD /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
-		FE1521B527CD1AD8007F95A2 /* GroupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupModel.swift; sourceTree = "<group>"; };
-		FE1521B927CD2089007F95A2 /* MessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageModel.swift; sourceTree = "<group>"; };
+		2C56C04727F8E1C800246407 /* Member.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
+		2C56C04A27F8E1E800246407 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		2C56C04D27F8E21500246407 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		2C56C04F27F8E23800246407 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
+		2C56C05227F8E2C600246407 /* DummyMembers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyMembers.swift; sourceTree = "<group>"; };
+		2C56C05427F8E2D000246407 /* DummyGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyGroups.swift; sourceTree = "<group>"; };
+		2C56C05627F8E2DC00246407 /* DummyMessages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyMessages.swift; sourceTree = "<group>"; };
+		2C5F359A27F8AC5500546247 /* RecordVoiceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordVoiceView.swift; sourceTree = "<group>"; };
+		2C5F359B27F8AC5500546247 /* RecordingListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordingListView.swift; sourceTree = "<group>"; };
+		2C5F359D27F8AC5500546247 /* Recording.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recording.swift; sourceTree = "<group>"; };
+		2C5F359F27F8AC5500546247 /* VoiceViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoiceViewModel.swift; sourceTree = "<group>"; };
+		2C5F35A127F8AC5500546247 /* FirebaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		FE1521BD27CD21AE007F95A2 /* SentMessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentMessageModel.swift; sourceTree = "<group>"; };
-		FE1521BF27CD21EC007F95A2 /* MyInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoModel.swift; sourceTree = "<group>"; };
-		FE1521C127CD2494007F95A2 /* DefaultGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultGroups.swift; sourceTree = "<group>"; };
 		FE1521C327CD2AF5007F95A2 /* MembersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembersViewModel.swift; sourceTree = "<group>"; };
 		FE1521C627CD2D8C007F95A2 /* GroupListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListView.swift; sourceTree = "<group>"; };
 		FE7963B527D3C9C5001FB6E2 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -63,15 +74,10 @@
 		FEDCA01127C6D8B200291D70 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		FEDCA01327C6D8B300291D70 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FEDCA01627C6D8B300291D70 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		FEDCA02527C6D9DC00291D70 /* MemberModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberModel.swift; sourceTree = "<group>"; };
-		FEDCA02827C6DA7500291D70 /* DefaultMembers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultMembers.swift; sourceTree = "<group>"; };
 		FEDCA02A27C6DBF400291D70 /* MembersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembersView.swift; sourceTree = "<group>"; };
 		FEDCA02D27C6DCBC00291D70 /* MemberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberView.swift; sourceTree = "<group>"; };
 		FEE36B3D27CFB9B60078B1B5 /* ChatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsView.swift; sourceTree = "<group>"; };
-		FEE36B3F27CFB9C40078B1B5 /* NotAnsweredView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotAnsweredView.swift; sourceTree = "<group>"; };
 		FEE36B4127CFBB300078B1B5 /* ChatsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsViewModel.swift; sourceTree = "<group>"; };
-		FEE36B4327CFBBA60078B1B5 /* NotAnsweredViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotAnsweredViewModel.swift; sourceTree = "<group>"; };
-		FEE36B4527CFBDEF0078B1B5 /* DefaultMessages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultMessages.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,25 +109,45 @@
 		2C32B33227D3C84D00A4FACE /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				2C5F35A127F8AC5500546247 /* FirebaseManager.swift */,
+				FE7963B527D3C9C5001FB6E2 /* NetworkService.swift */,
 				2C379A5827EAB0FE003857BD /* NetworkManager.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
 		};
-		FE1521C527CD2D79007F95A2 /* GroupListView */ = {
+		2C56C04427F8E0EA00246407 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				FEDCA01127C6D8B200291D70 /* ContentView.swift */,
+				2C5F359A27F8AC5500546247 /* RecordVoiceView.swift */,
+				2C5F359B27F8AC5500546247 /* RecordingListView.swift */,
 				FE1521C627CD2D8C007F95A2 /* GroupListView.swift */,
+				FEDCA02D27C6DCBC00291D70 /* MemberView.swift */,
+				FEDCA02A27C6DBF400291D70 /* MembersView.swift */,
+				FEE36B3D27CFB9B60078B1B5 /* ChatsView.swift */,
 			);
-			path = GroupListView;
+			path = Views;
 			sourceTree = "<group>";
 		};
-		FE7963B427D3C9B6001FB6E2 /* Services */ = {
+		2C56C05127F8E29F00246407 /* Dummy Data */ = {
 			isa = PBXGroup;
 			children = (
-				FE7963B527D3C9C5001FB6E2 /* NetworkService.swift */,
+				2C56C05227F8E2C600246407 /* DummyMembers.swift */,
+				2C56C05427F8E2D000246407 /* DummyGroups.swift */,
+				2C56C05627F8E2DC00246407 /* DummyMessages.swift */,
 			);
-			path = Services;
+			path = "Dummy Data";
+			sourceTree = "<group>";
+		};
+		2C56C05D27F8ED2400246407 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				FE1521C327CD2AF5007F95A2 /* MembersViewModel.swift */,
+				FEE36B4127CFBB300078B1B5 /* ChatsViewModel.swift */,
+				2C5F359F27F8AC5500546247 /* VoiceViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		FEDCA00327C6D8B200291D70 = {
@@ -143,18 +169,13 @@
 		FEDCA00E27C6D8B200291D70 /* communication-magic */ = {
 			isa = PBXGroup;
 			children = (
+				2C56C05D27F8ED2400246407 /* ViewModels */,
+				2C56C05127F8E29F00246407 /* Dummy Data */,
+				2C56C04427F8E0EA00246407 /* Views */,
 				2C32B33827D3CF1900A4FACE /* GoogleService-Info.plist */,
 				2C32B33227D3C84D00A4FACE /* Networking */,
-				FE7963B427D3C9B6001FB6E2 /* Services */,
-				FE1521C527CD2D79007F95A2 /* GroupListView */,
-				FEDCA02C27C6DCAC00291D70 /* MemberView */,
-				FEDCA02727C6DA5C00291D70 /* Default Content */,
 				FEDCA02327C6D9C900291D70 /* Models */,
-				FEDCA01F27C6D90700291D70 /* NotAnsweredView */,
-				FEDCA01E27C6D8FB00291D70 /* ChatsView */,
-				FEDCA01D27C6D8E800291D70 /* MembersView */,
 				FEDCA00F27C6D8B200291D70 /* communication_magicApp.swift */,
-				FEDCA01127C6D8B200291D70 /* ContentView.swift */,
 				FEDCA01327C6D8B300291D70 /* Assets.xcassets */,
 				FEDCA01527C6D8B300291D70 /* Preview Content */,
 			);
@@ -169,61 +190,17 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		FEDCA01D27C6D8E800291D70 /* MembersView */ = {
-			isa = PBXGroup;
-			children = (
-				FEDCA02A27C6DBF400291D70 /* MembersView.swift */,
-				FE1521C327CD2AF5007F95A2 /* MembersViewModel.swift */,
-			);
-			path = MembersView;
-			sourceTree = "<group>";
-		};
-		FEDCA01E27C6D8FB00291D70 /* ChatsView */ = {
-			isa = PBXGroup;
-			children = (
-				FEE36B3D27CFB9B60078B1B5 /* ChatsView.swift */,
-				FEE36B4127CFBB300078B1B5 /* ChatsViewModel.swift */,
-			);
-			path = ChatsView;
-			sourceTree = "<group>";
-		};
-		FEDCA01F27C6D90700291D70 /* NotAnsweredView */ = {
-			isa = PBXGroup;
-			children = (
-				FEE36B3F27CFB9C40078B1B5 /* NotAnsweredView.swift */,
-				FEE36B4327CFBBA60078B1B5 /* NotAnsweredViewModel.swift */,
-			);
-			path = NotAnsweredView;
-			sourceTree = "<group>";
-		};
 		FEDCA02327C6D9C900291D70 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				FEDCA02527C6D9DC00291D70 /* MemberModel.swift */,
-				FE1521B527CD1AD8007F95A2 /* GroupModel.swift */,
-				FE1521B927CD2089007F95A2 /* MessageModel.swift */,
+				2C5F359D27F8AC5500546247 /* Recording.swift */,
 				FE1521BD27CD21AE007F95A2 /* SentMessageModel.swift */,
-				FE1521BF27CD21EC007F95A2 /* MyInfoModel.swift */,
+				2C56C04727F8E1C800246407 /* Member.swift */,
+				2C56C04A27F8E1E800246407 /* Group.swift */,
+				2C56C04D27F8E21500246407 /* Message.swift */,
+				2C56C04F27F8E23800246407 /* UserInfo.swift */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		FEDCA02727C6DA5C00291D70 /* Default Content */ = {
-			isa = PBXGroup;
-			children = (
-				FEDCA02827C6DA7500291D70 /* DefaultMembers.swift */,
-				FE1521C127CD2494007F95A2 /* DefaultGroups.swift */,
-				FEE36B4527CFBDEF0078B1B5 /* DefaultMessages.swift */,
-			);
-			path = "Default Content";
-			sourceTree = "<group>";
-		};
-		FEDCA02C27C6DCAC00291D70 /* MemberView */ = {
-			isa = PBXGroup;
-			children = (
-				FEDCA02D27C6DCBC00291D70 /* MemberView.swift */,
-			);
-			path = MemberView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -320,24 +297,27 @@
 			files = (
 				FEE36B3E27CFB9B60078B1B5 /* ChatsView.swift in Sources */,
 				FEDCA02E27C6DCBC00291D70 /* MemberView.swift in Sources */,
-				FEE36B4427CFBBA60078B1B5 /* NotAnsweredViewModel.swift in Sources */,
+				2C5F35A727F8AC5500546247 /* FirebaseManager.swift in Sources */,
+				2C56C04827F8E1C800246407 /* Member.swift in Sources */,
 				2C379A5927EAB0FE003857BD /* NetworkManager.swift in Sources */,
-				FE1521C227CD2494007F95A2 /* DefaultGroups.swift in Sources */,
-				FE1521C027CD21EC007F95A2 /* MyInfoModel.swift in Sources */,
-				FE1521B627CD1AD8007F95A2 /* GroupModel.swift in Sources */,
+				2C5F35A227F8AC5500546247 /* RecordVoiceView.swift in Sources */,
+				2C56C04B27F8E1E800246407 /* Group.swift in Sources */,
+				2C5F35A427F8AC5500546247 /* Recording.swift in Sources */,
+				2C5F35A627F8AC5500546247 /* VoiceViewModel.swift in Sources */,
 				FE1521C427CD2AF5007F95A2 /* MembersViewModel.swift in Sources */,
 				FEDCA02B27C6DBF400291D70 /* MembersView.swift in Sources */,
+				2C5F35A327F8AC5500546247 /* RecordingListView.swift in Sources */,
 				FE1521BE27CD21AE007F95A2 /* SentMessageModel.swift in Sources */,
 				FEDCA01227C6D8B200291D70 /* ContentView.swift in Sources */,
-				FEDCA02627C6D9DC00291D70 /* MemberModel.swift in Sources */,
+				2C56C05527F8E2D000246407 /* DummyGroups.swift in Sources */,
 				FEDCA01027C6D8B200291D70 /* communication_magicApp.swift in Sources */,
-				FEE36B4027CFB9C40078B1B5 /* NotAnsweredView.swift in Sources */,
+				2C56C05727F8E2DC00246407 /* DummyMessages.swift in Sources */,
+				2C56C05327F8E2C600246407 /* DummyMembers.swift in Sources */,
 				FE1521C727CD2D8C007F95A2 /* GroupListView.swift in Sources */,
-				FE1521BA27CD2089007F95A2 /* MessageModel.swift in Sources */,
+				2C56C04E27F8E21500246407 /* Message.swift in Sources */,
 				FE7963B627D3C9C5001FB6E2 /* NetworkService.swift in Sources */,
 				FEE36B4227CFBB300078B1B5 /* ChatsViewModel.swift in Sources */,
-				FEDCA02927C6DA7500291D70 /* DefaultMembers.swift in Sources */,
-				FEE36B4627CFBDEF0078B1B5 /* DefaultMessages.swift in Sources */,
+				2C56C05027F8E23800246407 /* UserInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -395,6 +375,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_EXPAND_BUILD_SETTINGS = NO;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -450,6 +432,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_EXPAND_BUILD_SETTINGS = NO;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -471,6 +455,9 @@
 				DEVELOPMENT_TEAM = 22875T464M;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_EXPAND_BUILD_SETTINGS = YES;
+				INFOPLIST_FILE = "communication-magic/GoogleService-Info.plist";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "\"Need to access for audio recording\"";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -501,6 +488,9 @@
 				DEVELOPMENT_TEAM = 22875T464M;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_EXPAND_BUILD_SETTINGS = YES;
+				INFOPLIST_FILE = "communication-magic/GoogleService-Info.plist";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "\"Need to access for audio recording\"";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

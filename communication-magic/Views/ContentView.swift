@@ -14,13 +14,9 @@ struct ContentView: View {
                 .tabItem {
                     Label("Members", systemImage: "person")
                 }
-            ChatsView()
+            RecordingListView()
                 .tabItem {
-                    Label("Chats", systemImage: "text.bubble")
-                }
-            NotAnsweredView()
-                .tabItem {
-                    Label("Reply", systemImage: "archivebox")
+                    Label("Recordings", systemImage: "archivebox")
                 }
         }
     }
