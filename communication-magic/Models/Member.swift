@@ -7,10 +7,13 @@
 
 import Foundation
 
-struct Member: Identifiable, Hashable {
-    let id = UUID()
-    
+struct Member: Identifiable, Codable {
+    let uid: String
     let name: String
     let role: String
-    let status: Bool = false
+    let online: Bool 
+    
+    var id: String {
+        uid
+    }
 }

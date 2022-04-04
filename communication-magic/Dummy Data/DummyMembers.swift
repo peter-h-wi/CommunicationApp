@@ -8,81 +8,81 @@
 import Foundation
 enum MemberList {
     static let allMembers = [
-        Member(name: "bluebird", role: "nurse"),
-        Member(name: "amy", role: "nurse"),
-        Member(name: "brian", role: "technician"),
-        Member(name: "tom", role: "nurse"),
-        Member(name: "son", role: "nurse"),
-        Member(name: "doria", role: "nurse"),
-        Member(name: "lupeng", role: "doctor"),
-        Member(name: "oliver", role: "pharmacist"),
-        Member(name: "mark", role: "nurse"),
-        Member(name: "donald", role: "nurse"),
-        Member(name: "tim", role: "pharmacist"),
-        Member(name: "lauren", role: "doctor"),
-        Member(name: "bri", role: "nurse"),
-        Member(name: "santana", role: "technician"),
-        Member(name: "harry", role: "front desk"),
-        Member(name: "min", role: "front desk")
+        Member(uid: "fwefew", name: "bluebird", role: "nurse", online: false),
+        Member(uid: "fwfwe", name: "amy", role: "nurse", online: false),
+        Member(uid: "fweffwefweew", name: "brian", role: "technician", online: false),
+        Member(uid: "qq", name: "tom", role: "nurse", online: false),
+        Member(uid: "fwvsdefew", name: "son", role: "nurse", online: false),
+        Member(uid: "fwefefefew", name: "doria", role: "nurse", online: false),
+        Member(uid: "fewf", name: "lupeng", role: "doctor", online: false),
+        Member(uid: "qwq", name: "oliver", role: "pharmacist", online: false),
+        Member(uid: "fwecvdsvfew", name: "mark", role: "nurse", online: false),
+        Member(uid: "fweczcdasfew", name: "donald", role: "nurse", online: false),
+        Member(uid: "adaw", name: "tim", role: "pharmacist", online: false),
+        Member(uid: "fwefgrgfew", name: "lauren", role: "doctor", online: false),
+        Member(uid: "qwqwf", name: "bri", role: "nurse", online: false),
+        Member(uid: "fefe", name: "santana", role: "technician", online: false),
+        Member(uid: "fwegregrefew", name: "harry", role: "front desk", online: false),
+        Member(uid: "ghhtr", name: "min", role: "front desk", online: false),
     ]
     static let nurseMembers = [
-        Member(name: "bluebird", role: "nurse"),
-        Member(name: "amy", role: "nurse"),
-        Member(name: "tom", role: "nurse"),
-        Member(name: "son", role: "nurse"),
-        Member(name: "doria", role: "nurse"),
-        Member(name: "mark", role: "nurse"),
-        Member(name: "donald", role: "nurse"),
-        Member(name: "bri", role: "nurse"),
+        Member(uid: "htrhrt", name: "bluebird", role: "nurse", online: false),
+        Member(uid: "fwefhrthrew", name: "amy", role: "nurse", online: false),
+        Member(uid: "rwe", name: "tom", role: "nurse", online: false),
+        Member(uid: "fwefwrewew", name: "son", role: "nurse", online: false),
+        Member(uid: "ytry", name: "doria", role: "nurse", online: false),
+        Member(uid: "uyt", name: "mark", role: "nurse", online: false),
+        Member(uid: "qrwq", name: "donald", role: "nurse", online: false),
+        Member(uid: "ege", name: "bri", role: "nurse", online: false),
     ]
     static let doctorMembers = [
-        Member(name: "lupeng", role: "doctor"),
-        Member(name: "lauren", role: "doctor"),
+        Member(uid: "gd", name: "lupeng", role: "doctor", online: false),
+        Member(uid: "fes", name: "lauren", role: "doctor", online: false),
     ]
     static let technicianMembers = [
-        Member(name: "brian", role: "technician"),
-        Member(name: "santana", role: "technician")
+        Member(uid: "fse", name: "brian", role: "technician", online: false),
+        Member(uid: "fes", name: "santana", role: "technician", online: false),
     ]
     static let pharmacistMembers = [
-        Member(name: "oliver", role: "pharmacist"),
-        Member(name: "tim", role: "pharmacist"),
+        Member(uid: "tre", name: "oliver", role: "pharmacist", online: false),
+        Member(uid: "yeyr", name: "tim", role: "pharmacist", online: false),
     ]
     static let frontDeskMembers = [
-        Member(name: "harry", role: "front desk"),
-        Member(name: "min", role: "front desk")
+        Member(uid: "tret", name: "harry", role: "front desk", online: false),
+        Member(uid: "terte", name: "min", role: "front desk", online: false),
     ]
     static let individual1 = [
-        Member(name: "amy", role: "nurse"),
+        Member(uid: "rfew", name: "amy", role: "nurse", online: false),
     ]
     static let individual2 = [
-        Member(name: "brian", role: "technician"),
+        Member(uid: "fwe", name: "brian", role: "technician", online: false),
     ]
     static let individual3 = [
-        Member(name: "oliver", role: "pharmacist"),
+        Member(uid: "wwf", name: "oliver", role: "pharmacist", online: false),
     ]
     static let individual4 = [
-        Member(name: "tim", role: "pharmacist"),
+        Member(uid: "fwef", name: "tim", role: "pharmacist", online: false),
     ]
     static let individual5 = [
-        Member(name: "min", role: "front desk")
+        Member(uid: "gre", name: "min", role: "front desk", online: false),
     ]
     static let individual6 = [
-        Member(name: "harry", role: "front desk"),
+        Member(uid: "qdwq", name: "harry", role: "front desk", online: false),
     ]
     static let individual7 = [
-        Member(name: "lupeng", role: "doctor"),
+        Member(uid: "greg", name: "lupeng", role: "doctor", online: false),
     ]
     static let individual8 = [
-        Member(name: "lauren", role: "doctor"),
+        Member(uid: "qdwq", name: "lauren", role: "doctor", online: false),
     ]
     static let individual9 = [
-        Member(name: "donald", role: "nurse"),
+        Member(uid: "gre", name: "donald", role: "nurse", online: false),
     ]
     static let individual10 = [
-        Member(name: "son", role: "nurse"),
+        Member(uid: "dqw", name: "son", role: "nurse", online: false),
     ]
 }
 
 extension Member {
-    static let example = Member(name: "john", role: "technician")
+    static let example = Member(uid: "fwefwe", name: "john", role: "technician", online: true)
 }

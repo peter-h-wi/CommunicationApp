@@ -8,13 +8,14 @@
 import SwiftUI
 
 struct MembersView: View {
-    @StateObject private var vm = MembersViewModel()
-    
+    @ObservedObject private var vm = MembersViewModel()
+    @State var shouldShowLogOutOptions = false
+
     var body: some View {
         NavigationView {
             ScrollView(.vertical, showsIndicators: false) {
                 VStack(alignment: .leading) {
-                    MemberView(members: [.example])
+                    customNavBar
                     Divider()
                     Text("Favorite Groups")
                         .font(.headline)
@@ -32,22 +33,52 @@ struct MembersView: View {
                 }
             }
             .navigationTitle("Messages")
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: {
-                        // search
-                    }) {
-                        Image(systemName: "magnifyingglass")
-                    }
+            .navigationBarHidden(true)
+        }
+    }
+    
+    private var customNavBar: some View {
+        HStack(spacing: 16) {
+            VStack(alignment: .leading, spacing: 4) {
+                Text(vm.member?.name ?? "noname")
+                    .font(.system(size: 24, weight: .bold))
+                Text(vm.member?.role ?? "norole")
+                    .font(.system(size: 16, weight: .medium))
+
+                HStack {
+                    Circle()
+                        .foregroundColor(.green)
+                        .frame(width: 14, height: 14)
+                    Text("online")
+                        .font(.system(size: 12))
+                        .foregroundColor(Color(.lightGray))
                 }
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: {
-                        // search
-                    }) {
-                        Image(systemName: "plus")
-                    }
-                }
+
             }
+            Spacer()
+            Button {
+                shouldShowLogOutOptions.toggle()
+            } label: {
+                Image(systemName: "rectangle.portrait.and.arrow.right")
+                    .font(.system(size: 24, weight: .bold))
+                    .foregroundColor(Color(.label))
+            }
+        }
+        .padding()
+        .actionSheet(isPresented: $shouldShowLogOutOptions) {
+            .init(title: Text("Sign Out"), message: Text("Do you wish to sign out?"), buttons: [
+                .destructive(Text("Sign Out"), action: {
+                    print("clicked signed out")
+                    vm.handleSignOut()
+                }),
+                    .cancel()
+            ])
+        }
+        .fullScreenCover(isPresented: $vm.isUserCurrentlyLoggedOut, onDismiss: nil) {
+            LoginView({
+                self.vm.isUserCurrentlyLoggedOut = false
+                self.vm.fetchCurrentUser()
+            }, true)
         }
     }
 }

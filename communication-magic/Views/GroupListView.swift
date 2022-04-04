@@ -67,6 +67,6 @@ struct GroupListView: View {
 
 struct GroupListView_Previews: PreviewProvider {
     static var previews: some View {
-        GroupListView(group: Group(group_name: "test group", members: [Member(name: "test member", role: "test role")], active_messages: [Message(id: "fwuefwf", audioURL: "audioURL", groupID: "groupID", senderID: "senderID", timestamp: Date(timeIntervalSinceReferenceDate: -12.0))], is_favorite: false))
+        GroupListView(group: Group(group_name: "test group", members: [Member(uid: "uiddd", name: "test member", role: "test role", online: true)], active_messages: [Message(id: "fwuefwf", audioURL: "audioURL", groupID: "groupID", senderID: "senderID", timestamp: Date(timeIntervalSinceReferenceDate: -12.0))], is_favorite: false))
     }
 }

@@ -17,6 +17,8 @@ class VoiceViewModel : NSObject, ObservableObject , AVAudioPlayerDelegate{
     var indexOfPlayer = 0
     let dateFormatter = DateFormatter()
     
+    let member: Member = Member(uid: "fweew", name: "testmember", role: "doctor", online: true)
+    
     let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
     let storageRef = FirebaseManager.shared.storage.reference()
     
@@ -67,6 +69,8 @@ class VoiceViewModel : NSObject, ObservableObject , AVAudioPlayerDelegate{
 
             case .restricted: // The user can't grant access due to restrictions.
                 return
+        @unknown default:
+            fatalError()
         }
         
   //      fetchAllRecording()
@@ -198,39 +202,60 @@ class VoiceViewModel : NSObject, ObservableObject , AVAudioPlayerDelegate{
             print("Successfully saved current user sending message")
         }
     }
-    /*
-    private func fetchMessages() {
-        guard let fromId = FirebaseManager.shared.auth.currentUser?.uid else { return }
-        guard let toId = chatUser?.uid else { return }
-        FirebaseManager.shared.firestore
-            .collection("messages")
+    
+    func handleSend(of url: URL) {
+  //      guard let fromId = FirebaseManager.shared.auth.currentUser?.uid else { return }
+
+ //       guard let toId = member.id else { return }
+        
+        let fromId = "ee"
+        let toId = "ww"
+        let document = FirebaseManager.shared.firestore.collection("messages")
             .document(fromId)
             .collection(toId)
-            .order(by: "timestamp")
-            .addSnapshotListener { querySnapshot, error in
-                if let error = error {
-                    self.errorMessage = "Failed to listen for messages: \(error)"
-                    print(error)
-                    return
-                }
+            .document()
 
-                querySnapshot?.documentChanges.forEach({ change in
-                    if change.type == .added {
-                        let data = change.document.data()
-                        self.chatMessages.append(.init(documentId: change.document.documentID, data: data))
-                    }
-                })
+        let messageData = ["audioURL": url.description, "groupID": toId, "senderID": fromId, "timestamp": Timestamp()] as [String: Any]
+        
+        document.setData(messageData) { error in
+            if let error = error {
+                print("Failed to save message into Firestore: \(error)")
+                return
             }
-    } */
+
+            print("Successfully saved current user sending message")
+        }
+
+        let recipientMessageDocument = FirebaseManager.shared.firestore.collection("messages")
+            .document(toId)
+            .collection(fromId)
+            .document()
+
+        recipientMessageDocument.setData(messageData) { error in
+            if let error = error {
+                print("Failed to save message into Firestore: \(error)")
+                return
+            }
+
+            print("Recipient saved message as well")
+        }
+    }
     
     func fetchRecordings() {
         firestoreListener?.remove()
         messageList.removeAll()
         
+        //guard let fromId = FirebaseManager.shared.auth.currentUser?.uid else { return }
+
+        // guard let toId = member.id else { return }
+        
+        let fromId = "ee"
+        let toId = "ww"
+
         firestoreListener = FirebaseManager.shared.firestore
             .collection("Messages")
-            .document("senderID")
-            .collection("groupID")
+            .document(fromId)
+            .collection(toId)
             .order(by: "timestamp")
             .addSnapshotListener { querySnapshot, error in
                 if let error = error {

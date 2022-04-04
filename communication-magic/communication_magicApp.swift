@@ -14,7 +14,7 @@ struct communication_magicApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            HomeView()
         }
     }
 }
