@@ -10,7 +10,7 @@ import Foundation
 final class MembersViewModel: ObservableObject {
     @Published var groups = GroupList.defaultGroups
     @Published var member: Member?
-    @Published var members = [Member]()
+    @Published var members = [Member]() //starts off with empty array of type member
     @Published var isUserCurrentlyLoggedOut = false
 
     
@@ -19,6 +19,7 @@ final class MembersViewModel: ObservableObject {
             self.isUserCurrentlyLoggedOut = FirebaseManager.shared.auth.currentUser?.uid == nil
         }
         fetchCurrentUser()
+        fetchAllUsers()
     }
     
     func fetchCurrentUser() {
@@ -46,7 +47,7 @@ final class MembersViewModel: ObservableObject {
     }
     
     private func fetchAllUsers() {
-            FirebaseManager.shared.firestore.collection("users")
+            FirebaseManager.shared.firestore.collection("Members")
                 .getDocuments { documentsSnapshot, error in
                     if let error = error {
                         print("Failed to fetch users: \(error)")
@@ -55,11 +56,10 @@ final class MembersViewModel: ObservableObject {
 
                     documentsSnapshot?.documents.forEach({ snapshot in
                         let data = snapshot.data()
-                        let member = Member(uid: data["uid"] as! String, name: data["name"] as! String, role: data["role"] as! String, online: (data["online"] != nil))
-          //              if member.uid != FirebaseManager.shared.auth.currentUser?.uid {
-            //                self.members.append(.init(data: data))
-              //          }
-
+                        let member = Member(uid: data["uid"] as? String ?? "", name: data["name"] as? String ?? "noname", role: data["role"] as? String ?? "norole", online: (data["online"] as? Bool ?? false))
+                        if member.uid != FirebaseManager.shared.auth.currentUser?.uid { //fixes duplicating ourself onto list
+                            self.members.append(member)
+                        }
                     })
                 }
     }

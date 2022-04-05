@@ -18,34 +18,25 @@ struct MembersView: View {
                 VStack(alignment: .leading) {
                     customNavBar
                     Divider()
-                    Text("Favorite Groups")
+                    Text("Members")
                         .font(.headline)
                         .foregroundColor(.secondary)
-                    ForEach(vm.getFavoriteGroups(), id: \.self) { group in
+                    ForEach(vm.members) { member in
                         Button {
                             shouldShowRecordingScreen.toggle()
                         } label: {
                             HStack {
-                                HStack(spacing: 0) {
-                                    VStack(spacing:0) {
-                                        Circle()
-                                            .frame(width: 25, height: 25)
-                                        Circle()
-                                            .frame(width: 25, height: 25)
-                                    }
-                                    VStack(spacing:0) {
-                                        Circle()
-                                            .frame(width: 25, height: 25)
-                                        Circle()
-                                            .frame(width: 25, height: 25)
-                                    }
+                                Circle()
+                                    .frame(width: 25, height: 25)
+                                VStack{
+                                    Text(member.name)
+                                        .font(.headline)
+                                    Text(member.role)
+                                        .font(.body)
                                 }
-                                Text(group.group_name)
-                                    .font(.headline)
                                 Spacer()
-                                Text("3/10")
+                                Circle().foregroundColor(.green)
                                     .frame(width: 50, height: 50)
-                                    .background(Circle().foregroundColor(.green))
                             }
                         }
                     }
