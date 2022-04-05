@@ -10,6 +10,7 @@ import Foundation
 final class MembersViewModel: ObservableObject {
     @Published var groups = GroupList.defaultGroups
     @Published var member: Member?
+    @Published var members = [Member]()
     @Published var isUserCurrentlyLoggedOut = false
 
     
@@ -42,6 +43,25 @@ final class MembersViewModel: ObservableObject {
             let online = data["online"] as? Bool ?? false
             self.member = Member(uid: uid, name: name, role: role, online: online)
         }
+    }
+    
+    private func fetchAllUsers() {
+            FirebaseManager.shared.firestore.collection("users")
+                .getDocuments { documentsSnapshot, error in
+                    if let error = error {
+                        print("Failed to fetch users: \(error)")
+                        return
+                    }
+
+                    documentsSnapshot?.documents.forEach({ snapshot in
+                        let data = snapshot.data()
+                        let member = Member(uid: data["uid"] as! String, name: data["name"] as! String, role: data["role"] as! String, online: (data["online"] != nil))
+          //              if member.uid != FirebaseManager.shared.auth.currentUser?.uid {
+            //                self.members.append(.init(data: data))
+              //          }
+
+                    })
+                }
     }
     
     func handleSignOut() {

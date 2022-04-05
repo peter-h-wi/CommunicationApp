@@ -10,6 +10,7 @@ import SwiftUI
 struct MembersView: View {
     @ObservedObject private var vm = MembersViewModel()
     @State var shouldShowLogOutOptions = false
+    @State var shouldShowRecordingScreen = false
 
     var body: some View {
         NavigationView {
@@ -21,19 +22,72 @@ struct MembersView: View {
                         .font(.headline)
                         .foregroundColor(.secondary)
                     ForEach(vm.getFavoriteGroups(), id: \.self) { group in
-                        GroupListView(group: group)
+                        Button {
+                            shouldShowRecordingScreen.toggle()
+                        } label: {
+                            HStack {
+                                HStack(spacing: 0) {
+                                    VStack(spacing:0) {
+                                        Circle()
+                                            .frame(width: 25, height: 25)
+                                        Circle()
+                                            .frame(width: 25, height: 25)
+                                    }
+                                    VStack(spacing:0) {
+                                        Circle()
+                                            .frame(width: 25, height: 25)
+                                        Circle()
+                                            .frame(width: 25, height: 25)
+                                    }
+                                }
+                                Text(group.group_name)
+                                    .font(.headline)
+                                Spacer()
+                                Text("3/10")
+                                    .frame(width: 50, height: 50)
+                                    .background(Circle().foregroundColor(.green))
+                            }
+                        }
                     }
                     Divider()
                     Text("All Groups")
                         .font(.headline)
                         .foregroundColor(.secondary)
                     ForEach(vm.getAllGroups(), id: \.self) { group in
-                        GroupListView(group: group)
+                        Button {
+                            shouldShowRecordingScreen.toggle()
+                        } label: {
+                            HStack {
+                                HStack(spacing: 0) {
+                                    VStack(spacing:0) {
+                                        Circle()
+                                            .frame(width: 25, height: 25)
+                                        Circle()
+                                            .frame(width: 25, height: 25)
+                                    }
+                                    VStack(spacing:0) {
+                                        Circle()
+                                            .frame(width: 25, height: 25)
+                                        Circle()
+                                            .frame(width: 25, height: 25)
+                                    }
+                                }
+                                Text(group.group_name)
+                                    .font(.headline)
+                                Spacer()
+                                Text("3/10")
+                                    .frame(width: 50, height: 50)
+                                    .background(Circle().foregroundColor(.green))
+                            }
+                        }
                     }
                 }
             }
             .navigationTitle("Messages")
             .navigationBarHidden(true)
+            .fullScreenCover(isPresented: $shouldShowRecordingScreen) {
+                RecordVoiceView()
+            }
         }
     }
     

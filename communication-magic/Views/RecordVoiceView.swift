@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct RecordVoiceView: View {
+    @Environment(\.presentationMode) var presentationMode
+    
     @ObservedObject var vm = VoiceViewModel()
         
     @State private var showingList = false
@@ -15,28 +17,12 @@ struct RecordVoiceView: View {
     
     @State private var effect1 = false
     @State private var effect2 = false
-
+    
+    @State private var shouldGoBackToMembersList = false
     
     var body: some View {
-        VStack {
+        NavigationView {
             VStack {
-                HStack{
-                    alertButton
-                    
-                    Spacer()
-                    
-                    Text("CO-Voice")
-                        .foregroundColor(.primary)
-                        .font(.system(size: 20 , weight : .bold))
-                    
-                    Spacer()
-                    
-                    recordListButton
-                        .sheet(isPresented: $showingList, content: {
-                        RecordingListView()
-                    })
-                }
-                
                 Spacer()
                 Text(vm.uploadStatus)
                     .bold()
@@ -50,39 +36,35 @@ struct RecordVoiceView: View {
                 recordButton
                 
                 Spacer()
-                
             }
-            .padding(.leading,25)
-            .padding(.trailing,25)
-            .padding(.top , 70)
-        }
-        .navigationBarTitleDisplayMode(.inline)
-    }
-    
-    
-    private var alertButton: some View {
-        Button(action: {
-            showingAlert = true
-        }) {
-            Image(systemName: "info.circle.fill")
-                .foregroundColor(.primary)
-                .font(.system(size: 20, weight: .bold))
-        }.alert(isPresented: $showingAlert) {
-            Alert(title: Text("Hi There !"), message: Text("Use CO-Voice to Learn the code and Implementations . Enjoy the Code and ask me anything on my socials media"), dismissButton: .default(Text("Got it")))
-        }
-    }
-    
-    private var recordListButton: some View {
-        Button(action: {
-            if vm.isRecording == true {
-                vm.stopRecording()
+            .toolbar {
+                ToolbarItemGroup(placement: .navigationBarLeading) {
+                    Button {
+                        presentationMode.wrappedValue.dismiss()
+                    } label: {
+                        Text("Back")
+                    }
+                    Spacer()
+                    Text("Clinical Communication")
+                        .foregroundColor(.primary)
+                        .font(.system(size: 20 , weight : .bold))
+                    Spacer()
+                    Button(action: {
+                        if vm.isRecording == true {
+                            vm.stopRecording()
+                        }
+                        vm.fetchAllRecording()
+                        showingList.toggle()
+                    }) {
+                        Image(systemName: "list.bullet")
+                            .foregroundColor(.primary)
+                            .font(.system(size: 20, weight: .bold))
+                    }
+                    .sheet(isPresented: $showingList, content: {
+                        RecordingListView()
+                    })
+                }
             }
-            vm.fetchAllRecording()
-            showingList.toggle()
-        }) {
-            Image(systemName: "list.bullet")
-                .foregroundColor(.primary)
-                .font(.system(size: 20, weight: .bold))
         }
     }
     
