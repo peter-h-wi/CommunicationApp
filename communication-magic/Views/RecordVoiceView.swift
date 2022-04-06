@@ -10,8 +10,8 @@ import SwiftUI
 struct RecordVoiceView: View {
     @Environment(\.presentationMode) var presentationMode
     
-    @ObservedObject var vm = VoiceViewModel()
-        
+    @ObservedObject var vm: RecordVoiceViewModel
+    
     @State private var showingList = false
     @State private var showingAlert = false
     
@@ -19,6 +19,17 @@ struct RecordVoiceView: View {
     @State private var effect2 = false
     
     @State private var shouldGoBackToMembersList = false
+    
+    init(_ memberTo: Member, _ groupTo: Group, _ sendToGroup: Bool) {
+        self.memberTo = memberTo
+        self.groupTo = groupTo
+        self.sendToGroup = sendToGroup
+        _vm = ObservedObject(wrappedValue: RecordVoiceViewModel(memberTo: memberTo, groupTo: groupTo, sendToGroup: sendToGroup))
+    }
+    
+    let memberTo: Member?
+    let groupTo: Group?
+    let sendToGroup: Bool?
     
     var body: some View {
         NavigationView {
@@ -115,6 +126,6 @@ struct RecordVoiceView: View {
 
 struct RecordVoiceView_Previews: PreviewProvider {
     static var previews: some View {
-        RecordVoiceView()
+        RecordVoiceView(Member(uid: "uid", name: "name", role: "doc", online: true), Group(groupName: "groupname"), true)
     }
 }

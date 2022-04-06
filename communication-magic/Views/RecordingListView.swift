@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct RecordingListView: View {
-    @ObservedObject var vm = VoiceViewModel()
+    @ObservedObject var vm = RecordVoiceViewModel(memberTo: Member(uid: "", name: "", role: "", online: false), groupTo: Group(groupName: ""), sendToGroup: true)
         
     var body: some View {
         NavigationView {
@@ -40,7 +40,7 @@ struct RecordingListView_Previews: PreviewProvider {
 
 
 struct VoiceCardView: View {
-    @ObservedObject var vm: VoiceViewModel
+    @ObservedObject var vm: RecordVoiceViewModel
     let recording: Recording
     
     var body: some View {
@@ -86,7 +86,7 @@ struct VoiceCardView: View {
 }
 
 struct VoiceCardView2: View {
-    @ObservedObject var vm: VoiceViewModel
+    @ObservedObject var vm: RecordVoiceViewModel
     let message: Message
     
     var body: some View {

@@ -1,6 +1,6 @@
 //
-//  VoiceViewModel.swift
-//  VoiceDelieverApp
+//  RecordVoiceViewModel.swift
+//  communication-magic
 //
 //  Created by peter wi on 3/24/22.
 //
@@ -9,7 +9,7 @@ import Foundation
 import AVFoundation
 import Firebase
 
-class VoiceViewModel : NSObject, ObservableObject , AVAudioPlayerDelegate{
+class RecordVoiceViewModel : NSObject, ObservableObject , AVAudioPlayerDelegate{
     
     var audioRecorder : AVAudioRecorder!
     var audioPlayer : AVAudioPlayer!
@@ -17,12 +17,18 @@ class VoiceViewModel : NSObject, ObservableObject , AVAudioPlayerDelegate{
     var indexOfPlayer = 0
     let dateFormatter = DateFormatter()
     
-    let member: Member = Member(uid: "fweew", name: "testmember", role: "doctor", online: true)
+    let member: Member = Member(uid: "fweew", name: "testmember", role: "doctor", online: true) //new stuff i added
     
     let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
     let storageRef = FirebaseManager.shared.storage.reference()
     
     var firestoreListener: ListenerRegistration?
+    
+    var toId: String
+    
+    @Published var memberTo: Member?
+    @Published var groupTo: Group?
+    @Published var sendToGroup: Bool
 
     // check if recording has started , we will need it while playing with UI.
     @Published var isRecording : Bool = false
@@ -49,10 +55,18 @@ class VoiceViewModel : NSObject, ObservableObject , AVAudioPlayerDelegate{
     var playingURL2 : String = ""
     
     // We are initialising and call a function here letter .
-    override init() {
+    init(memberTo: Member, groupTo: Group, sendToGroup: Bool) {
+        self.memberTo = memberTo
+        self.groupTo = groupTo
+        self.sendToGroup = sendToGroup
         dateFormatter.dateFormat = "dd-MM-YY 'at' HH:mm:ss"
+        if sendToGroup {
+            toId = groupTo.id
+        } else {
+            toId = memberTo.id
+        }
         super.init()
-        
+
         switch AVCaptureDevice.authorizationStatus(for: .audio) {
             case .authorized: // The user has previously granted access to the audio.
                 self.fetchAllRecording()
@@ -204,13 +218,9 @@ class VoiceViewModel : NSObject, ObservableObject , AVAudioPlayerDelegate{
     }
     
     func handleSend(of url: URL) {
-  //      guard let fromId = FirebaseManager.shared.auth.currentUser?.uid else { return }
-
- //       guard let toId = member.id else { return }
+        guard let fromId = FirebaseManager.shared.auth.currentUser?.uid else { return }
         
-        let fromId = "ee"
-        let toId = "ww"
-        let document = FirebaseManager.shared.firestore.collection("messages")
+        let document = FirebaseManager.shared.firestore.collection("Messages")
             .document(fromId)
             .collection(toId)
             .document()
@@ -425,7 +435,7 @@ class VoiceViewModel : NSObject, ObservableObject , AVAudioPlayerDelegate{
     }
 }
 
-extension VoiceViewModel {
+extension RecordVoiceViewModel {
     func covertSecToMinAndHour(seconds : Int) -> String{
         
         let (_,m,s) = (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)

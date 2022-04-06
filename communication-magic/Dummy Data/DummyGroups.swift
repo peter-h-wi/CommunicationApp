@@ -8,7 +8,8 @@
 import Foundation
 
 enum GroupList {
-    static let defaultGroups = [
+    static let defaultGroups: [Group] = [
+        /*
         Group(group_name: "All Members", members: MemberList.allMembers),
         Group(group_name: "Nurse", members: MemberList.nurseMembers, is_favorite: true),
         Group(group_name: "Doctor", members: MemberList.doctorMembers),
@@ -24,10 +25,10 @@ enum GroupList {
         Group(group_name: MemberList.individual7[0].name, members: MemberList.individual7),
         Group(group_name: MemberList.individual8[0].name, members: MemberList.individual8),
         Group(group_name: MemberList.individual9[0].name, members: MemberList.individual9, is_favorite: true),
-        Group(group_name: MemberList.individual10[0].name, members: MemberList.individual10)
+        Group(group_name: MemberList.individual10[0].name, members: MemberList.individual10) */
     ]
 }
 
 extension Group {
-    static let example = Group(group_name: "Nurse", members: MemberList.nurseMembers, is_favorite: true)
+    static let example = Group(uid: "deqdq", groupName: "Nurse", members: MemberList.nurseMembers, isFavorite: true)
 }

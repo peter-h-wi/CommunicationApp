@@ -7,19 +7,14 @@
 
 import Foundation
 
-struct Group: Identifiable, Hashable {
-    static func == (lhs: Group, rhs: Group) -> Bool {
-        return lhs.id == rhs.id
-    }
-    
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
-    }
-    
-    let id = UUID()
-    
-    var group_name: String = ""
+struct Group: Identifiable, Codable {
+    var uid: String = UUID().uuidString
+    var groupName: String
     var members: [Member] = []
-    var active_messages: [Message] = []
-    var is_favorite: Bool = false
+    var isFavorite: Bool = false
+    var activeMessages: [Message] = []
+    
+    var id: String {
+        uid
+    }
 }

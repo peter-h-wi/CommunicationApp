@@ -37,18 +37,18 @@
 		2C5F35A227F8AC5500546247 /* RecordVoiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5F359A27F8AC5500546247 /* RecordVoiceView.swift */; };
 		2C5F35A327F8AC5500546247 /* RecordingListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5F359B27F8AC5500546247 /* RecordingListView.swift */; };
 		2C5F35A427F8AC5500546247 /* Recording.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5F359D27F8AC5500546247 /* Recording.swift */; };
-		2C5F35A627F8AC5500546247 /* VoiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5F359F27F8AC5500546247 /* VoiceViewModel.swift */; };
 		2C5F35A727F8AC5500546247 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5F35A127F8AC5500546247 /* FirebaseManager.swift */; };
+		2C98975D27FD05F300C2AF79 /* CreateGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C98975C27FD05F300C2AF79 /* CreateGroupView.swift */; };
+		2C98976127FD06EB00C2AF79 /* CreateGroupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C98976027FD06EB00C2AF79 /* CreateGroupViewModel.swift */; };
+		2C98976327FD2DBE00C2AF79 /* CheckBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C98976227FD2DBE00C2AF79 /* CheckBoxView.swift */; };
+		2C98976527FE1D6100C2AF79 /* RecordVoiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C98976427FE1D6100C2AF79 /* RecordVoiceViewModel.swift */; };
 		FE1521BE27CD21AE007F95A2 /* SentMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1521BD27CD21AE007F95A2 /* SentMessageModel.swift */; };
 		FE1521C427CD2AF5007F95A2 /* MembersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1521C327CD2AF5007F95A2 /* MembersViewModel.swift */; };
-		FE1521C727CD2D8C007F95A2 /* GroupListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1521C627CD2D8C007F95A2 /* GroupListView.swift */; };
 		FE7963B627D3C9C5001FB6E2 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7963B527D3C9C5001FB6E2 /* NetworkService.swift */; };
 		FEDCA01027C6D8B200291D70 /* communication_magicApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDCA00F27C6D8B200291D70 /* communication_magicApp.swift */; };
 		FEDCA01427C6D8B300291D70 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FEDCA01327C6D8B300291D70 /* Assets.xcassets */; };
 		FEDCA01727C6D8B300291D70 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FEDCA01627C6D8B300291D70 /* Preview Assets.xcassets */; };
 		FEDCA02B27C6DBF400291D70 /* MembersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDCA02A27C6DBF400291D70 /* MembersView.swift */; };
-		FEE36B3E27CFB9B60078B1B5 /* ChatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE36B3D27CFB9B60078B1B5 /* ChatsView.swift */; };
-		FEE36B4227CFBB300078B1B5 /* ChatsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE36B4127CFBB300078B1B5 /* ChatsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,19 +67,19 @@
 		2C5F359A27F8AC5500546247 /* RecordVoiceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordVoiceView.swift; sourceTree = "<group>"; };
 		2C5F359B27F8AC5500546247 /* RecordingListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordingListView.swift; sourceTree = "<group>"; };
 		2C5F359D27F8AC5500546247 /* Recording.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recording.swift; sourceTree = "<group>"; };
-		2C5F359F27F8AC5500546247 /* VoiceViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoiceViewModel.swift; sourceTree = "<group>"; };
 		2C5F35A127F8AC5500546247 /* FirebaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
+		2C98975C27FD05F300C2AF79 /* CreateGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupView.swift; sourceTree = "<group>"; };
+		2C98976027FD06EB00C2AF79 /* CreateGroupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupViewModel.swift; sourceTree = "<group>"; };
+		2C98976227FD2DBE00C2AF79 /* CheckBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxView.swift; sourceTree = "<group>"; };
+		2C98976427FE1D6100C2AF79 /* RecordVoiceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordVoiceViewModel.swift; sourceTree = "<group>"; };
 		FE1521BD27CD21AE007F95A2 /* SentMessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentMessageModel.swift; sourceTree = "<group>"; };
 		FE1521C327CD2AF5007F95A2 /* MembersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembersViewModel.swift; sourceTree = "<group>"; };
-		FE1521C627CD2D8C007F95A2 /* GroupListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListView.swift; sourceTree = "<group>"; };
 		FE7963B527D3C9C5001FB6E2 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		FEDCA00C27C6D8B200291D70 /* communication-magic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "communication-magic.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEDCA00F27C6D8B200291D70 /* communication_magicApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = communication_magicApp.swift; sourceTree = "<group>"; };
 		FEDCA01327C6D8B300291D70 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FEDCA01627C6D8B300291D70 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		FEDCA02A27C6DBF400291D70 /* MembersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembersView.swift; sourceTree = "<group>"; };
-		FEE36B3D27CFB9B60078B1B5 /* ChatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsView.swift; sourceTree = "<group>"; };
-		FEE36B4127CFBB300078B1B5 /* ChatsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,11 +123,11 @@
 			children = (
 				2C5F359A27F8AC5500546247 /* RecordVoiceView.swift */,
 				2C5F359B27F8AC5500546247 /* RecordingListView.swift */,
-				FE1521C627CD2D8C007F95A2 /* GroupListView.swift */,
 				FEDCA02A27C6DBF400291D70 /* MembersView.swift */,
-				FEE36B3D27CFB9B60078B1B5 /* ChatsView.swift */,
 				2C56C05E27FA511600246407 /* LoginView.swift */,
 				2C56C06427FA80D900246407 /* HomeView.swift */,
+				2C98975C27FD05F300C2AF79 /* CreateGroupView.swift */,
+				2C98976227FD2DBE00C2AF79 /* CheckBoxView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -146,9 +146,9 @@
 			isa = PBXGroup;
 			children = (
 				FE1521C327CD2AF5007F95A2 /* MembersViewModel.swift */,
-				FEE36B4127CFBB300078B1B5 /* ChatsViewModel.swift */,
-				2C5F359F27F8AC5500546247 /* VoiceViewModel.swift */,
 				2C56C06027FA5F3A00246407 /* LoginViewModel.swift */,
+				2C98976027FD06EB00C2AF79 /* CreateGroupViewModel.swift */,
+				2C98976427FE1D6100C2AF79 /* RecordVoiceViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -299,28 +299,28 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C56C06527FA80DA00246407 /* HomeView.swift in Sources */,
-				FEE36B3E27CFB9B60078B1B5 /* ChatsView.swift in Sources */,
 				2C5F35A727F8AC5500546247 /* FirebaseManager.swift in Sources */,
 				2C56C04827F8E1C800246407 /* Member.swift in Sources */,
 				2C379A5927EAB0FE003857BD /* NetworkManager.swift in Sources */,
 				2C5F35A227F8AC5500546247 /* RecordVoiceView.swift in Sources */,
+				2C98976127FD06EB00C2AF79 /* CreateGroupViewModel.swift in Sources */,
 				2C56C05F27FA511700246407 /* LoginView.swift in Sources */,
+				2C98976327FD2DBE00C2AF79 /* CheckBoxView.swift in Sources */,
 				2C56C04B27F8E1E800246407 /* Group.swift in Sources */,
 				2C5F35A427F8AC5500546247 /* Recording.swift in Sources */,
-				2C5F35A627F8AC5500546247 /* VoiceViewModel.swift in Sources */,
 				FE1521C427CD2AF5007F95A2 /* MembersViewModel.swift in Sources */,
 				FEDCA02B27C6DBF400291D70 /* MembersView.swift in Sources */,
 				2C5F35A327F8AC5500546247 /* RecordingListView.swift in Sources */,
 				2C56C06127FA5F3B00246407 /* LoginViewModel.swift in Sources */,
 				FE1521BE27CD21AE007F95A2 /* SentMessageModel.swift in Sources */,
+				2C98976527FE1D6100C2AF79 /* RecordVoiceViewModel.swift in Sources */,
 				2C56C05527F8E2D000246407 /* DummyGroups.swift in Sources */,
 				FEDCA01027C6D8B200291D70 /* communication_magicApp.swift in Sources */,
+				2C98975D27FD05F300C2AF79 /* CreateGroupView.swift in Sources */,
 				2C56C05727F8E2DC00246407 /* DummyMessages.swift in Sources */,
 				2C56C05327F8E2C600246407 /* DummyMembers.swift in Sources */,
-				FE1521C727CD2D8C007F95A2 /* GroupListView.swift in Sources */,
 				2C56C04E27F8E21500246407 /* Message.swift in Sources */,
 				FE7963B627D3C9C5001FB6E2 /* NetworkService.swift in Sources */,
-				FEE36B4227CFBB300078B1B5 /* ChatsViewModel.swift in Sources */,
 				2C56C05027F8E23800246407 /* UserInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

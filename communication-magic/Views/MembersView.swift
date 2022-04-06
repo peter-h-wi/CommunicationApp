@@ -11,6 +11,7 @@ struct MembersView: View {
     @ObservedObject private var vm = MembersViewModel()
     @State var shouldShowLogOutOptions = false
     @State var shouldShowRecordingScreen = false
+    @State var shouldShowCreateGroups = false
 
     var body: some View {
         NavigationView {
@@ -18,11 +19,33 @@ struct MembersView: View {
                 VStack(alignment: .leading) {
                     customNavBar
                     Divider()
+                    Text("My Groups")
+                        .font(.headline)
+                        .foregroundColor(.secondary)
+                    ForEach(vm.groups) { group in
+                        Button {
+                            vm.groupTo = group
+                            vm.sendToGroup = true
+                            shouldShowRecordingScreen.toggle()
+                        } label: {
+                            HStack {
+                                Circle()
+                                    .frame(width: 25, height: 25)
+                                VStack{
+                                    Text(group.groupName)
+                                        .font(.headline)
+                                }
+                            }
+                        }
+                    }
+                    Divider()
                     Text("Members")
                         .font(.headline)
                         .foregroundColor(.secondary)
                     ForEach(vm.members) { member in
                         Button {
+                            vm.memberTo = member
+                            vm.sendToGroup = false
                             shouldShowRecordingScreen.toggle()
                         } label: {
                             HStack {
@@ -40,44 +63,12 @@ struct MembersView: View {
                             }
                         }
                     }
-                    Divider()
-                    Text("All Groups")
-                        .font(.headline)
-                        .foregroundColor(.secondary)
-                    ForEach(vm.getAllGroups(), id: \.self) { group in
-                        Button {
-                            shouldShowRecordingScreen.toggle()
-                        } label: {
-                            HStack {
-                                HStack(spacing: 0) {
-                                    VStack(spacing:0) {
-                                        Circle()
-                                            .frame(width: 25, height: 25)
-                                        Circle()
-                                            .frame(width: 25, height: 25)
-                                    }
-                                    VStack(spacing:0) {
-                                        Circle()
-                                            .frame(width: 25, height: 25)
-                                        Circle()
-                                            .frame(width: 25, height: 25)
-                                    }
-                                }
-                                Text(group.group_name)
-                                    .font(.headline)
-                                Spacer()
-                                Text("3/10")
-                                    .frame(width: 50, height: 50)
-                                    .background(Circle().foregroundColor(.green))
-                            }
-                        }
-                    }
                 }
             }
             .navigationTitle("Messages")
             .navigationBarHidden(true)
             .fullScreenCover(isPresented: $shouldShowRecordingScreen) {
-                RecordVoiceView()
+                RecordVoiceView(vm.memberTo ?? Member(uid: "", name: "", role: "", online: false), vm.groupTo ?? Group(groupName: ""), vm.sendToGroup ?? true)
             }
         }
     }
@@ -102,6 +93,14 @@ struct MembersView: View {
             }
             Spacer()
             Button {
+                shouldShowCreateGroups.toggle()
+            } label: {
+                Image(systemName: "plus.app.fill")
+                    .font(.system(size: 24, weight: .bold))
+                    .foregroundColor(Color(.label))
+            }
+
+            Button {
                 shouldShowLogOutOptions.toggle()
             } label: {
                 Image(systemName: "rectangle.portrait.and.arrow.right")
@@ -123,7 +122,12 @@ struct MembersView: View {
             LoginView({
                 self.vm.isUserCurrentlyLoggedOut = false
                 self.vm.fetchCurrentUser()
+                self.vm.fetchAllUsers()
+                self.vm.fetchMyGroups()
             }, true)
+        }
+        .fullScreenCover(isPresented: $shouldShowCreateGroups) {
+            CreateGroupView()
         }
     }
 }

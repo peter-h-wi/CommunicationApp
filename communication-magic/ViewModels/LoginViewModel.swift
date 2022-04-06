@@ -62,10 +62,10 @@ class LoginViewModel : ObservableObject {
             }
             print("Successfully created user in auth: \(result?.user.uid ?? "")")
         }
-        storeUserInformation()
+        storeMemberInformation()
     }
     
-    func storeUserInformation() {
+    func storeMemberInformation() {
         authListener = FirebaseManager.shared.auth.addStateDidChangeListener { auth, user in
             guard let uid = FirebaseManager.shared.auth.currentUser?.uid else { print("NO UID FOUND"); return }
             print(uid + " current user id")
