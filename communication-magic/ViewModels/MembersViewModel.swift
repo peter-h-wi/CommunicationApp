@@ -24,7 +24,9 @@ final class MembersViewModel: ObservableObject {
         fetchCurrentUser()
         fetchAllUsers()
         fetchMyGroups()
+        fetchMessages()
     }
+    
     
     func fetchCurrentUser() {
         guard let uid = FirebaseManager.shared.auth.currentUser?.uid else {
@@ -116,6 +118,39 @@ final class MembersViewModel: ObservableObject {
         
     }
     
+    func fetchMessages() {
+        guard let uid = FirebaseManager.shared.auth.currentUser?.uid else {
+            print("Could not find firebase uid")
+            return
+        }
+        
+        FirebaseManager.shared.firestore
+            .collection("Messages")
+            .document(uid)
+            .collection("Messages")
+            .order(by: "timestamp")
+            .addSnapshotListener { snapshot, error in
+                if let error = error {
+                    print("Failed to listen for messages: \(error)")
+                    return
+                }
+                
+                // only changes
+                snapshot?.documentChanges.forEach({ change in
+                    if change.type == .added {
+                        do {
+                            let data = try change.document.data(as: Message.self)
+                            // play audio
+                            AudioService.shared.startPlaying(url: data.audioURL)
+                            print("Successfully played audio")
+                        } catch {
+                            print(error)
+                        }
+                    }
+                })
+            }
+    }
+
     func handleSignOut() {
         isUserCurrentlyLoggedOut.toggle()
      //   try? FirebaseManager.shared.auth.signOut() this should be done here, lets see if it doesnt break anything later

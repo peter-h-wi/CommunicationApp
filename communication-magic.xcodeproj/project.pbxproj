@@ -44,6 +44,7 @@
 		2C98976527FE1D6100C2AF79 /* RecordVoiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C98976427FE1D6100C2AF79 /* RecordVoiceViewModel.swift */; };
 		FE1521BE27CD21AE007F95A2 /* SentMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1521BD27CD21AE007F95A2 /* SentMessageModel.swift */; };
 		FE1521C427CD2AF5007F95A2 /* MembersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1521C327CD2AF5007F95A2 /* MembersViewModel.swift */; };
+		FE2E78462809E4690099B6DD /* AudioService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE2E78452809E4690099B6DD /* AudioService.swift */; };
 		FE7963B627D3C9C5001FB6E2 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7963B527D3C9C5001FB6E2 /* NetworkService.swift */; };
 		FEDCA01027C6D8B200291D70 /* communication_magicApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDCA00F27C6D8B200291D70 /* communication_magicApp.swift */; };
 		FEDCA01427C6D8B300291D70 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FEDCA01327C6D8B300291D70 /* Assets.xcassets */; };
@@ -74,6 +75,7 @@
 		2C98976427FE1D6100C2AF79 /* RecordVoiceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordVoiceViewModel.swift; sourceTree = "<group>"; };
 		FE1521BD27CD21AE007F95A2 /* SentMessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentMessageModel.swift; sourceTree = "<group>"; };
 		FE1521C327CD2AF5007F95A2 /* MembersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembersViewModel.swift; sourceTree = "<group>"; };
+		FE2E78452809E4690099B6DD /* AudioService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioService.swift; sourceTree = "<group>"; };
 		FE7963B527D3C9C5001FB6E2 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		FEDCA00C27C6D8B200291D70 /* communication-magic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "communication-magic.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEDCA00F27C6D8B200291D70 /* communication_magicApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = communication_magicApp.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 				2C5F35A127F8AC5500546247 /* FirebaseManager.swift */,
 				FE7963B527D3C9C5001FB6E2 /* NetworkService.swift */,
 				2C379A5827EAB0FE003857BD /* NetworkManager.swift */,
+				FE2E78452809E4690099B6DD /* AudioService.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -318,6 +321,7 @@
 				FEDCA01027C6D8B200291D70 /* communication_magicApp.swift in Sources */,
 				2C98975D27FD05F300C2AF79 /* CreateGroupView.swift in Sources */,
 				2C56C05727F8E2DC00246407 /* DummyMessages.swift in Sources */,
+				FE2E78462809E4690099B6DD /* AudioService.swift in Sources */,
 				2C56C05327F8E2C600246407 /* DummyMembers.swift in Sources */,
 				2C56C04E27F8E21500246407 /* Message.swift in Sources */,
 				FE7963B627D3C9C5001FB6E2 /* NetworkService.swift in Sources */,
