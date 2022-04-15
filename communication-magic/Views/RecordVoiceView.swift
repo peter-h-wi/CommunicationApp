@@ -56,7 +56,7 @@ struct RecordVoiceView: View {
                         Text("Back")
                     }
                     Spacer()
-                    Text("Clinical Communication")
+                    Text(vm.toId)
                         .foregroundColor(.primary)
                         .font(.system(size: 20 , weight : .bold))
                     Spacer()

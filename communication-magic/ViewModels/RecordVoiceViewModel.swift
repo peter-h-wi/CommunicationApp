@@ -201,8 +201,8 @@ class RecordVoiceViewModel : NSObject, ObservableObject , AVAudioPlayerDelegate{
     func sendMessage(of url: URL) {
         let document = FirebaseManager.shared.firestore
             .collection("Messages")
-            .document("senderID")
-            .collection("groupID")
+            .document(toId)
+            .collection("Messages")
             .document()
         
         let messageData = ["audioURL": url.description, "groupID": "testGroupID", "senderID": "testSenderID", "timestamp": Timestamp()] as [String: Any]
