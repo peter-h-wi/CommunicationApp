@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import AVFoundation
 
 final class MembersViewModel: ObservableObject {
     @Published var groups = [Group]()
@@ -15,7 +16,10 @@ final class MembersViewModel: ObservableObject {
     @Published var groupTo: Group?
     @Published var sendToGroup: Bool?
     @Published var isUserCurrentlyLoggedOut = false
-
+    
+    @Published var messageQueue: [Message] = []
+    @Published var messageArray: [Message] = []
+    
     
     init() {
         DispatchQueue.main.async {
@@ -142,7 +146,7 @@ final class MembersViewModel: ObservableObject {
                             let data = try change.document.data(as: Message.self)
                             // play audio
                             AudioService.shared.startPlaying(url: data.audioURL)
-                            print("Successfully played audio")
+                            print("Successfully added message")
                         } catch {
                             print(error)
                         }
@@ -150,7 +154,7 @@ final class MembersViewModel: ObservableObject {
                 })
             }
     }
-
+    
     func handleSignOut() {
         isUserCurrentlyLoggedOut.toggle()
      //   try? FirebaseManager.shared.auth.signOut() this should be done here, lets see if it doesnt break anything later
