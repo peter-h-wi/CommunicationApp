@@ -29,6 +29,7 @@ final class MembersViewModel: ObservableObject {
         fetchCurrentUser()
         fetchAllUsers()
         fetchMyGroups()
+        resetMessages()
         fetchMessages()
     }
     
@@ -123,18 +124,46 @@ final class MembersViewModel: ObservableObject {
         
     }
     
-    func fetchMessages() {
+    func resetMessages() {
+        // resetMessages
         guard let uid = FirebaseManager.shared.auth.currentUser?.uid else {
             print("Could not find firebase uid")
             return
         }
         
-        // resetMessages
         FirebaseManager.shared.firestore
             .collection("Messages")
             .document(uid)
-            .delete()
-        
+            .collection("Messages")
+            .getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    for document in querySnapshot!.documents {
+                        FirebaseManager.shared.firestore
+                            .collection("Messages")
+                            .document(uid)
+                            .collection("Messages")
+                            .document(document.documentID)
+                            .delete() {
+                                err in
+                                    if let err = err {
+                                        print("Error removing document: \(err)")
+                                    } else {
+                                        print("User message document successfully removed!")
+                                    }
+                            }
+                    }
+                }
+            }
+    }
+    
+    func fetchMessages() {
+        guard let uid = FirebaseManager.shared.auth.currentUser?.uid else {
+            print("Could not find firebase uid")
+            return
+        }
+                
         messageListener = FirebaseManager.shared.firestore
             .collection("Messages")
             .document(uid)
