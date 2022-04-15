@@ -33,6 +33,8 @@ final class AudioService: ObservableObject {
     init() {
         dateFormatter.dateFormat = "dd-MM-YY 'at' HH:mm:ss"
         audioQueuePlayer = AVQueuePlayer()
+        audioQueuePlayer?.removeAllItems()
+        audioQueuePlayer?.play()
     }
     
     func startPlaying(url : String) {
@@ -45,16 +47,18 @@ final class AudioService: ObservableObject {
                 return
             }
             print("The URL is...: \(url!.absoluteURL)")
-            self.audioQueuePlayer?.insert(AVPlayerItem(url: url!.absoluteURL), after: nil)
-  
-//            self.audioPlayer = AVPlayer(url: url!.absoluteURL)
-//            self.audioPlayer!.play()
+            let audioItem = AVPlayerItem(url: url!.absoluteURL)
+            self.audioQueuePlayer?.insert(audioItem, after: nil)
             print("Played Successfully")
         }
     }
     
     func stopPlaying(url: String) {
         isPlaying = false
-        audioPlayer?.pause()
+        audioQueuePlayer?.pause()
+    }
+    
+    func resetAVPlayer() {
+        self.audioQueuePlayer?.removeAllItems()
     }
 }

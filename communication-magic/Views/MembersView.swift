@@ -124,6 +124,7 @@ struct MembersView: View {
                 self.vm.fetchCurrentUser()
                 self.vm.fetchAllUsers()
                 self.vm.fetchMyGroups()
+                self.vm.fetchMessages()
             }, true)
         }
         .fullScreenCover(isPresented: $shouldShowCreateGroups) {

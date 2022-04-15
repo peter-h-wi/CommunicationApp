@@ -7,6 +7,7 @@
 
 import Foundation
 import AVFoundation
+import Firebase
 
 final class MembersViewModel: ObservableObject {
     @Published var groups = [Group]()
@@ -17,9 +18,9 @@ final class MembersViewModel: ObservableObject {
     @Published var sendToGroup: Bool?
     @Published var isUserCurrentlyLoggedOut = false
     
-    @Published var messageQueue: [Message] = []
     @Published var messageArray: [Message] = []
     
+    var messageListener: ListenerRegistration?
     
     init() {
         DispatchQueue.main.async {
@@ -128,7 +129,13 @@ final class MembersViewModel: ObservableObject {
             return
         }
         
+        // resetMessages
         FirebaseManager.shared.firestore
+            .collection("Messages")
+            .document(uid)
+            .delete()
+        
+        messageListener = FirebaseManager.shared.firestore
             .collection("Messages")
             .document(uid)
             .collection("Messages")
@@ -158,6 +165,7 @@ final class MembersViewModel: ObservableObject {
     func handleSignOut() {
         isUserCurrentlyLoggedOut.toggle()
      //   try? FirebaseManager.shared.auth.signOut() this should be done here, lets see if it doesnt break anything later
+        messageListener?.remove()
     }
     
     func getFavoriteGroups() -> [Group] {
