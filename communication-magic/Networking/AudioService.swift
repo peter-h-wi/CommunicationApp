@@ -13,15 +13,7 @@ final class AudioService: ObservableObject {
     
     static let shared = AudioService()
     
-    var audioRecorder : AVAudioRecorder!
-    var audioPlayer : AVPlayer?
     var audioQueuePlayer : AVQueuePlayer?
-    
-    var playingURL : String = ""
-    var audioName = ""
-    var indexOfPlayer = 0
-    let dateFormatter = DateFormatter()
-    
     let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
     let storageRef = FirebaseManager.shared.storage.reference()
     
@@ -31,26 +23,23 @@ final class AudioService: ObservableObject {
 
         
     init() {
-        dateFormatter.dateFormat = "dd-MM-YY 'at' HH:mm:ss"
-        audioQueuePlayer = AVQueuePlayer()
-        audioQueuePlayer?.removeAllItems()
-        audioQueuePlayer?.play()
     }
     
     func startPlaying(url : String) {
-        isPlaying = true
-        playingURL = url
-        let storage = Storage.storage().reference(forURL: url)
-        storage.downloadURL { (url, error) in
-            if let error = error {
-                print("Failed downloading audio: \(error)")
-                return
-            }
-            print("The URL is...: \(url!.absoluteURL)")
-            let audioItem = AVPlayerItem(url: url!.absoluteURL)
-            self.audioQueuePlayer?.insert(audioItem, after: nil)
-            print("Played Successfully")
+        if audioQueuePlayer == nil {
+            audioQueuePlayer = AVQueuePlayer()
+            audioQueuePlayer?.play()
         }
+        
+        guard let player = audioQueuePlayer else {
+            print("AVQueuePlayer failed to instantiate!")
+            return
+        }
+        player.removeAllItems()
+        
+        let audioItem = AVPlayerItem(url: URL(string: url)!)
+        player.insert(audioItem, after: nil)
+        print("Played Successfully with AVQueuePlayaer")
     }
     
     func stopPlaying(url: String) {

@@ -107,7 +107,7 @@ struct VoiceCardView2: View {
                     Spacer()
                     
                     Button(action: {
-                        AudioService.shared.startPlaying(url: message.audioURL)
+                         AudioService.shared.startPlaying(url: message.audioURL)
                     }) {
                         Image(systemName: "play.fill")
                             .foregroundColor(.white)
