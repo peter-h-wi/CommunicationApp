@@ -465,7 +465,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_EXPAND_BUILD_SETTINGS = YES;
 				INFOPLIST_FILE = "communication-magic/GoogleService-Info.plist";
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "\"Need to access for audio recording\"";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Need microphone access for uploading audio";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -498,7 +498,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_EXPAND_BUILD_SETTINGS = YES;
 				INFOPLIST_FILE = "communication-magic/GoogleService-Info.plist";
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "\"Need to access for audio recording\"";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Need microphone access for uploading audio";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
