@@ -181,6 +181,9 @@ final class MembersViewModel: ObservableObject {
                         do {
                             let data = try change.document.data(as: Message.self)
                             // play audio
+                            if data.senderID == uid {
+                                return
+                            }
                             AudioService.shared.startPlaying(url: data.audioURL)
                             self.messages.append(data)
                             print("Successfully added message")
