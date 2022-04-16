@@ -18,7 +18,7 @@ final class MembersViewModel: ObservableObject {
     @Published var sendToGroup: Bool?
     @Published var isUserCurrentlyLoggedOut = false
     
-    @Published var messageArray: [Message] = []
+    @Published var messages: [Message] = []
     
     var messageListener: ListenerRegistration?
     
@@ -182,6 +182,7 @@ final class MembersViewModel: ObservableObject {
                             let data = try change.document.data(as: Message.self)
                             // play audio
                             AudioService.shared.startPlaying(url: data.audioURL)
+                            self.messages.append(data)
                             print("Successfully added message")
                         } catch {
                             print(error)
