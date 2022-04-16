@@ -11,7 +11,7 @@ struct Member: Identifiable, Codable, Equatable {
     let uid: String
     let name: String
     let role: String
-    let online: Bool 
+    var online: Bool 
     
     var id: String {
         uid

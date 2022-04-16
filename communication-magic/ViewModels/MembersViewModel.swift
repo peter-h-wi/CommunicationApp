@@ -45,7 +45,7 @@ final class MembersViewModel: ObservableObject {
             let uid = data["uid"] as? String ?? ""
             let name = data["name"] as? String ?? ""
             let role = data["role"] as? String ?? ""
-            let online = data["online"] as? Bool ?? false
+            let online = data["online:"] as? Bool ?? false
             self.member = Member(uid: uid, name: name, role: role, online: online)
         }
     }
@@ -63,7 +63,8 @@ final class MembersViewModel: ObservableObject {
 
                     documentsSnapshot?.documents.forEach({ snapshot in
                         let data = snapshot.data()
-                        let member = Member(uid: data["uid"] as? String ?? "", name: data["name"] as? String ?? "noname", role: data["role"] as? String ?? "norole", online: (data["online"] as? Bool ?? false))
+                        let member = Member(uid: data["uid"] as? String ?? "", name: data["name"] as? String ?? "noname", role: data["role"] as? String ?? "norole", online: (data["online:"] as? Bool ?? false))
+                        
                         if member.uid != FirebaseManager.shared.auth.currentUser?.uid { //fixes duplicating ourself onto list
                             self.members.append(member)
                         }
@@ -100,7 +101,7 @@ final class MembersViewModel: ObservableObject {
 
                                     documentsSnapshot?.documents.forEach({ snapshot in
                                         let data = snapshot.data()
-                                        let member = Member(uid: data["uid"] as? String ?? "", name: data["name"] as? String ?? "noname", role: data["role"] as? String ?? "norole", online: (data["online"] as? Bool ?? false))
+                                        let member = Member(uid: data["uid"] as? String ?? "", name: data["name"] as? String ?? "noname", role: data["role"] as? String ?? "norole", online: (data["online:"] as? Bool ?? false))
                                         if id == data["uid"] as! String {
                                             allMembers.append(member)
                                         }
@@ -117,6 +118,23 @@ final class MembersViewModel: ObservableObject {
     }
     
     func handleSignOut() {
+        guard let uid = FirebaseManager.shared.auth.currentUser?.uid else {
+            print("Could not find firebase uid")
+            return
+        }
+        FirebaseManager.shared.firestore
+            .collection("Members")
+            .document(uid)
+            .updateData([
+                "online:": false
+            ]) { err in
+                if let err = err {
+                    print("Error updating document: \(err)")
+                } else {
+                    print("Document successfully updated")
+                }
+            }
+        member?.online = false
         isUserCurrentlyLoggedOut.toggle()
      //   try? FirebaseManager.shared.auth.signOut() this should be done here, lets see if it doesnt break anything later
     }

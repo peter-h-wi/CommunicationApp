@@ -49,6 +49,18 @@ class LoginViewModel : ObservableObject {
             }
             #warning("Add logic for making it not possible to login user if they are not authenicated by firebase")
             print("Successfully logged in as user: \(result?.user.uid ?? "")")
+            FirebaseManager.shared.firestore
+                .collection("Members")
+                .document(result?.user.uid ?? "")
+                .updateData([
+                    "online:": true
+                ]) { err in
+                    if let err = err {
+                        print("Error updating document: \(err)")
+                    } else {
+                        print("Document successfully updated")
+                    }
+                }
             (self.didCompleteLoginProcess ?? {})()
         }
     }

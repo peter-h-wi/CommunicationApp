@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct RecordingListView: View {
-    @ObservedObject var vm = RecordVoiceViewModel(memberTo: Member(uid: "", name: "", role: "", online: false), groupTo: Group(groupName: ""), sendToGroup: true)
-        
+    @ObservedObject var vm: RecordVoiceViewModel
     var body: some View {
         NavigationView {
             VStack {
@@ -33,7 +32,7 @@ struct RecordingListView: View {
 
 struct RecordingListView_Previews: PreviewProvider {
     static var previews: some View {
-        RecordingListView()
+        RecordingListView(vm: RecordVoiceViewModel(memberTo: Member(uid: "", name: "", role: "", online: false), groupTo: Group(groupName: ""), sendToGroup: true))
     }
 }
 

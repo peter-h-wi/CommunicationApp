@@ -31,7 +31,7 @@ final class CreateGroupViewModel: ObservableObject {
 
                 documentsSnapshot?.documents.forEach({ snapshot in
                     let data = snapshot.data()
-                    let member = Member(uid: data["uid"] as? String ?? "", name: data["name"] as? String ?? "noname", role: data["role"] as? String ?? "norole", online: (data["online"] as? Bool ?? false))
+                    let member = Member(uid: data["uid"] as? String ?? "", name: data["name"] as? String ?? "noname", role: data["role"] as? String ?? "norole", online: (data["online:"] as? Bool ?? false))
                     if member.uid != FirebaseManager.shared.auth.currentUser?.uid { //fixes duplicating ourself onto list view
                         self.allMembers.append(member)
                         self.checkedArray.append(false)

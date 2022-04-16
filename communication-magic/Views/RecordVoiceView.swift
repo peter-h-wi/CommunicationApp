@@ -72,7 +72,7 @@ struct RecordVoiceView: View {
                             .font(.system(size: 20, weight: .bold))
                     }
                     .sheet(isPresented: $showingList, content: {
-                        RecordingListView()
+                        RecordingListView(vm: vm)
                     })
                 }
             }

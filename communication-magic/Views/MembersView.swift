@@ -58,8 +58,19 @@ struct MembersView: View {
                                         .font(.body)
                                 }
                                 Spacer()
-                                Circle().foregroundColor(.green)
-                                    .frame(width: 50, height: 50)
+                                if (member.online) {
+                                    Text("online")
+                                        .font(.system(size: 12))
+                                        .foregroundColor(Color.green)
+                                    Circle().foregroundColor(.green)
+                                        .frame(width: 10, height: 10)
+                                } else {
+                                    Text("offline")
+                                        .font(.system(size: 12))
+                                        .foregroundColor(Color.red)
+                                    Circle().foregroundColor(.red)
+                                        .frame(width: 10, height: 10)
+                                }
                             }
                         }
                     }
@@ -82,12 +93,21 @@ struct MembersView: View {
                     .font(.system(size: 16, weight: .medium))
 
                 HStack {
-                    Circle()
-                        .foregroundColor(.green)
-                        .frame(width: 14, height: 14)
-                    Text("online")
-                        .font(.system(size: 12))
-                        .foregroundColor(Color(.lightGray))
+                    if (vm.member?.online ?? false) {
+                        Circle()
+                            .foregroundColor(.green)
+                            .frame(width: 14, height: 14)
+                        Text("online")
+                            .font(.system(size: 12))
+                            .foregroundColor(Color.green)
+                    } else {
+                        Circle()
+                            .foregroundColor(.red)
+                            .frame(width: 14, height: 14)
+                        Text("offline")
+                            .font(.system(size: 12))
+                            .foregroundColor(Color.red)
+                    }
                 }
 
             }

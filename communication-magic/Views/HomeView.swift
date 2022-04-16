@@ -14,7 +14,7 @@ struct HomeView: View {
                 .tabItem {
                     Label("Members", systemImage: "person")
                 }
-            RecordingListView()
+            RecordingListView(vm: RecordVoiceViewModel(memberTo: Member(uid: "", name: "", role: "", online: false), groupTo: Group(groupName: ""), sendToGroup: true))
                 .tabItem {
                     Label("Recordings", systemImage: "archivebox")
                 }
