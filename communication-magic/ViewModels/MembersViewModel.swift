@@ -29,7 +29,6 @@ final class MembersViewModel: ObservableObject {
         fetchCurrentUser()
         fetchAllUsers()
         fetchMyGroups()
-        resetMessages()
         fetchMessages()
     }
     
@@ -125,7 +124,6 @@ final class MembersViewModel: ObservableObject {
     }
     
     func resetMessages() {
-        // resetMessages
         guard let uid = FirebaseManager.shared.auth.currentUser?.uid else {
             print("Could not find firebase uid")
             return
@@ -158,6 +156,33 @@ final class MembersViewModel: ObservableObject {
             }
     }
     
+    func deleteRecordingFromFireStore(url : String) {
+        guard let uid = FirebaseManager.shared.auth.currentUser?.uid else {
+            print("Could not find firebase uid")
+            return
+        }
+        
+        FirebaseManager.shared.firestore
+            .collection("Messages")
+            .document(uid)
+            .collection("Messages")
+            .whereField("audioURL", isEqualTo: url)
+            .getDocuments { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    for document in querySnapshot!.documents {
+                        document.reference.delete()
+                        print("User message document successfully removed!")
+                    }
+                }
+            }
+    }
+    
+    func deleteMessage(message: Message) {
+        self.messages.remove(at: self.messages.firstIndex(of: message)!)
+    }
+    
     func fetchMessages() {
         guard let uid = FirebaseManager.shared.auth.currentUser?.uid else {
             print("Could not find firebase uid")
@@ -181,11 +206,11 @@ final class MembersViewModel: ObservableObject {
                         do {
                             let data = try change.document.data(as: Message.self)
                             // play audio
-                            if data.senderID == uid {
+                            if data?.senderID == uid {
                                 return
                             }
-                            AudioService.shared.startPlaying(url: data.audioURL)
-                            self.messages.append(data)
+                            AudioService.shared.startPlaying(url: data?.audioURL ?? "")
+                            self.messages.append(data ?? Message(id: "", audioURL: "", groupID: "", senderID: "", timestamp: DateFormatter().date(from: "01-01-1900")!))
                             print("Successfully added message")
                         } catch {
                             print(error)
@@ -199,6 +224,7 @@ final class MembersViewModel: ObservableObject {
         isUserCurrentlyLoggedOut.toggle()
      //   try? FirebaseManager.shared.auth.signOut() this should be done here, lets see if it doesnt break anything later
         messageListener?.remove()
+        self.messages = []
     }
     
     func getFavoriteGroups() -> [Group] {

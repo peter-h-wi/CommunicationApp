@@ -15,7 +15,7 @@ struct RecordingListView: View {
             VStack {
                 ScrollView(showsIndicators: false){
                     ForEach(vm.messages, id: \.id) { message in
-                        VoiceCardView2(message: message)
+                        VoiceCardView2(message: message, vm: vm)
                     }
 //                    ForEach(vm.recordingsList, id: \.createdAt) { recording in
 //                        VoiceCardView(vm: vm, recording: recording)
@@ -84,7 +84,8 @@ struct VoiceCardView: View {
 
 struct VoiceCardView2: View {
     let message: Message
-    
+    @ObservedObject var vm: MembersViewModel
+
     var body: some View {
         VStack{
             HStack{
@@ -99,6 +100,8 @@ struct VoiceCardView2: View {
                 VStack {
                     Button(action: {
                         // delete Recording.
+                        vm.deleteRecordingFromFireStore(url: message.audioURL)
+                        vm.deleteMessage(message: message)
                     }) {
                         Image(systemName:"xmark.circle.fill")
                             .foregroundColor(.white)

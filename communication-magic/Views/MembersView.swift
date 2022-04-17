@@ -124,7 +124,6 @@ struct MembersView: View {
                 self.vm.fetchCurrentUser()
                 self.vm.fetchAllUsers()
                 self.vm.fetchMyGroups()
-                self.vm.resetMessages()
                 self.vm.fetchMessages()
             }, true)
         }
