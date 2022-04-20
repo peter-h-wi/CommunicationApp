@@ -23,6 +23,14 @@ final class AudioService: ObservableObject {
 
         
     init() {
+        let session = AVAudioSession.sharedInstance()
+            do{
+                try session.setCategory(.playAndRecord)
+                try session.overrideOutputAudioPort(AVAudioSession.PortOverride.speaker)
+                try session.setActive(true)
+            } catch {
+                print ("\(#file) - \(#function) error: \(error.localizedDescription)")
+            }
     }
     
     func startPlaying(url : String) {
