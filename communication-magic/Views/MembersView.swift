@@ -99,6 +99,8 @@ struct MembersView: View {
     var groupList: some View {
         ForEach(vm.groups) { group in
             Button {
+                vm.groupTo = group
+                vm.sendToGroup = true
                 shouldShowRecordingScreen.toggle()
             } label: {
                 HStack {
@@ -128,6 +130,8 @@ struct MembersView: View {
     var memberList: some View {
         ForEach(vm.members) { member in
             Button {
+                vm.memberTo = member
+                vm.sendToGroup = false
                 shouldShowRecordingScreen.toggle()
             } label: {
                 HStack {
