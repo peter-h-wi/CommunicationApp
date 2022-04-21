@@ -31,23 +31,39 @@ struct RecordVoiceView: View {
     let sendToGroup: Bool?
     
     var body: some View {
-        VStack {
-            Spacer()
-            Text(vm.uploadStatus)
-                .bold()
-            
-            if vm.isRecording {
-                recordIndicator
+        NavigationView {
+            VStack {
+                Spacer()
+                Text(vm.uploadStatus)
+                    .bold()
+                
+                if vm.isRecording {
+                    recordIndicator
+                }
+                
+                Spacer()
+                
+                recordButton
+                
+                Spacer()
             }
-            
-            Spacer()
-            
-            recordButton
-            
-            Spacer()
-        }
-        .navigationTitle((vm.sendToGroup ? vm.groupTo?.groupName : vm.memberTo?.name) ?? "unknown")
+            .toolbar {
+                ToolbarItemGroup(placement: .navigationBarLeading) {
+                    Button {
+                        presentationMode.wrappedValue.dismiss()
+                    } label: {
+                        Text("Back")
+                    }
+                    Spacer()
+                    Text((vm.sendToGroup ? vm.groupTo?.groupName : vm.memberTo?.name) ?? "unknown")
+                        .foregroundColor(.primary)
+                        .font(.system(size: 20 , weight : .bold))
+                    Spacer()
+                }
+            }
+            //.navigationTitle((vm.sendToGroup ? vm.groupTo?.groupName : vm.memberTo?.name) ?? "unknown")
         .navigationBarTitleDisplayMode(.inline)
+        }
     }
     
     private var recordIndicator: some View {

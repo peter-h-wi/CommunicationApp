@@ -66,6 +66,9 @@ class RecordVoiceViewModel : NSObject, ObservableObject , AVAudioPlayerDelegate{
             toId = memberTo.id
         }
         super.init()
+        
+        print("groupName is \(groupTo.groupName)")
+        print("memberName is \(memberTo.name)")
 
         switch AVCaptureDevice.authorizationStatus(for: .audio) {
             case .authorized: // The user has previously granted access to the audio.

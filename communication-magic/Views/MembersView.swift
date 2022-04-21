@@ -98,7 +98,9 @@ struct MembersView: View {
     
     var groupList: some View {
         ForEach(vm.groups) { group in
-            NavigationLink(destination: RecordVoiceView(vm.memberTo ?? Member(uid: "", name: "", role: "", online: false), vm.groupTo ?? Group(groupName: ""), true)) {
+            Button {
+                shouldShowRecordingScreen.toggle()
+            } label: {
                 HStack {
                     Circle()
                         .frame(width: 50, height: 50)
@@ -109,12 +111,25 @@ struct MembersView: View {
                 }
                 .foregroundColor(.primary)
             }
+//            NavigationLink(destination: RecordVoiceView(vm.memberTo ?? Member(uid: "", name: "", role: "", online: false), vm.groupTo ?? Group(groupName: ""), true)) {
+//                HStack {
+//                    Circle()
+//                        .frame(width: 50, height: 50)
+//                    VStack{
+//                        Text(group.groupName)
+//                            .font(.headline)
+//                    }
+//                }
+//                .foregroundColor(.primary)
+//            }
         }
     }
     
     var memberList: some View {
         ForEach(vm.members) { member in
-            NavigationLink(destination: RecordVoiceView(vm.memberTo ?? Member(uid: "", name: "", role: "", online: false), vm.groupTo ?? Group(groupName: ""), false)) {
+            Button {
+                shouldShowRecordingScreen.toggle()
+            } label: {
                 HStack {
                     Circle()
                         .frame(width: 50, height: 50)
@@ -144,6 +159,36 @@ struct MembersView: View {
                 }
                 .foregroundColor(.primary)
             }
+//            NavigationLink(destination: RecordVoiceView(vm.memberTo ?? Member(uid: "", name: "", role: "", online: false), vm.groupTo ?? Group(groupName: ""), false)) {
+//                HStack {
+//                    Circle()
+//                        .frame(width: 50, height: 50)
+//                    VStack{
+//                        Text(member.name)
+//                            .font(.headline)
+//                        Text(member.role)
+//                            .font(.caption)
+//                            .foregroundColor(.secondary)
+//                    }
+//                    Spacer()
+//                    if (member.online) {
+//                        Text("online")
+//                            .font(.system(size: 12))
+//                            .foregroundColor(Color.green)
+//                        Circle()
+//                            .foregroundColor(.green)
+//                            .frame(width: 10, height: 10)
+//                    } else {
+//                        Text("offline")
+//                            .font(.system(size: 12))
+//                            .foregroundColor(Color.red)
+//                        Circle()
+//                            .foregroundColor(.red)
+//                            .frame(width: 10, height: 10)
+//                    }
+//                }
+//                .foregroundColor(.primary)
+//            }
         }
     }
 }
