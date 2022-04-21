@@ -14,7 +14,7 @@ final class ChatRoomViewModel: ObservableObject {
     
     @Published var recordSecCount = 0
     
-    
+    let audioService = AudioService.shared
     
     var receiverName: String {
         isGroup ? receiverGroup.groupName : receiverMember.name
@@ -28,6 +28,14 @@ final class ChatRoomViewModel: ObservableObject {
     func updateReceivers(member: Member) {
         receiverMember = member
         isGroup = false
+    }
+    
+    func startRecording() {
+        
+    }
+    
+    func stopRecording() {
+        
     }
     
     

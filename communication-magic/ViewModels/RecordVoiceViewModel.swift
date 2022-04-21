@@ -129,7 +129,7 @@ class RecordVoiceViewModel : NSObject, ObservableObject , AVAudioPlayerDelegate{
             AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
             AVSampleRateKey: 12000,
             AVNumberOfChannelsKey: 1,
-            AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
+            AVEncoderAudioQualityKey: AVAudioQuality.low.rawValue
         ]
         
         do {
@@ -229,13 +229,12 @@ class RecordVoiceViewModel : NSObject, ObservableObject , AVAudioPlayerDelegate{
                 }
             }
         } else {
-            let document = FirebaseManager.shared.firestore
+            FirebaseManager.shared.firestore
                 .collection("Messages")
                 .document(toId)
                 .collection("Messages")
                 .document()
-            
-            document.setData(messageData) { error in
+                .setData(messageData) { error in
                 if let error = error {
                     print("Failed to save message into Firestore: \(error)")
                     return
