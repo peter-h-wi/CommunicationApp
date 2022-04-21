@@ -31,20 +31,26 @@ struct LoginView: View {
                     if !vm.logIn {
                         TextField("Name", text: $vm.name)
                                 .padding(5)
-                                .background(.white)
+//                                .background(.white)
+//                                .foregroundColor(.black)
                         TextField("Role", text: $vm.role)
                             .padding(5)
-                            .background(.white)
+//                            .background(.white)
+//                            .foregroundColor(.black)
                     }
                     TextField("Email", text: $vm.email)
                             .keyboardType(.emailAddress)
                             .padding(5)
                             .autocapitalization(.none)
-                            .background(.white)
+//                            .background(.white)
+//                            .foregroundColor(.black)
+
                     SecureField("Password", text: $vm.password)
                         .padding(5)
                         .autocapitalization(.none)
-                        .background(.white)
+//                        .background(.white)
+//                        .foregroundColor(.black)
+
                     Button {
                         vm.logInOrSignUp()
                         vm.didCompleteLoginProcess = self.didCompleteLoginProcess

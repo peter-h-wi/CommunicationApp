@@ -87,7 +87,7 @@ class RecordVoiceViewModel : NSObject, ObservableObject , AVAudioPlayerDelegate{
             fatalError()
         }
         
-       fetchAllRecording()
+  //      fetchAllRecording()
     }
     
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
@@ -200,6 +200,54 @@ class RecordVoiceViewModel : NSObject, ObservableObject , AVAudioPlayerDelegate{
     
     func sendMessage(of url: URL) {
         guard let fromId = FirebaseManager.shared.auth.currentUser?.uid else { return }
+ 
+        let messageData = ["audioURL": url.description, "groupID": toId, "senderID": fromId, "timestamp": Timestamp()] as [String: Any]
+        
+        if sendToGroup {
+            let docRef = FirebaseManager.shared.firestore
+                .collection("Groups")
+            .document("\(groupTo?.uid ?? "")")
+                
+            docRef.getDocument { (document, error) in
+                guard error == nil, let document = document, document.exists, let members = document.get("membersIds") as? [Any] else { return }
+                
+                for member in members {
+                    let memberMessageBox = FirebaseManager.shared.firestore
+                        .collection("Messages")
+                        .document(member as! String)
+                        .collection("Messages")
+                        .document()
+                    
+                    memberMessageBox.setData(messageData) { error in
+                        if let error = error {
+                            print("Failed to save message into Firestore: \(error)")
+                            return
+                        }
+                        
+                        print("Successfully saved current user sending message")
+                    }
+                }
+            }
+        } else {
+            let document = FirebaseManager.shared.firestore
+                .collection("Messages")
+                .document(toId)
+                .collection("Messages")
+                .document()
+            
+            document.setData(messageData) { error in
+                if let error = error {
+                    print("Failed to save message into Firestore: \(error)")
+                    return
+                }
+                
+                print("Successfully saved current user sending message")
+            }
+        }
+    }
+    
+    func handleSend(of url: URL) {
+        guard let fromId = FirebaseManager.shared.auth.currentUser?.uid else { return }
         
         let document = FirebaseManager.shared.firestore.collection("Messages")
             .document(fromId)
@@ -216,8 +264,8 @@ class RecordVoiceViewModel : NSObject, ObservableObject , AVAudioPlayerDelegate{
 
             print("Successfully saved current user sending message")
         }
-            
-        /*     let recipientMessageDocument = FirebaseManager.shared.firestore.collection("messages")
+
+        let recipientMessageDocument = FirebaseManager.shared.firestore.collection("messages")
             .document(toId)
             .collection(fromId)
             .document()
@@ -229,41 +277,48 @@ class RecordVoiceViewModel : NSObject, ObservableObject , AVAudioPlayerDelegate{
             }
 
             print("Recipient saved message as well")
-        } */
+        }
     }
     
-    func fetchRecordings() {
-        firestoreListener?.remove()
-        messageList.removeAll()
-
-        guard let fromId = FirebaseManager.shared.auth.currentUser?.uid else { return }
-
-        firestoreListener = FirebaseManager.shared.firestore
-            .collection("Messages")
-            .document(fromId)
-            .collection(toId)
-            .order(by: "timestamp")
-            .addSnapshotListener { querySnapshot, error in
-                if let error = error {
-                    print("Failed to listen for messages: \(error)")
-                    return
-                }
-                
-                // only changes
-                querySnapshot?.documentChanges.forEach({ change in
-                    if change.type == .added {
-                        do {
-                            let data = try change.document.data(as: Message.self)
-                            self.messageList.append(data ?? Message(audioURL: "", groupID: "", senderID: "", timestamp: DateFormatter().date(from: "01-01-1900")!))
-                            print("appended message to messagelist")
-                        } catch {
-                            print(error)
-                        }
-                    }
-                })
-            }
-    }
-    
+//    func fetchRecordings() {
+//        firestoreListener?.remove()
+//        messageList.removeAll()
+//
+//        //guard let fromId = FirebaseManager.shared.auth.currentUser?.uid else { return }
+//
+//        // guard let toId = member.id else { return }
+//
+//        let fromId = "ee"
+//        let toId = "ww"
+//
+//        firestoreListener = FirebaseManager.shared.firestore
+//            .collection("Messages")
+//            .document(fromId)
+//            .collection(toId)
+//            .order(by: "timestamp")
+//            .addSnapshotListener { querySnapshot, error in
+//                if let error = error {
+//                    print("Failed to listen for messages: \(error)")
+//                    return
+//                }
+//
+//                // only changes
+//                querySnapshot?.documentChanges.forEach({ change in
+//                    if change.type == .added {
+//                    //    let data = change.document.data()
+//                    //    self.chatMessages.append(.init(documentId: change.document.documentID, data: data))
+//                        do {
+//                            let data = try change.document.data(as: Message.self)
+//                            self.messageList.append(data ?? Message(audioURL: "", groupID: "", senderID: "", timestamp: DateFormatter().date(from: "01-01-1900")!))
+//                            print("Appending message in ChatLogView")
+//                        } catch {
+//                            print(error)
+//                        }
+//                    }
+//                })
+//            }
+//    }
+//
     
     func downloadRecording() {
         recordingsList.removeAll()

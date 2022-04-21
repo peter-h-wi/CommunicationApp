@@ -8,13 +8,15 @@
 import SwiftUI
 
 struct HomeView: View {
+    @StateObject var vm = MembersViewModel()
+
     var body: some View {
         TabView {
-            MembersView()
+            MembersView(vm: vm)
                 .tabItem {
                     Label("Members", systemImage: "person")
                 }
-            RecordingListView(vm: RecordVoiceViewModel(memberTo: Member(uid: "", name: "", role: "", online: false), groupTo: Group(groupName: ""), sendToGroup: true))
+            RecordingListView(vm: vm)
                 .tabItem {
                     Label("Recordings", systemImage: "archivebox")
                 }

@@ -20,6 +20,7 @@ class LoginViewModel : ObservableObject {
     var didCompleteLoginProcess: (() -> ())?
             
     var authListener: AuthStateDidChangeListenerHandle?
+    var messageListener: ListenerRegistration?
 
     init(logIn: Bool, email: String, password: String, name: String, role: String, didSignOut: Bool) {
         self.logIn = logIn

@@ -8,13 +8,14 @@
 import SwiftUI
 
 struct RecordingListView: View {
-    @ObservedObject var vm: RecordVoiceViewModel
+    @ObservedObject var vm: MembersViewModel
+        
     var body: some View {
         NavigationView {
             VStack {
                 ScrollView(showsIndicators: false){
-                    ForEach(vm.messageList, id: \.id) { message in
-                        VoiceCardView2(vm: vm, message: message)
+                    ForEach(vm.messages, id: \.id) { message in
+                        VoiceCardView2(message: message, vm: vm)
                     }
 //                    ForEach(vm.recordingsList, id: \.createdAt) { recording in
 //                        VoiceCardView(vm: vm, recording: recording)
@@ -24,15 +25,12 @@ struct RecordingListView: View {
             .padding(.top,30)
             .navigationBarTitle("Recordings")
         }
-        .onAppear {
-            vm.fetchRecordings()
-        }
     }
 }
 
 struct RecordingListView_Previews: PreviewProvider {
     static var previews: some View {
-        RecordingListView(vm: RecordVoiceViewModel(memberTo: Member(uid: "", name: "", role: "", online: false), groupTo: Group(groupName: ""), sendToGroup: true))
+        RecordingListView(vm: MembersViewModel())
     }
 }
 
@@ -85,9 +83,9 @@ struct VoiceCardView: View {
 }
 
 struct VoiceCardView2: View {
-    @ObservedObject var vm: RecordVoiceViewModel
     let message: Message
-    
+    @ObservedObject var vm: MembersViewModel
+
     var body: some View {
         VStack{
             HStack{
@@ -102,6 +100,8 @@ struct VoiceCardView2: View {
                 VStack {
                     Button(action: {
                         // delete Recording.
+                        vm.deleteRecordingFromFireStore(url: message.audioURL)
+                        vm.deleteMessage(message: message)
                     }) {
                         Image(systemName:"xmark.circle.fill")
                             .foregroundColor(.white)
@@ -110,13 +110,9 @@ struct VoiceCardView2: View {
                     Spacer()
                     
                     Button(action: {
-                        if (vm.isPlaying == true) {
-                            vm.stopPlaying2(url: message.audioURL)
-                        } else {
-                            vm.startPlaying2(url: message.audioURL)
-                        }
+                         AudioService.shared.startPlaying(url: message.audioURL)
                     }) {
-                        Image(systemName: vm.playingURL2==message.audioURL && vm.isPlaying ? "stop.fill" : "play.fill")
+                        Image(systemName: "play.fill")
                             .foregroundColor(.white)
                             .font(.system(size:30))
                     }

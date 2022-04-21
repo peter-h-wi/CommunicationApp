@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MembersView: View {
-    @ObservedObject private var vm = MembersViewModel()
+    @ObservedObject var vm: MembersViewModel
     @State var shouldShowLogOutOptions = false
     @State var shouldShowRecordingScreen = false
     @State var shouldShowCreateGroups = false
@@ -144,6 +144,7 @@ struct MembersView: View {
                 self.vm.fetchCurrentUser()
                 self.vm.fetchAllUsers()
                 self.vm.fetchMyGroups()
+                self.vm.fetchMessages()
             }, true)
         }
         .fullScreenCover(isPresented: $shouldShowCreateGroups) {
@@ -154,6 +155,6 @@ struct MembersView: View {
 
 struct MembersView_Previews: PreviewProvider {
     static var previews: some View {
-        MembersView()
+        MembersView(vm: MembersViewModel())
     }
 }
