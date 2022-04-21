@@ -46,6 +46,8 @@
 		FE1521C427CD2AF5007F95A2 /* MembersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1521C327CD2AF5007F95A2 /* MembersViewModel.swift */; };
 		FE2E78462809E4690099B6DD /* AudioService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE2E78452809E4690099B6DD /* AudioService.swift */; };
 		FE7963B627D3C9C5001FB6E2 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7963B527D3C9C5001FB6E2 /* NetworkService.swift */; };
+		FE80B31D281117CB00414F93 /* ChatRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE80B31C281117CB00414F93 /* ChatRoomView.swift */; };
+		FE80B31F28111AA800414F93 /* ChatRoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE80B31E28111AA800414F93 /* ChatRoomViewModel.swift */; };
 		FEDCA01027C6D8B200291D70 /* communication_magicApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDCA00F27C6D8B200291D70 /* communication_magicApp.swift */; };
 		FEDCA01427C6D8B300291D70 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FEDCA01327C6D8B300291D70 /* Assets.xcassets */; };
 		FEDCA01727C6D8B300291D70 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FEDCA01627C6D8B300291D70 /* Preview Assets.xcassets */; };
@@ -77,6 +79,8 @@
 		FE1521C327CD2AF5007F95A2 /* MembersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembersViewModel.swift; sourceTree = "<group>"; };
 		FE2E78452809E4690099B6DD /* AudioService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioService.swift; sourceTree = "<group>"; };
 		FE7963B527D3C9C5001FB6E2 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		FE80B31C281117CB00414F93 /* ChatRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomView.swift; sourceTree = "<group>"; };
+		FE80B31E28111AA800414F93 /* ChatRoomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomViewModel.swift; sourceTree = "<group>"; };
 		FEDCA00C27C6D8B200291D70 /* communication-magic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "communication-magic.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEDCA00F27C6D8B200291D70 /* communication_magicApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = communication_magicApp.swift; sourceTree = "<group>"; };
 		FEDCA01327C6D8B300291D70 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -124,6 +128,7 @@
 		2C56C04427F8E0EA00246407 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				FE80B31C281117CB00414F93 /* ChatRoomView.swift */,
 				2C5F359A27F8AC5500546247 /* RecordVoiceView.swift */,
 				2C5F359B27F8AC5500546247 /* RecordingListView.swift */,
 				FEDCA02A27C6DBF400291D70 /* MembersView.swift */,
@@ -152,6 +157,7 @@
 				2C56C06027FA5F3A00246407 /* LoginViewModel.swift */,
 				2C98976027FD06EB00C2AF79 /* CreateGroupViewModel.swift */,
 				2C98976427FE1D6100C2AF79 /* RecordVoiceViewModel.swift */,
+				FE80B31E28111AA800414F93 /* ChatRoomViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -302,6 +308,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C56C06527FA80DA00246407 /* HomeView.swift in Sources */,
+				FE80B31F28111AA800414F93 /* ChatRoomViewModel.swift in Sources */,
 				2C5F35A727F8AC5500546247 /* FirebaseManager.swift in Sources */,
 				2C56C04827F8E1C800246407 /* Member.swift in Sources */,
 				2C379A5927EAB0FE003857BD /* NetworkManager.swift in Sources */,
@@ -324,6 +331,7 @@
 				FE2E78462809E4690099B6DD /* AudioService.swift in Sources */,
 				2C56C05327F8E2C600246407 /* DummyMembers.swift in Sources */,
 				2C56C04E27F8E21500246407 /* Message.swift in Sources */,
+				FE80B31D281117CB00414F93 /* ChatRoomView.swift in Sources */,
 				FE7963B627D3C9C5001FB6E2 /* NetworkService.swift in Sources */,
 				2C56C05027F8E23800246407 /* UserInfo.swift in Sources */,
 			);

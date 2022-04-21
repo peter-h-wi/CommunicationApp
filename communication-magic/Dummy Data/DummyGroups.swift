@@ -30,5 +30,5 @@ enum GroupList {
 }
 
 extension Group {
-    static let example = Group(uid: "deqdq", groupName: "Nurse", members: MemberList.nurseMembers, isFavorite: true)
+    static let example = Group(uid: "myGroupID", groupName: "myGroupName", members: MemberList.nurseMembers, isFavorite: true)
 }

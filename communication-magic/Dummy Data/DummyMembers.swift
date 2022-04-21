@@ -84,5 +84,5 @@ enum MemberList {
 }
 
 extension Member {
-    static let example = Member(uid: "fwefwe", name: "john", role: "technician", online: true)
+    static let example = Member(uid: "myUID", name: "myName", role: "myRole", online: false)
 }
