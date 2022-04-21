@@ -61,22 +61,25 @@ final class MembersViewModel: ObservableObject {
         if !members.isEmpty {
             members = []
         }
-            FirebaseManager.shared.firestore.collection("Members")
-                .getDocuments { documentsSnapshot, error in
-                    if let error = error {
-                        print("Failed to fetch users: \(error)")
-                        return
-                    }
-
-                    documentsSnapshot?.documents.forEach({ snapshot in
-                        let data = snapshot.data()
-                        let member = Member(uid: data["uid"] as? String ?? "", name: data["name"] as? String ?? "noname", role: data["role"] as? String ?? "norole", online: (data["online:"] as? Bool ?? false))
-                        
-                        if member.uid != FirebaseManager.shared.auth.currentUser?.uid { //fixes duplicating ourself onto list
+        
+        FirebaseManager.shared.firestore.collection("Members")
+            .getDocuments { documentsSnapshot, error in
+                if let error = error {
+                    print("Failed to fetch users: \(error)")
+                    return
+                }
+                
+                documentsSnapshot?.documents.forEach({ snapshot in
+                    let data = snapshot.data()
+                    let member = Member(uid: data["uid"] as? String ?? "", name: data["name"] as? String ?? "noname", role: data["role"] as? String ?? "norole", online: (data["online:"] as? Bool ?? false))
+                    
+                    if member.uid != FirebaseManager.shared.auth.currentUser?.uid { //fixes duplicating ourself onto list
+                        DispatchQueue.main.async {
                             self.members.append(member)
                         }
-                    })
-                }
+                    }
+                })
+            }
     }
     
     func fetchMyGroups() {

@@ -12,7 +12,6 @@ struct RecordVoiceView: View {
     
     @ObservedObject var vm: RecordVoiceViewModel
     
-    @State private var showingList = false
     @State private var showingAlert = false
     
     @State private var effect1 = false
@@ -47,15 +46,8 @@ struct RecordVoiceView: View {
             
             Spacer()
         }
-        .toolbar {
-            ToolbarItemGroup(placement: .navigationBarLeading) {
-                Spacer()
-                Text(vm.toId)
-                    .foregroundColor(.primary)
-                    .font(.system(size: 20 , weight : .bold))
-                Spacer()
-            }
-        }
+        .navigationTitle((vm.sendToGroup ? vm.groupTo?.groupName : vm.memberTo?.name) ?? "unknown")
+        .navigationBarTitleDisplayMode(.inline)
     }
     
     private var recordIndicator: some View {
