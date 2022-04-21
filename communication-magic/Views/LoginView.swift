@@ -42,26 +42,44 @@ struct LoginView: View {
                         .padding(.horizontal)
                     
                     if !vm.logIn {
-                        TextField("Name", text: $vm.name)
+                        HStack {
+                            Text("Name")
+                                .frame(width: 80, alignment: .leading)
+                            TextField("Name", text: $vm.name)
+                                .textFieldStyle(.roundedBorder)
+                                .disableAutocorrection(true)
+                        }
+                        .padding(.horizontal)
+                        HStack {
+                            Text("Role")
+                                .frame(width: 80, alignment: .leading)
+                            TextField("Role", text: $vm.role)
+                                .textFieldStyle(.roundedBorder)
+                        }
+                        .padding(.horizontal)
+                    }
+                    HStack {
+                        Text("Email")
+                            .frame(width: 80, alignment: .leading)
+                        TextField("Email", text: $vm.email)
                             .textFieldStyle(.roundedBorder)
                             .disableAutocorrection(true)
-                            .padding(.horizontal)
-                        TextField("Role", text: $vm.role)
-                            .textFieldStyle(.roundedBorder)
-                            .padding(.horizontal)
+                            .keyboardType(.emailAddress)
+                            .autocapitalization(.none)
                     }
-                    TextField("Email", text: $vm.email)
-                        .textFieldStyle(.roundedBorder)
-                        .disableAutocorrection(true)
-                        .keyboardType(.emailAddress)
-                        .padding(.horizontal)
-                        .autocapitalization(.none)
+                    .padding(.horizontal)
+                    
+                    HStack {
+                        Text("Password")
+                            .frame(width: 80, alignment: .leading)
+                        SecureField("Password", text: $vm.password)
+                            .textFieldStyle(.roundedBorder)
+                            .disableAutocorrection(true)
+                            .autocapitalization(.none)
+                    }
+                    .padding(.horizontal)
 
-                    SecureField("Password", text: $vm.password)
-                        .textFieldStyle(.roundedBorder)
-                        .disableAutocorrection(true)
-                        .padding(.horizontal)
-                        .autocapitalization(.none)
+                    
 
                     Button {
                         if !vm.isValidEmail() {
