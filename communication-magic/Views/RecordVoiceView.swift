@@ -32,35 +32,28 @@ struct RecordVoiceView: View {
     let sendToGroup: Bool?
     
     var body: some View {
-        NavigationView {
-            VStack {
-                Spacer()
-                Text(vm.uploadStatus)
-                    .bold()
-                
-                if vm.isRecording {
-                    recordIndicator
-                }
-                
-                Spacer()
-                
-                recordButton
-                
-                Spacer()
+        VStack {
+            Spacer()
+            Text(vm.uploadStatus)
+                .bold()
+            
+            if vm.isRecording {
+                recordIndicator
             }
-            .toolbar {
-                ToolbarItemGroup(placement: .navigationBarLeading) {
-                    Button {
-                        presentationMode.wrappedValue.dismiss()
-                    } label: {
-                        Text("Back")
-                    }
-                    Spacer()
-                    Text(vm.toId)
-                        .foregroundColor(.primary)
-                        .font(.system(size: 20 , weight : .bold))
-                    Spacer()
-                }
+            
+            Spacer()
+            
+            recordButton
+            
+            Spacer()
+        }
+        .toolbar {
+            ToolbarItemGroup(placement: .navigationBarLeading) {
+                Spacer()
+                Text(vm.toId)
+                    .foregroundColor(.primary)
+                    .font(.system(size: 20 , weight : .bold))
+                Spacer()
             }
         }
     }
