@@ -8,9 +8,16 @@
 import SwiftUI
 
 struct LoginView: View {
+    @Environment(\.colorScheme) var colorScheme
+
     let didCompleteLoginProcess: () -> ()
     let didSignOut: Bool
     @StateObject var vm: LoginViewModel
+    
+    @State private var showingInvalidPasswordAlert = false
+    @State private var showingInvalidEmailAlert = false
+    @State private var showingInvalidNameAlert = false
+    @State private var showingInvalidRoleAlert = false
     
     init(_ didCompleteLoginProcess: @escaping () -> (), _ didSignOut: Bool) {
         self.didSignOut = didSignOut
@@ -21,37 +28,58 @@ struct LoginView: View {
     var body: some View {
         NavigationView {
             ScrollView {
-                VStack(spacing: 10) {
+                VStack(spacing: 15) {
+                    Image(colorScheme == .dark ? "logoBigBlack-no-bg" : "logoBigWhite-no-bg")
+                        .resizable()
+                        .scaledToFit()
+                        .padding(.horizontal, 50)
                     Picker(selection: $vm.logIn, label: Text("sign in or sign up")) {
                         Text("Login")
                             .tag(true)
                         Text("Create Account")
                             .tag(false)
                     }.pickerStyle(SegmentedPickerStyle())
+                        .padding(.horizontal)
+                    
                     if !vm.logIn {
                         TextField("Name", text: $vm.name)
-                                .padding(5)
-//                                .background(.white)
-//                                .foregroundColor(.black)
+                            .textFieldStyle(.roundedBorder)
+                            .disableAutocorrection(true)
+                            .padding(.horizontal)
                         TextField("Role", text: $vm.role)
-                            .padding(5)
-//                            .background(.white)
-//                            .foregroundColor(.black)
+                            .textFieldStyle(.roundedBorder)
+                            .padding(.horizontal)
                     }
                     TextField("Email", text: $vm.email)
-                            .keyboardType(.emailAddress)
-                            .padding(5)
-                            .autocapitalization(.none)
-//                            .background(.white)
-//                            .foregroundColor(.black)
+                        .textFieldStyle(.roundedBorder)
+                        .disableAutocorrection(true)
+                        .keyboardType(.emailAddress)
+                        .padding(.horizontal)
+                        .autocapitalization(.none)
 
                     SecureField("Password", text: $vm.password)
-                        .padding(5)
+                        .textFieldStyle(.roundedBorder)
+                        .disableAutocorrection(true)
+                        .padding(.horizontal)
                         .autocapitalization(.none)
-//                        .background(.white)
-//                        .foregroundColor(.black)
 
                     Button {
+                        if !vm.isValidEmail() {
+                            showingInvalidEmailAlert.toggle()
+                            return
+                        }
+                        if vm.isInvalidPassword() {
+                            showingInvalidPasswordAlert.toggle()
+                            return
+                        }
+                        if !vm.logIn && vm.isEmptyName() {
+                            showingInvalidNameAlert.toggle()
+                            return
+                        }
+                        if !vm.logIn && vm.isEmptyRole() {
+                            showingInvalidRoleAlert.toggle()
+                            return
+                        }
                         vm.logInOrSignUp()
                         vm.didCompleteLoginProcess = self.didCompleteLoginProcess
                     } label: {
@@ -62,12 +90,27 @@ struct LoginView: View {
                                 .padding(.vertical, 10)
                                 .font(.system(size: 14, weight: .semibold))
                             Spacer()
-                        }.background(Color.blue)
-                        
+                        }
+                        .background(Color.blue)
+                        .cornerRadius(5)
+                        .padding(.horizontal)
                     }
                 }
             }
+            .alert("Passwords must be at least 6 characters", isPresented: $showingInvalidPasswordAlert) {
+                Button("OK", role: .cancel) {vm.password = ""}
+                    }
+            .alert("Email is not invalid", isPresented: $showingInvalidEmailAlert) {
+                        Button("OK", role: .cancel) { }
+                    }
+            .alert("Name can't be empty", isPresented: $showingInvalidNameAlert) {
+                        Button("OK", role: .cancel) { }
+                    }
+            .alert("Role can't be empty", isPresented: $showingInvalidRoleAlert) {
+                        Button("OK", role: .cancel) { }
+                    }
             .navigationBarTitle(vm.logIn ? "Log In" : "Create Account", displayMode: .large)
+            .navigationBarHidden(true)
             .background(Color(.init(white: 0, alpha: 0.05)))
         }
         .navigationViewStyle(StackNavigationViewStyle())
