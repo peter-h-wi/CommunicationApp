@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct CreateGroupView: View {
+    @Environment(\.presentationMode) var presentationMode
+
     @ObservedObject private var vm = CreateGroupViewModel(groupName: "")
     @State var shouldReturnToHome = false
     var countOfChecked = 0
@@ -57,6 +59,16 @@ struct CreateGroupView: View {
             .alert("Group name can't be empty", isPresented: $showingAlert) {
                 Button("OK", role: .cancel) { }
             }
+            .toolbar {
+                ToolbarItemGroup(placement: .navigationBarLeading) {
+                    Button {
+                        presentationMode.wrappedValue.dismiss()
+                    } label: {
+                        Text("Cancel")
+                    }
+                }
+            }
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }
