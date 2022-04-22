@@ -198,28 +198,21 @@ final class MembersViewModel: ObservableObject {
         self.messages.remove(at: self.messages.firstIndex(of: message)!)
     }
     
-    func fetchUser(uid: String) {
-        FirebaseManager.shared.firestore.collection("Members").document(uid).getDocument { snapshot, error in
-            if let error = error {
-                print("Failed to fetch current user:", error)
+    func fetchUser(uid: String) -> String {
+        for member in members {
+            if (uid == member.uid) {
+                return member.name
             }
-
-            guard let data = snapshot?.data() else {
-                print("No data found in members!!")
-                FirebaseManager.shared.firestore.collection("Groups").document(uid).getDocument { snapshot, error in
-                    if let error = error {
-                        print("Failed to fetch current user:", error)
-                    }
-                    guard let data = snapshot?.data() else {
-                        print("No data found in groups!!")
-                        return
-                    }
-                    self.fromName = data["groupName"] as? String ?? ""
-                }
-                return
-            }
-            self.fromName = data["name"] as? String ?? ""
         }
+        for group in groups {
+            if (uid == group.uid) {
+                return group.groupName
+            }
+        }
+        if (uid == member?.uid) {
+            return member?.name ?? ""
+        }
+        return ""
     }
     
     func handleSignOut() {
