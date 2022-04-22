@@ -9,7 +9,6 @@ import SwiftUI
 
 struct CreateGroupView: View {
     @Environment(\.presentationMode) var presentationMode
-
     @ObservedObject private var vm = CreateGroupViewModel(groupName: "")
     @State var shouldReturnToHome = false
     var countOfChecked = 0

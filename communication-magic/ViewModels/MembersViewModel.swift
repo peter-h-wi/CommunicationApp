@@ -16,12 +16,13 @@ final class MembersViewModel: ObservableObject {
     @Published var memberTo: Member?
     @Published var groupTo: Group?
     @Published var sendToGroup: Bool?
+    @Published var fromName: String?
     @Published var isUserCurrentlyLoggedOut = false
     
     @Published var messages: [Message] = []
     
     var messageListener: ListenerRegistration?
-    
+  
     init() {
         DispatchQueue.main.async {
             self.isUserCurrentlyLoggedOut = FirebaseManager.shared.auth.currentUser?.uid == nil
@@ -127,101 +128,98 @@ final class MembersViewModel: ObservableObject {
         
     }
     
-    func resetMessages() {
-        guard let uid = FirebaseManager.shared.auth.currentUser?.uid else {
-            print("Could not find firebase uid")
-            return
-        }
-        
-        FirebaseManager.shared.firestore
-            .collection("Messages")
-            .document(uid)
-            .collection("Messages")
-            .getDocuments() { (querySnapshot, err) in
-                if let err = err {
-                    print("Error getting documents: \(err)")
-                } else {
-                    for document in querySnapshot!.documents {
-                        FirebaseManager.shared.firestore
-                            .collection("Messages")
-                            .document(uid)
-                            .collection("Messages")
-                            .document(document.documentID)
-                            .delete() {
-                                err in
-                                    if let err = err {
-                                        print("Error removing document: \(err)")
-                                    } else {
-                                        print("User message document successfully removed!")
-                                    }
-                            }
-                    }
-                }
+    func fetchMessages() {
+            guard let uid = FirebaseManager.shared.auth.currentUser?.uid else {
+                print("Could not find firebase uid")
+                return
             }
-    }
+
+            // resetMessages
+            FirebaseManager.shared.firestore
+                .collection("Messages")
+                .document(uid)
+                .delete()
+
+            messageListener = FirebaseManager.shared.firestore
+                .collection("Messages")
+                .document(uid)
+                .collection("Messages")
+                .order(by: "timestamp")
+                .addSnapshotListener { snapshot, error in
+                    if let error = error {
+                        print("Failed to listen for messages: \(error)")
+                        return
+                    }
+                    
+                    // only changes
+                    snapshot?.documentChanges.forEach({ change in
+                        if change.type == .added {
+                            do {
+                                let data = try change.document.data(as: Message.self)
+                                if data?.senderID == uid {
+                                    return
+                                }
+                                // play audio
+                                AudioService.shared.startPlaying(url: data?.audioURL ?? "")
+                                self.messages.append(data ?? Message(id: "", audioURL: "", groupID: "", senderID: "", timestamp: DateFormatter().date(from: "01-01-1900")!))
+                                print("Successfully added message")
+                            } catch {
+                                print(error)
+                            }
+                        }
+                    })
+                }
+        }
     
     func deleteRecordingFromFireStore(url : String) {
-        guard let uid = FirebaseManager.shared.auth.currentUser?.uid else {
-            print("Could not find firebase uid")
-            return
-        }
-        
-        FirebaseManager.shared.firestore
-            .collection("Messages")
-            .document(uid)
-            .collection("Messages")
-            .whereField("audioURL", isEqualTo: url)
-            .getDocuments { (querySnapshot, err) in
-                if let err = err {
-                    print("Error getting documents: \(err)")
-                } else {
-                    for document in querySnapshot!.documents {
-                        document.reference.delete()
-                        print("User message document successfully removed!")
+            guard let uid = FirebaseManager.shared.auth.currentUser?.uid else {
+                print("Could not find firebase uid")
+                return
+            }
+
+            FirebaseManager.shared.firestore
+                .collection("Messages")
+                .document(uid)
+                .collection("Messages")
+                .whereField("audioURL", isEqualTo: url)
+                .getDocuments { (querySnapshot, err) in
+                    if let err = err {
+                        print("Error getting documents: \(err)")
+                    } else {
+                        for document in querySnapshot!.documents {
+                            document.reference.delete()
+                            print("User message document successfully removed!")
+                        }
                     }
                 }
-            }
-    }
-    
+        }
+
     func deleteMessage(message: Message) {
         self.messages.remove(at: self.messages.firstIndex(of: message)!)
     }
     
-    func fetchMessages() {
-        guard let uid = FirebaseManager.shared.auth.currentUser?.uid else {
-            print("Could not find firebase uid")
-            return
-        }
-                
-        messageListener = FirebaseManager.shared.firestore
-            .collection("Messages")
-            .document(uid)
-            .collection("Messages")
-            .order(by: "timestamp")
-            .addSnapshotListener { snapshot, error in
-                if let error = error {
-                    print("Failed to listen for messages: \(error)")
-                    return
-                }
-                
-                // only changes
-                snapshot?.documentChanges.forEach({ change in
-                    if change.type == .added {
-                        do {
-                            let data = try change.document.data(as: Message.self)
-                            // play audio
-                            if data.senderID == uid {
-                                return
-                            }
-                            AudioService.shared.startPlaying(url: data.audioURL ?? "")
-                            self.messages.append(data ?? Message(id: "", audioURL: "", groupID: "", senderID: "", timestamp: DateFormatter().date(from: "01-01-1900")!))
-                            print("Successfully added message")
-                        } catch {
-                            print(error)
-                        }
-                    }
-                })
+    func fetchUser(uid: String) {
+        FirebaseManager.shared.firestore.collection("Members").document(uid).getDocument { snapshot, error in
+            if let error = error {
+                print("Failed to fetch current user:", error)
             }
+
+            guard let data = snapshot?.data() else {
+                print("No data found in members!!")
+                FirebaseManager.shared.firestore.collection("Groups").document(uid).getDocument { snapshot, error in
+                    if let error = error {
+                        print("Failed to fetch current user:", error)
+                    }
+                    guard let data = snapshot?.data() else {
+                        print("No data found in groups!!")
+                        return
+                    }
+                    self.fromName = data["groupName"] as? String ?? ""
+                }
+                return
+            }
+            self.fromName = data["name"] as? String ?? ""
+        }
     }
     
     func handleSignOut() {
@@ -241,7 +239,9 @@ final class MembersViewModel: ObservableObject {
                     print("Document successfully updated")
                 }
             }
+        messageListener?.remove()
         member?.online = false
+        self.messages = []
         isUserCurrentlyLoggedOut.toggle()
      //   try? FirebaseManager.shared.auth.signOut() this should be done here, lets see if it doesnt break anything later
         messageListener?.remove()

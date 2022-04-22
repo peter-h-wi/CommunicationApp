@@ -4,7 +4,6 @@
 //
 //  Created by peter wi on 2/23/22.
 //
-
 import SwiftUI
 
 struct MembersView: View {
@@ -13,35 +12,67 @@ struct MembersView: View {
     @State var shouldShowRecordingScreen = false
     @State var shouldShowCreateGroups = false
 
-    
     var body: some View {
         NavigationView {
             ScrollView(.vertical, showsIndicators: false) {
                 VStack(alignment: .leading) {
                     customNavBar
                     Divider()
-                    
-                    HStack {
-                        Text("My Groups")
-                            .font(.headline)
-                            .foregroundColor(.secondary)
+                    Text("My Groups")
+                        .font(.headline)
+                        .foregroundColor(.secondary)
+                    ForEach(vm.groups) { group in
                         Button {
-                            shouldShowCreateGroups.toggle()
+                            vm.groupTo = group
+                            vm.sendToGroup = true
+                            shouldShowRecordingScreen.toggle()
                         } label: {
-                            Image(systemName: "plus.app")
-                                .font(.title2)
-                                .foregroundColor(.secondary)
+                            HStack {
+                                Circle()
+                                    .frame(width: 25, height: 25)
+                                VStack{
+                                    Text(group.groupName)
+                                        .font(.headline)
+                                }
+                            }
                         }
                     }
-                    groupList
-                    
                     Divider()
                     Text("Members")
                         .font(.headline)
                         .foregroundColor(.secondary)
-                    
-                    memberList
-                    
+                    ForEach(vm.members) { member in
+                        Button {
+                            vm.memberTo = member
+                            vm.sendToGroup = false
+                            shouldShowRecordingScreen.toggle()
+                        } label: {
+                            HStack {
+                                Circle()
+                                    .frame(width: 25, height: 25)
+                                VStack{
+                                    Text(member.name)
+                                        .font(.headline)
+                                    Text(member.role)
+                                        .font(.body)
+                                }
+                                Spacer()
+                                if (member.online) {
+                                    Text("online")
+                                        .font(.system(size: 12))
+                                        .foregroundColor(Color.green)
+                                    Circle().foregroundColor(.green)
+                                        .frame(width: 10, height: 10)
+                                } else {
+                                    Text("offline")
+                                        .font(.system(size: 12))
+                                        .foregroundColor(Color.red)
+                                    Circle().foregroundColor(.red)
+                                        .frame(width: 10, height: 10)
+                                }
+                            }
+                        }
+                    }
                 }
                 .padding(.horizontal)
             }
@@ -50,14 +81,11 @@ struct MembersView: View {
             .fullScreenCover(isPresented: $shouldShowRecordingScreen) {
                 RecordVoiceView(vm.memberTo ?? Member(uid: "", name: "", role: "", online: false), vm.groupTo ?? Group(groupName: ""), vm.sendToGroup ?? true)
             }
-            .fullScreenCover(isPresented: $shouldShowCreateGroups) {
-                CreateGroupView()
-            }
         }
     }
     
     private var customNavBar: some View {
-        HStack {
+        HStack(spacing: 16) {
             VStack(alignment: .leading, spacing: 4) {
                 Text(vm.member?.name ?? "noname")
                     .font(.title)
@@ -65,16 +93,43 @@ struct MembersView: View {
                 Text(vm.member?.role ?? "norole")
                     .font(.subheadline)
                     .foregroundColor(.secondary)
+                HStack {
+                    if (vm.member?.online ?? false) {
+                        Circle()
+                            .foregroundColor(.green)
+                            .frame(width: 14, height: 14)
+                        Text("online")
+                            .font(.system(size: 12))
+                            .foregroundColor(Color.green)
+                    } else {
+                        Circle()
+                            .foregroundColor(.red)
+                            .frame(width: 14, height: 14)
+                        Text("offline")
+                            .font(.system(size: 12))
+                            .foregroundColor(Color.red)
+                    }
+                }
+
             }
             Spacer()
+            Button {
+                shouldShowCreateGroups.toggle()
+            } label: {
+                Image(systemName: "plus.app.fill")
+                    .font(.title2)
+                    .foregroundColor(.red)
+            }
+
             Button {
                 shouldShowLogOutOptions.toggle()
             } label: {
                 Image(systemName: "rectangle.portrait.and.arrow.right")
-                    .font(.title2)
-                    .foregroundColor(.red)
+                    .font(.system(size: 24, weight: .bold))
+                    .foregroundColor(Color(.label))
             }
         }
+        .padding()
         .actionSheet(isPresented: $shouldShowLogOutOptions) {
             .init(title: Text("Sign Out"), message: Text("Do you wish to sign out?"), buttons: [
                 .destructive(Text("Sign Out"), action: {
@@ -93,106 +148,8 @@ struct MembersView: View {
                 self.vm.fetchMessages()
             }, true)
         }
-    }
-    
-    
-    var groupList: some View {
-        ForEach(vm.groups) { group in
-            Button {
-                vm.groupTo = group
-                vm.sendToGroup = true
-                shouldShowRecordingScreen.toggle()
-            } label: {
-                HStack {
-                    Circle()
-                        .frame(width: 50, height: 50)
-                    VStack{
-                        Text(group.groupName)
-                            .font(.headline)
-                    }
-                }
-                .foregroundColor(.primary)
-            }
-//            NavigationLink(destination: RecordVoiceView(vm.memberTo ?? Member(uid: "", name: "", role: "", online: false), vm.groupTo ?? Group(groupName: ""), true)) {
-//                HStack {
-//                    Circle()
-//                        .frame(width: 50, height: 50)
-//                    VStack{
-//                        Text(group.groupName)
-//                            .font(.headline)
-//                    }
-//                }
-//                .foregroundColor(.primary)
-//            }
-        }
-    }
-    
-    var memberList: some View {
-        ForEach(vm.members) { member in
-            Button {
-                vm.memberTo = member
-                vm.sendToGroup = false
-                shouldShowRecordingScreen.toggle()
-            } label: {
-                HStack {
-                    Circle()
-                        .frame(width: 50, height: 50)
-                    VStack{
-                        Text(member.name)
-                            .font(.headline)
-                        Text(member.role)
-                            .font(.caption)
-                            .foregroundColor(.secondary)
-                    }
-                    Spacer()
-                    if (member.online) {
-                        Text("online")
-                            .font(.system(size: 12))
-                            .foregroundColor(Color.green)
-                        Circle()
-                            .foregroundColor(.green)
-                            .frame(width: 10, height: 10)
-                    } else {
-                        Text("offline")
-                            .font(.system(size: 12))
-                            .foregroundColor(Color.red)
-                        Circle()
-                            .foregroundColor(.red)
-                            .frame(width: 10, height: 10)
-                    }
-                }
-                .foregroundColor(.primary)
-            }
-//            NavigationLink(destination: RecordVoiceView(vm.memberTo ?? Member(uid: "", name: "", role: "", online: false), vm.groupTo ?? Group(groupName: ""), false)) {
-//                HStack {
-//                    Circle()
-//                        .frame(width: 50, height: 50)
-//                    VStack{
-//                        Text(member.name)
-//                            .font(.headline)
-//                        Text(member.role)
-//                            .font(.caption)
-//                            .foregroundColor(.secondary)
-//                    }
-//                    Spacer()
-//                    if (member.online) {
-//                        Text("online")
-//                            .font(.system(size: 12))
-//                            .foregroundColor(Color.green)
-//                        Circle()
-//                            .foregroundColor(.green)
-//                            .frame(width: 10, height: 10)
-//                    } else {
-//                        Text("offline")
-//                            .font(.system(size: 12))
-//                            .foregroundColor(Color.red)
-//                        Circle()
-//                            .foregroundColor(.red)
-//                            .frame(width: 10, height: 10)
-//                    }
-//                }
-//                .foregroundColor(.primary)
-//            }
+        .fullScreenCover(isPresented: $shouldShowCreateGroups) {
+            CreateGroupView()
         }
     }
 }
@@ -200,5 +157,6 @@ struct MembersView: View {
 struct MembersView_Previews: PreviewProvider {
     static var previews: some View {
         MembersView(vm: MembersViewModel())
+        
     }
 }

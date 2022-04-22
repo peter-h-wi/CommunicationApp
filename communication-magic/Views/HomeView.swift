@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     @StateObject var vm = MembersViewModel()
-
+  
     var body: some View {
         TabView {
             MembersView(vm: vm)

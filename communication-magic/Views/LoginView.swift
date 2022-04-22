@@ -9,7 +9,6 @@ import SwiftUI
 
 struct LoginView: View {
     @Environment(\.colorScheme) var colorScheme
-
     let didCompleteLoginProcess: () -> ()
     let didSignOut: Bool
     @StateObject var vm: LoginViewModel
@@ -24,6 +23,11 @@ struct LoginView: View {
         self.didCompleteLoginProcess = didCompleteLoginProcess
         _vm = StateObject(wrappedValue: LoginViewModel(logIn: true, email: "", password: "", name: "", role: "", didSignOut: didSignOut))
     }
+    
+    @State private var showingInvalidPasswordAlert = false
+    @State private var showingInvalidEmailAlert = false
+    @State private var showingInvalidNameAlert = false
+    @State private var showingInvalidRoleAlert = false
         
     var body: some View {
         NavigationView {
@@ -68,7 +72,6 @@ struct LoginView: View {
                             .autocapitalization(.none)
                     }
                     .padding(.horizontal)
-                    
                     HStack {
                         Text("Password")
                             .frame(width: 80, alignment: .leading)
@@ -78,9 +81,6 @@ struct LoginView: View {
                             .autocapitalization(.none)
                     }
                     .padding(.horizontal)
-
-                    
-
                     Button {
                         if !vm.isValidEmail() {
                             showingInvalidEmailAlert.toggle()
