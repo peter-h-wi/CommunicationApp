@@ -35,33 +35,6 @@ class LoginViewModel : ObservableObject {
         }
     }
     
-    func isInvalidLoginInput() -> Bool {
-        isValidEmail() || isInvalidPassword()
-    }
-    
-    func isInvalidSignUpInput() -> Bool {
-        isValidEmail() || isInvalidPassword() || isEmptyName() || isEmptyRole()
-    }
-    
-    func isValidEmail() -> Bool {
-        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-
-        let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-        return emailPred.evaluate(with: email)
-    }
-    
-    func isInvalidPassword() -> Bool {
-        password.count < 6
-    }
-    
-    func isEmptyName() -> Bool {
-        name == ""
-    }
-    
-    func isEmptyRole() -> Bool {
-        role == ""
-    }
-
     func logInOrSignUp() {
         if logIn {
             loginUser()
@@ -69,7 +42,7 @@ class LoginViewModel : ObservableObject {
             createNewAccount()
         }
     }
-
+    
     func loginUser() {
         FirebaseManager.shared.auth.signIn(withEmail: email, password: password) { result, err in
             if let err = err {

@@ -24,11 +24,6 @@ struct LoginView: View {
         _vm = StateObject(wrappedValue: LoginViewModel(logIn: true, email: "", password: "", name: "", role: "", didSignOut: didSignOut))
     }
     
-    @State private var showingInvalidPasswordAlert = false
-    @State private var showingInvalidEmailAlert = false
-    @State private var showingInvalidNameAlert = false
-    @State private var showingInvalidRoleAlert = false
-        
     var body: some View {
         NavigationView {
             ScrollView {
