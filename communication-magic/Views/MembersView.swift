@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MembersView: View {
-    @ObservedObject private var vm = MembersViewModel()
+    @ObservedObject var vm: MembersViewModel
     @State var shouldShowLogOutOptions = false
     @State var shouldShowRecordingScreen = false
     @State var shouldShowCreateGroups = false
@@ -75,6 +75,7 @@ struct MembersView: View {
                         }
                     }
                 }
+                .padding(.horizontal)
             }
             .navigationTitle("Messages")
             .navigationBarHidden(true)
@@ -88,10 +89,11 @@ struct MembersView: View {
         HStack(spacing: 16) {
             VStack(alignment: .leading, spacing: 4) {
                 Text(vm.member?.name ?? "noname")
-                    .font(.system(size: 24, weight: .bold))
+                    .font(.title)
+                    .bold()
                 Text(vm.member?.role ?? "norole")
-                    .font(.system(size: 16, weight: .medium))
-
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
                 HStack {
                     if (vm.member?.online ?? false) {
                         Circle()
@@ -116,8 +118,8 @@ struct MembersView: View {
                 shouldShowCreateGroups.toggle()
             } label: {
                 Image(systemName: "plus.app.fill")
-                    .font(.system(size: 24, weight: .bold))
-                    .foregroundColor(Color(.label))
+                    .font(.title2)
+                    .foregroundColor(.red)
             }
 
             Button {
@@ -144,6 +146,7 @@ struct MembersView: View {
                 self.vm.fetchCurrentUser()
                 self.vm.fetchAllUsers()
                 self.vm.fetchMyGroups()
+                self.vm.fetchMessages()
             }, true)
         }
         .fullScreenCover(isPresented: $shouldShowCreateGroups) {
@@ -154,6 +157,7 @@ struct MembersView: View {
 
 struct MembersView_Previews: PreviewProvider {
     static var previews: some View {
-        MembersView()
+        MembersView(vm: MembersViewModel())
+        
     }
 }

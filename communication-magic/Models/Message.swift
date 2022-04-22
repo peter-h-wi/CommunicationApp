@@ -8,7 +8,7 @@
 import Foundation
 import FirebaseFirestoreSwift
 
-struct Message: Codable, Identifiable {
+struct Message: Codable, Identifiable, Equatable {
     @DocumentID var id: String?
     
     let audioURL, groupID, senderID: String

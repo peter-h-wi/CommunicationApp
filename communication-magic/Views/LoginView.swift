@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct LoginView: View {
+    @Environment(\.colorScheme) var colorScheme
     let didCompleteLoginProcess: () -> ()
     let didSignOut: Bool
     @StateObject var vm: LoginViewModel
@@ -21,7 +22,11 @@ struct LoginView: View {
     var body: some View {
         NavigationView {
             ScrollView {
-                VStack(spacing: 10) {
+                VStack(spacing: 15) {
+                    Image(colorScheme == .dark ? "logoBigBlack-no-bg" : "logoBigWhite-no-bg")
+                        .resizable()
+                        .scaledToFit()
+                        .padding(.horizontal, 50)
                     Picker(selection: $vm.logIn, label: Text("sign in or sign up")) {
                         Text("Login")
                             .tag(true)
@@ -29,22 +34,42 @@ struct LoginView: View {
                             .tag(false)
                     }.pickerStyle(SegmentedPickerStyle())
                     if !vm.logIn {
-                        TextField("Name", text: $vm.name)
-                                .padding(5)
-                                .background(.white)
-                        TextField("Role", text: $vm.role)
-                            .padding(5)
-                            .background(.white)
+                        HStack {
+                            Text("Name")
+                                .frame(width: 80, alignment: .leading)
+                            TextField("Name", text: $vm.name)
+                                .textFieldStyle(.roundedBorder)
+                                .disableAutocorrection(true)
+                        }
+                        .padding(.horizontal)
+                        HStack {
+                            Text("Role")
+                                .frame(width: 80, alignment: .leading)
+                            TextField("Role", text: $vm.role)
+                                .textFieldStyle(.roundedBorder)
+                        }
+                        .padding(.horizontal)
                     }
-                    TextField("Email", text: $vm.email)
+                    HStack {
+                        Text("Email")
+                            .frame(width: 80, alignment: .leading)
+                        TextField("Email", text: $vm.email)
+                            .textFieldStyle(.roundedBorder)
+                            .disableAutocorrection(true)
                             .keyboardType(.emailAddress)
-                            .padding(5)
                             .autocapitalization(.none)
-                            .background(.white)
-                    SecureField("Password", text: $vm.password)
-                        .padding(5)
-                        .autocapitalization(.none)
-                        .background(.white)
+                    }
+                    .padding(.horizontal)
+
+                    HStack {
+                        Text("Password")
+                            .frame(width: 80, alignment: .leading)
+                        SecureField("Password", text: $vm.password)
+                            .textFieldStyle(.roundedBorder)
+                            .disableAutocorrection(true)
+                            .autocapitalization(.none)
+                    }
+                    .padding(.horizontal)
                     Button {
                         vm.logInOrSignUp()
                         vm.didCompleteLoginProcess = self.didCompleteLoginProcess
@@ -56,8 +81,10 @@ struct LoginView: View {
                                 .padding(.vertical, 10)
                                 .font(.system(size: 14, weight: .semibold))
                             Spacer()
-                        }.background(Color.blue)
-                        
+                        }
+                        .background(Color.blue)
+                        .cornerRadius(5)
+                        .padding(.horizontal)
                     }
                 }
             }

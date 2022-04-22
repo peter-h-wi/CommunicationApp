@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CreateGroupView: View {
+    @Environment(\.presentationMode) var presentationMode
     @ObservedObject private var vm = CreateGroupViewModel(groupName: "")
     @State var shouldReturnToHome = false
     var countOfChecked = 0
@@ -49,6 +50,16 @@ struct CreateGroupView: View {
             .fullScreenCover(isPresented: $shouldReturnToHome) {
                 HomeView()
             }
+            .toolbar {
+                ToolbarItemGroup(placement: .navigationBarLeading) {
+                    Button {
+                        presentationMode.wrappedValue.dismiss()
+                    } label: {
+                        Text("Cancel")
+                    }
+                }
+            }
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }

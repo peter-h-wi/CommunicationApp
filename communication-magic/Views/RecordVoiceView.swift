@@ -60,20 +60,6 @@ struct RecordVoiceView: View {
                         .foregroundColor(.primary)
                         .font(.system(size: 20 , weight : .bold))
                     Spacer()
-                    Button(action: {
-                        if vm.isRecording == true {
-                            vm.stopRecording()
-                        }
-                        vm.fetchAllRecording()
-                        showingList.toggle()
-                    }) {
-                        Image(systemName: "list.bullet")
-                            .foregroundColor(.primary)
-                            .font(.system(size: 20, weight: .bold))
-                    }
-                    .sheet(isPresented: $showingList, content: {
-                        RecordingListView(vm: vm)
-                    })
                 }
             }
         }
