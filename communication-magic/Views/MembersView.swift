@@ -4,7 +4,6 @@
 //
 //  Created by peter wi on 2/23/22.
 //
-
 import SwiftUI
 
 struct MembersView: View {

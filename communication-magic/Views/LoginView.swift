@@ -13,6 +13,11 @@ struct LoginView: View {
     let didSignOut: Bool
     @StateObject var vm: LoginViewModel
     
+    @State private var showingInvalidPasswordAlert = false
+    @State private var showingInvalidEmailAlert = false
+    @State private var showingInvalidNameAlert = false
+    @State private var showingInvalidRoleAlert = false
+    
     init(_ didCompleteLoginProcess: @escaping () -> (), _ didSignOut: Bool) {
         self.didSignOut = didSignOut
         self.didCompleteLoginProcess = didCompleteLoginProcess
@@ -38,6 +43,8 @@ struct LoginView: View {
                         Text("Create Account")
                             .tag(false)
                     }.pickerStyle(SegmentedPickerStyle())
+                        .padding(.horizontal)
+                    
                     if !vm.logIn {
                         HStack {
                             Text("Name")
@@ -65,7 +72,6 @@ struct LoginView: View {
                             .autocapitalization(.none)
                     }
                     .padding(.horizontal)
-
                     HStack {
                         Text("Password")
                             .frame(width: 80, alignment: .leading)
@@ -122,6 +128,7 @@ struct LoginView: View {
                         Button("OK", role: .cancel) { }
                     }
             .navigationBarTitle(vm.logIn ? "Log In" : "Create Account", displayMode: .large)
+            .navigationBarHidden(true)
             .background(Color(.init(white: 0, alpha: 0.05)))
         }
         .navigationViewStyle(StackNavigationViewStyle())

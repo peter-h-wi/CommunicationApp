@@ -10,8 +10,7 @@ import SwiftUI
 import Firebase
 
 @main
-struct communication_magicApp: App {
-    
+struct communication_magicApp: App {    
     var body: some Scene {
         WindowGroup {
             HomeView()

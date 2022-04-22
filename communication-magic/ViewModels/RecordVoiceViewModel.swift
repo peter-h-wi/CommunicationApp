@@ -4,7 +4,6 @@
 //
 //  Created by peter wi on 3/24/22.
 //
-
 import Foundation
 import AVFoundation
 import Firebase
@@ -245,39 +244,6 @@ class RecordVoiceViewModel : NSObject, ObservableObject , AVAudioPlayerDelegate{
                 }
             }
         }
-    
- /*   func fetchRecordings() {
-        firestoreListener?.remove()
-        messageList.removeAll()
-
-        guard let fromId = FirebaseManager.shared.auth.currentUser?.uid else { return }
-
-        firestoreListener = FirebaseManager.shared.firestore
-            .collection("Messages")
-            .document(fromId)
-            .collection(toId)
-            .order(by: "timestamp")
-            .addSnapshotListener { querySnapshot, error in
-                if let error = error {
-                    print("Failed to listen for messages: \(error)")
-                    return
-                }
-                
-                // only changes
-                querySnapshot?.documentChanges.forEach({ change in
-                    if change.type == .added {
-                        do {
-                            let data = try change.document.data(as: Message.self)
-                            self.messageList.append(data ?? Message(audioURL: "", groupID: "", senderID: "", timestamp: DateFormatter().date(from: "01-01-1900")!))
-                            print("appended message to messagelist")
-                        } catch {
-                            print(error)
-                        }
-                    }
-                })
-            }
-    } */
-    
     
     func downloadRecording() {
         recordingsList.removeAll()

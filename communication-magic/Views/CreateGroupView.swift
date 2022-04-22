@@ -12,6 +12,7 @@ struct CreateGroupView: View {
     @ObservedObject private var vm = CreateGroupViewModel(groupName: "")
     @State var shouldReturnToHome = false
     var countOfChecked = 0
+    @State private var showingAlert = false
     
     var body: some View {
         NavigationView {
@@ -31,6 +32,10 @@ struct CreateGroupView: View {
                     }
                 }
                 Button {
+                    if vm.groupName == "" {
+                        showingAlert.toggle()
+                        return
+                    }
                     vm.createGroup()
                     shouldReturnToHome.toggle()
                 } label: {
@@ -49,6 +54,9 @@ struct CreateGroupView: View {
             .background(Color(.init(white: 0, alpha: 0.05)))
             .fullScreenCover(isPresented: $shouldReturnToHome) {
                 HomeView()
+            }
+            .alert("Group name can't be empty", isPresented: $showingAlert) {
+                Button("OK", role: .cancel) { }
             }
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarLeading) {

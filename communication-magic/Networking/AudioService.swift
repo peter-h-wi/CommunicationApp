@@ -9,14 +9,12 @@ import Firebase
 import AVFoundation
 
 final class AudioService: ObservableObject {
-
     static let shared = AudioService()
 
     var audioQueuePlayer : AVQueuePlayer?
 
     let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
     let storageRef = FirebaseManager.shared.storage.reference()
-
     // check if recording has started , we will need it while playing with UI.
     @Published var isRecording : Bool = false
     @Published var isPlaying : Bool = false
