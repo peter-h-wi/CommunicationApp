@@ -18,6 +18,11 @@ struct LoginView: View {
         self.didCompleteLoginProcess = didCompleteLoginProcess
         _vm = StateObject(wrappedValue: LoginViewModel(logIn: true, email: "", password: "", name: "", role: "", didSignOut: didSignOut))
     }
+    
+    @State private var showingInvalidPasswordAlert = false
+    @State private var showingInvalidEmailAlert = false
+    @State private var showingInvalidNameAlert = false
+    @State private var showingInvalidRoleAlert = false
         
     var body: some View {
         NavigationView {
@@ -71,6 +76,22 @@ struct LoginView: View {
                     }
                     .padding(.horizontal)
                     Button {
+                        if !vm.isValidEmail() {
+                            showingInvalidEmailAlert.toggle()
+                            return
+                        }
+                        if vm.isInvalidPassword() {
+                            showingInvalidPasswordAlert.toggle()
+                            return
+                        }
+                        if !vm.logIn && vm.isEmptyName() {
+                            showingInvalidNameAlert.toggle()
+                            return
+                        }
+                        if !vm.logIn && vm.isEmptyRole() {
+                            showingInvalidRoleAlert.toggle()
+                            return
+                        }
                         vm.logInOrSignUp()
                         vm.didCompleteLoginProcess = self.didCompleteLoginProcess
                     } label: {
@@ -88,6 +109,18 @@ struct LoginView: View {
                     }
                 }
             }
+            .alert("Passwords must be at least 6 characters", isPresented: $showingInvalidPasswordAlert) {
+                Button("OK", role: .cancel) {vm.password = ""}
+                    }
+            .alert("Email is not invalid", isPresented: $showingInvalidEmailAlert) {
+                        Button("OK", role: .cancel) { }
+                    }
+            .alert("Name can't be empty", isPresented: $showingInvalidNameAlert) {
+                        Button("OK", role: .cancel) { }
+                    }
+            .alert("Role can't be empty", isPresented: $showingInvalidRoleAlert) {
+                        Button("OK", role: .cancel) { }
+                    }
             .navigationBarTitle(vm.logIn ? "Log In" : "Create Account", displayMode: .large)
             .background(Color(.init(white: 0, alpha: 0.05)))
         }
