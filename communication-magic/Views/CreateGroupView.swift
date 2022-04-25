@@ -20,7 +20,6 @@ struct CreateGroupView: View {
                 Text("Create a new Group")
                 TextField("Group Name", text: $vm.groupName)
                         .padding(5)
-                        .background(.white)
                 Text("Select Members to add to Group")
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack(alignment: .leading) {
