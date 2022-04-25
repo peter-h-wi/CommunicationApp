@@ -30,11 +30,12 @@ struct MembersView: View {
                             HStack {
                                 Circle()
                                     .frame(width: 25, height: 25)
-                                VStack{
+                                VStack(alignment: .leading) {
                                     Text(group.groupName)
                                         .font(.headline)
                                 }
                             }
+                            .foregroundColor(.primary)
                         }
                     }
                     Divider()
@@ -50,11 +51,14 @@ struct MembersView: View {
                             HStack {
                                 Circle()
                                     .frame(width: 25, height: 25)
-                                VStack{
+                                    .foregroundColor(.primary)
+                                VStack(alignment: .leading) {
                                     Text(member.name)
                                         .font(.headline)
+                                        .foregroundColor(.primary)
                                     Text(member.role)
-                                        .font(.body)
+                                        .font(.subheadline)
+                                        .foregroundColor(.secondary)
                                 }
                                 Spacer()
                                 if (member.online) {
@@ -86,10 +90,12 @@ struct MembersView: View {
     
     private var customNavBar: some View {
         HStack(spacing: 16) {
+            Circle()
+                .frame(width: 50, height: 50)
+                .foregroundColor(.primary)
             VStack(alignment: .leading, spacing: 4) {
                 Text(vm.member?.name ?? "noname")
-                    .font(.title)
-                    .bold()
+                    .font(.headline)
                 Text(vm.member?.role ?? "norole")
                     .font(.subheadline)
                     .foregroundColor(.secondary)
@@ -129,7 +135,6 @@ struct MembersView: View {
                     .foregroundColor(Color(.label))
             }
         }
-        .padding()
         .actionSheet(isPresented: $shouldShowLogOutOptions) {
             .init(title: Text("Sign Out"), message: Text("Do you wish to sign out?"), buttons: [
                 .destructive(Text("Sign Out"), action: {
