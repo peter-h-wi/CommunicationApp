@@ -44,7 +44,7 @@ class RecordVoiceViewModel : NSObject, ObservableObject , AVAudioPlayerDelegate{
     @Published var toggleColor : Bool = false
     @Published var isPlaying : Bool = false
     
-    @Published var uploadStatus = "nothing"
+    @Published var uploadStatus = ""
         
     var playingURL : URL?
     
@@ -159,6 +159,7 @@ class RecordVoiceViewModel : NSObject, ObservableObject , AVAudioPlayerDelegate{
         blinkingCount!.invalidate()
         
         uploadRecording()
+        self.timer = "0:00"
     }
     
     func deleteAllRecordings() {
