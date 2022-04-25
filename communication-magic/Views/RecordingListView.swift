@@ -8,20 +8,30 @@ import SwiftUI
 
 struct RecordingListView: View {
     @ObservedObject var vm: MembersViewModel
+    @ObservedObject var audioService = AudioService.shared
     var body: some View {
         NavigationView {
-            VStack {
-                ScrollView(showsIndicators: false){
+            ScrollView(.vertical, showsIndicators: false){
+                VStack {
+                    Text("\(audioService.numOfItems) are in the queue")
                     ForEach(vm.messages, id: \.id) { message in
                         VoiceCardView2(message: message, vm: vm)
                     }
-//                    ForEach(vm.recordingsList, id: \.createdAt) { recording in
-//                        VoiceCardView(vm: vm, recording: recording)
-//                    }
                 }
             }
             .padding(.top,30)
             .navigationBarTitle("Recordings")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        audioService.updateNumOfItems()
+                    } label: {
+                        Image(systemName: "arrow.clockwise")
+                    }
+                    .foregroundColor(.primary)
+                }
+            }
         }
     }
 }
@@ -39,14 +49,13 @@ struct VoiceCardView2: View {
     var body: some View {
         VStack{
             HStack{
-                Image(systemName:"headphones.circle.fill")
-                    .font(.system(size:50))
+                ProfileImage(imgName: "doge", width: 40)
                 
                 VStack(alignment:.leading) {
                     Text("From: \(vm.fetchUser(uid: message.senderID))")
-                    Text("To: \(vm.fetchUser(uid: message.groupID))")
                     Text("\(message.timeAgo)")
                 }
+                Spacer()
                 VStack {
                     Button(action: {
                         vm.deleteRecordingFromFireStore(url: message.audioURL)

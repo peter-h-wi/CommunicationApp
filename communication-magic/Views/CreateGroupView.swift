@@ -29,7 +29,7 @@ struct CreateGroupView: View {
                                             vm.handleMemberSelction(member: member)
                                         }
                                     } label: {
-                                        Image(systemName: "x.circle.fill")
+                                        Image(systemName: "xmark.circle.fill")
                                     }
                                     .foregroundStyle(.primary, .secondary)
                                     .offset(x:12, y:-12)
