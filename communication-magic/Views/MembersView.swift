@@ -18,9 +18,18 @@ struct MembersView: View {
                 VStack(alignment: .leading) {
                     customNavBar
                     Divider()
-                    Text("My Groups")
-                        .font(.headline)
-                        .foregroundColor(.secondary)
+                    HStack {
+                        Text("My Groups")
+                            .font(.headline)
+                            .foregroundColor(.secondary)
+                        Button {
+                            shouldShowCreateGroups.toggle()
+                        } label: {
+                            Image(systemName: "plus.app.fill")
+                                .font(.title2)
+                                .foregroundColor(.secondary)
+                        }
+                    }
                     ForEach(vm.groups) { group in
                         Button {
                             vm.groupTo = group
@@ -28,8 +37,7 @@ struct MembersView: View {
                             shouldShowRecordingScreen.toggle()
                         } label: {
                             HStack {
-                                Circle()
-                                    .frame(width: 25, height: 25)
+                                ProfileImage(imgName: "doges", width: 40)
                                 VStack(alignment: .leading) {
                                     Text(group.groupName)
                                         .font(.headline)
@@ -49,9 +57,7 @@ struct MembersView: View {
                             shouldShowRecordingScreen.toggle()
                         } label: {
                             HStack {
-                                Circle()
-                                    .frame(width: 25, height: 25)
-                                    .foregroundColor(.primary)
+                                ProfileImage(imgName: "doge", width: 40)
                                 VStack(alignment: .leading) {
                                     Text(member.name)
                                         .font(.headline)
@@ -90,49 +96,26 @@ struct MembersView: View {
     
     private var customNavBar: some View {
         HStack(spacing: 16) {
-            Circle()
-                .frame(width: 50, height: 50)
-                .foregroundColor(.primary)
+            ProfileImage(imgName: "profile", width: 50)
             VStack(alignment: .leading, spacing: 4) {
                 Text(vm.member?.name ?? "noname")
                     .font(.headline)
                 Text(vm.member?.role ?? "norole")
                     .font(.subheadline)
                     .foregroundColor(.secondary)
-                HStack {
-                    if (vm.member?.online ?? false) {
-                        Circle()
-                            .foregroundColor(.green)
-                            .frame(width: 14, height: 14)
-                        Text("online")
-                            .font(.system(size: 12))
-                            .foregroundColor(Color.green)
-                    } else {
-                        Circle()
-                            .foregroundColor(.red)
-                            .frame(width: 14, height: 14)
-                        Text("offline")
-                            .font(.system(size: 12))
-                            .foregroundColor(Color.red)
-                    }
-                }
-
             }
             Spacer()
-            Button {
-                shouldShowCreateGroups.toggle()
-            } label: {
-                Image(systemName: "plus.app.fill")
-                    .font(.title2)
-                    .foregroundColor(.red)
-            }
 
             Button {
                 shouldShowLogOutOptions.toggle()
             } label: {
-                Image(systemName: "rectangle.portrait.and.arrow.right")
-                    .font(.system(size: 24, weight: .bold))
-                    .foregroundColor(Color(.label))
+                VStack {
+                    Image(systemName: "rectangle.portrait.and.arrow.right")
+                        .font(.headline)
+                    Text("Sign Out")
+                        .font(.caption)
+                }
+                .foregroundColor(.red)
             }
         }
         .actionSheet(isPresented: $shouldShowLogOutOptions) {
@@ -163,5 +146,20 @@ struct MembersView_Previews: PreviewProvider {
     static var previews: some View {
         MembersView(vm: MembersViewModel())
         
+    }
+}
+
+
+struct ProfileImage: View {
+    let imgName: String
+    let width: CGFloat
+    
+    var body: some View {
+        Image(imgName)
+            .resizable()
+            .scaledToFill()
+            .clipShape(Circle())
+            .frame(width: width, height: width)
+            .overlay(Circle().stroke(.background, lineWidth: 2))
     }
 }
