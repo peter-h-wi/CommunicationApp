@@ -177,20 +177,20 @@ class RecordVoiceViewModel : NSObject, ObservableObject , AVAudioPlayerDelegate{
         let audioFileRef = storageRef.child("audios/\(audioName)")
         audioFileRef.putFile(from: directoryContents[0], metadata: nil) { metadata, error in
             if let error = error {
-                self.uploadStatus = "Failed to upload audio: \(error)"
+                self.uploadStatus = "Failed to upload audio"
                 print("Failed to upload audio: \(error)")
                 return
             }
             
             audioFileRef.downloadURL { url, err in
                 if let err = err {
-                    self.uploadStatus = "Failed to retrieve downloadURL: \(err)"
+                    self.uploadStatus = "Failed to retrieve audio URL"
                     print("Failed to retrieve downloadURL: \(err)")
                     return
                 }
                 
                 guard let url = url else { return }
-                self.uploadStatus = "\(url)"
+                self.uploadStatus = "Successfully uploaded audio"
                 self.playingURL = url
                 
                 self.sendMessage(of: url)
@@ -220,10 +220,11 @@ class RecordVoiceViewModel : NSObject, ObservableObject , AVAudioPlayerDelegate{
 
                         memberMessageBox.setData(messageData) { error in
                             if let error = error {
+                                self.uploadStatus = "Failed to send the message"
                                 print("Failed to save message into Firestore: \(error)")
                                 return
                             }
-
+                            self.uploadStatus = "Successfully sent the message"
                             print("Successfully saved current user sending message")
                         }
                     }
@@ -237,10 +238,11 @@ class RecordVoiceViewModel : NSObject, ObservableObject , AVAudioPlayerDelegate{
 
                 document.setData(messageData) { error in
                     if let error = error {
+                        self.uploadStatus = "Failed to send the message"
                         print("Failed to save message into Firestore: \(error)")
                         return
                     }
-
+                    self.uploadStatus = "Successfully sent the message"
                     print("Successfully saved current user sending message")
                 }
             }

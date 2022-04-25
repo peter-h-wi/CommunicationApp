@@ -36,14 +36,14 @@ struct RecordVoiceView: View {
                 VStack {
                     Spacer()
                     
-                    VStack {
-                        if vm.isRecording {
-                            recordIndicator
-                                .frame(height: 100)
-                        } else {
-                            Text("")
-                                .frame(height: 100)
-                        }
+                    
+                    
+                    if vm.isRecording {
+                        recordIndicator
+                            .frame(height: 100)
+                    } else {
+                        Text(vm.uploadStatus)
+                            .frame(height: 100)
                     }
                     
                     Spacer()
@@ -98,6 +98,8 @@ struct RecordVoiceView: View {
             Circle()
                 .frame(width: 50, height: 50)
                 .foregroundColor(Color(#colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)))
+                .scaleEffect(effect2 ? 1.3 : 1)
+                .opacity(effect2 ? 0.8 : 1)
             
             
             Image(systemName: vm.isRecording ? "stop.circle.fill" : "mic.circle.fill")
