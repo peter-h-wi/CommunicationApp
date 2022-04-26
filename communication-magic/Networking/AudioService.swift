@@ -36,6 +36,10 @@ final class AudioService: ObservableObject {
             audioQueuePlayer = AVQueuePlayer()
             audioQueuePlayer?.play()
         }
+        
+        if audioQueuePlayer?.status == .readyToPlay {
+            audioQueuePlayer?.play()
+        }
 
         guard let player = audioQueuePlayer else {
             print("AVQueuePlayer failed to instantiate!")
