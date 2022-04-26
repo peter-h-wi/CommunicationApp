@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2C32B33727D3CAAF00A4FACE /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 2C32B33627D3CAAF00A4FACE /* Alamofire */; };
 		2C32B33927D3CF1900A4FACE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C32B33827D3CF1900A4FACE /* GoogleService-Info.plist */; };
 		2C32B33C27D3D00D00A4FACE /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 2C32B33B27D3D00D00A4FACE /* FirebaseAnalytics */; };
 		2C32B33E27D3D00D00A4FACE /* FirebaseAnalyticsSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 2C32B33D27D3D00D00A4FACE /* FirebaseAnalyticsSwift-Beta */; };
@@ -45,7 +44,6 @@
 		2C98976527FE1D6100C2AF79 /* RecordVoiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C98976427FE1D6100C2AF79 /* RecordVoiceViewModel.swift */; };
 		FE1521BE27CD21AE007F95A2 /* SentMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1521BD27CD21AE007F95A2 /* SentMessageModel.swift */; };
 		FE1521C427CD2AF5007F95A2 /* MembersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1521C327CD2AF5007F95A2 /* MembersViewModel.swift */; };
-		FE2E78462809E4690099B6DD /* AudioService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE2E78452809E4690099B6DD /* AudioService.swift */; };
 		FE7963B627D3C9C5001FB6E2 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7963B527D3C9C5001FB6E2 /* NetworkService.swift */; };
 		FEDCA01027C6D8B200291D70 /* communication_magicApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDCA00F27C6D8B200291D70 /* communication_magicApp.swift */; };
 		FEDCA01427C6D8B300291D70 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FEDCA01327C6D8B300291D70 /* Assets.xcassets */; };
@@ -77,7 +75,6 @@
 		2C98976427FE1D6100C2AF79 /* RecordVoiceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordVoiceViewModel.swift; sourceTree = "<group>"; };
 		FE1521BD27CD21AE007F95A2 /* SentMessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentMessageModel.swift; sourceTree = "<group>"; };
 		FE1521C327CD2AF5007F95A2 /* MembersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembersViewModel.swift; sourceTree = "<group>"; };
-		FE2E78452809E4690099B6DD /* AudioService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioService.swift; sourceTree = "<group>"; };
 		FE7963B527D3C9C5001FB6E2 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		FEDCA00C27C6D8B200291D70 /* communication-magic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "communication-magic.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEDCA00F27C6D8B200291D70 /* communication_magicApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = communication_magicApp.swift; sourceTree = "<group>"; };
@@ -93,7 +90,6 @@
 			files = (
 				2C32B33E27D3D00D00A4FACE /* FirebaseAnalyticsSwift-Beta in Frameworks */,
 				2C32B33C27D3D00D00A4FACE /* FirebaseAnalytics in Frameworks */,
-				2C32B33727D3CAAF00A4FACE /* Alamofire in Frameworks */,
 				2C32B34427D3D00D00A4FACE /* FirebaseCrashlytics in Frameworks */,
 				2C32B35227D3D00D00A4FACE /* FirebaseRemoteConfigSwift-Beta in Frameworks */,
 				2C32B35627D3D00D00A4FACE /* FirebaseStorageSwift-Beta in Frameworks */,
@@ -228,7 +224,6 @@
 			);
 			name = "communication-magic";
 			packageProductDependencies = (
-				2C32B33627D3CAAF00A4FACE /* Alamofire */,
 				2C32B33B27D3D00D00A4FACE /* FirebaseAnalytics */,
 				2C32B33D27D3D00D00A4FACE /* FirebaseAnalyticsSwift-Beta */,
 				2C32B33F27D3D00D00A4FACE /* FirebaseAuth */,
@@ -273,7 +268,6 @@
 			);
 			mainGroup = FEDCA00327C6D8B200291D70;
 			packageReferences = (
-				2C32B33527D3CAAF00A4FACE /* XCRemoteSwiftPackageReference "Alamofire" */,
 				2C32B33A27D3D00D00A4FACE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = FEDCA00D27C6D8B200291D70 /* Products */;
@@ -462,7 +456,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"communication-magic/Preview Content\"";
-				DEVELOPMENT_TEAM = 22875T464M;
+				DEVELOPMENT_TEAM = ZAYG7E25NA;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_EXPAND_BUILD_SETTINGS = YES;
@@ -479,7 +473,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "peter-h-wi.communication-magic";
+				PRODUCT_BUNDLE_IDENTIFIER = "peter-h-w.communication-magic";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -495,7 +489,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"communication-magic/Preview Content\"";
-				DEVELOPMENT_TEAM = 22875T464M;
+				DEVELOPMENT_TEAM = ZAYG7E25NA;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_EXPAND_BUILD_SETTINGS = YES;
@@ -512,7 +506,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "peter-h-wi.communication-magic";
+				PRODUCT_BUNDLE_IDENTIFIER = "peter-h-w.communication-magic";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -544,14 +538,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		2C32B33527D3CAAF00A4FACE /* XCRemoteSwiftPackageReference "Alamofire" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Alamofire/Alamofire";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.0;
-			};
-		};
 		2C32B33A27D3D00D00A4FACE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -563,11 +549,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		2C32B33627D3CAAF00A4FACE /* Alamofire */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2C32B33527D3CAAF00A4FACE /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = Alamofire;
-		};
 		2C32B33B27D3D00D00A4FACE /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2C32B33A27D3D00D00A4FACE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

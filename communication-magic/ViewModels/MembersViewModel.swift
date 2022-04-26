@@ -22,6 +22,7 @@ final class MembersViewModel: ObservableObject {
     @Published var messages: [Message] = []
     
     var messageListener: ListenerRegistration?
+    var membersListener: ListenerRegistration?
   
     init() {
         DispatchQueue.main.async {
@@ -62,23 +63,33 @@ final class MembersViewModel: ObservableObject {
         if !members.isEmpty {
             members = []
         }
-        
-        FirebaseManager.shared.firestore.collection("Members")
-            .getDocuments { documentsSnapshot, error in
+
+        membersListener = FirebaseManager.shared.firestore
+            .collection("Members")
+            .addSnapshotListener { snapshot, error in
                 if let error = error {
-                    print("Failed to fetch users: \(error)")
+                    print("Failed to listen for members: \(error)")
                     return
                 }
                 
-                documentsSnapshot?.documents.forEach({ snapshot in
-                    let data = snapshot.data()
-                    let member = Member(uid: data["uid"] as? String ?? "", name: data["name"] as? String ?? "noname", role: data["role"] as? String ?? "norole", online: (data["online:"] as? Bool ?? false))
-                    
-                    if member.uid != FirebaseManager.shared.auth.currentUser?.uid { //fixes duplicating ourself onto list
-                        DispatchQueue.main.async {
-                            self.members.append(member)
+                // only changes
+                snapshot?.documentChanges.forEach({ change in
+                    if change.type == .added {
+                        let data = change.document.data()
+                        let member = Member(uid: data["uid"] as? String ?? "", name: data["name"] as? String ?? "noname", role: data["role"] as? String ?? "norole", online: (data["online:"] as? Bool ?? false))
+                        self.members.append(member)
+                        print("Successfully added new member")
+                        
+                    } else if change.type == .modified {
+                        print("detected modification")
+                        let data = change.document.data()
+                        let updatedMember = Member(uid: data["uid"] as? String ?? "", name: data["name"] as? String ?? "noname", role: data["role"] as? String ?? "norole", online: (data["online:"] as? Bool ?? false))
+                        if let index = self.members.firstIndex(where: {$0.uid == updatedMember.uid}) {
+                            print("index found")
+                            self.members[index] = updatedMember
                         }
-                    }
+                        print("Successfully updated online status")
+                }
                 })
             }
     }
@@ -133,12 +144,6 @@ final class MembersViewModel: ObservableObject {
                 print("Could not find firebase uid")
                 return
             }
-
-            // resetMessages
-            FirebaseManager.shared.firestore
-                .collection("Messages")
-                .document(uid)
-                .delete()
 
             messageListener = FirebaseManager.shared.firestore
                 .collection("Messages")
@@ -233,12 +238,12 @@ final class MembersViewModel: ObservableObject {
                 }
             }
         messageListener?.remove()
+        membersListener?.remove()
         member?.online = false
+        self.members = []
         self.messages = []
         isUserCurrentlyLoggedOut.toggle()
      //   try? FirebaseManager.shared.auth.signOut() this should be done here, lets see if it doesnt break anything later
-        messageListener?.remove()
-        self.messages = []
     }
     
     func getFavoriteGroups() -> [Group] {
