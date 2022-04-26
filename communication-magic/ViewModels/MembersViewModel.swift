@@ -169,6 +169,10 @@ final class MembersViewModel: ObservableObject {
                                 if data?.senderID == uid {
                                     return
                                 }
+                                
+                                if data?.timestamp ?? DateFormatter().date(from: "01-01-1900")! < Date().addingTimeInterval(-600) {
+                                    return
+                                }
                                 // play audio
                                 AudioService.shared.startPlaying(url: data?.audioURL ?? "")
                                 self.messages.append(data ?? Message(id: "", audioURL: "", groupID: "", senderID: "", timestamp: DateFormatter().date(from: "01-01-1900")!))
