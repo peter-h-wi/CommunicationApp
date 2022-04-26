@@ -31,10 +31,15 @@ final class AudioService: ObservableObject {
             }
     }
 
+    private var token: NSKeyValueObservation?
+    
     func startPlaying(url : String) {
         if audioQueuePlayer == nil {
             audioQueuePlayer = AVQueuePlayer()
             audioQueuePlayer?.play()
+            token = audioQueuePlayer?.observe(\.currentItem) { [weak self] player, _ in
+                self?.updateNumOfItems()
+            }
         }
         
         if audioQueuePlayer?.status == .readyToPlay {

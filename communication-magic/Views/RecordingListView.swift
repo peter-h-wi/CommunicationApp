@@ -22,16 +22,6 @@ struct RecordingListView: View {
             .padding(.top,30)
             .navigationBarTitle("Recordings")
             .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        audioService.updateNumOfItems()
-                    } label: {
-                        Image(systemName: "arrow.clockwise")
-                    }
-                    .foregroundColor(.primary)
-                }
-            }
         }
     }
 }
