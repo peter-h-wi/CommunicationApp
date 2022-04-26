@@ -44,11 +44,11 @@ struct CreateGroupView: View {
                     }
                 }
                 HStack {
-                    Text("Name")
+                    Text("Group Name")
                         .font(.headline)
                         .foregroundColor(.secondary)
                         .frame(width: 80, alignment: .leading)
-                    TextField("Name", text: $vm.groupName)
+                    TextField("Group Name", text: $vm.groupName)
                         .textFieldStyle(.roundedBorder)
                         .disableAutocorrection(true)
                 }
@@ -105,7 +105,7 @@ struct CreateGroupView: View {
                     }
                 }
             }
-            .navigationTitle("New Group")
+            .navigationTitle("Create New Group")
             .navigationBarTitleDisplayMode(.inline)
         }
     }

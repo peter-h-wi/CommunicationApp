@@ -43,6 +43,7 @@ struct VoiceCardView2: View {
                 
                 VStack(alignment:.leading) {
                     Text("From: \(vm.fetchUser(uid: message.senderID))")
+                    Text("To: \(vm.fetchUser(uid: message.groupID))")
                     Text("\(message.timeAgo)")
                 }
                 Spacer()
