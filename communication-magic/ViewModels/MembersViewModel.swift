@@ -23,7 +23,8 @@ final class MembersViewModel: ObservableObject {
     
     var messageListener: ListenerRegistration?
     var membersListener: ListenerRegistration?
-  
+    var groupsListener: ListenerRegistration?
+    
     init() {
         DispatchQueue.main.async {
             self.isUserCurrentlyLoggedOut = FirebaseManager.shared.auth.currentUser?.uid == nil
@@ -102,41 +103,45 @@ final class MembersViewModel: ObservableObject {
         if !groups.isEmpty {
             groups = []
         }
-        FirebaseManager.shared.firestore.collection("Groups")
-            .getDocuments { documentsSnapshot, error in
+        
+        groupsListener = FirebaseManager.shared.firestore
+            .collection("Groups")
+            .addSnapshotListener { snapshot, error in
                 if let error = error {
-                    print("Failed to fetch groups: \(error)")
+                    print("Failed to listen for members: \(error)")
                     return
                 }
-
-                documentsSnapshot?.documents.forEach({ snapshot in
-                    let data = snapshot.data()
-                    if case let membersIds as [String] = data["membersIds"] {
-                        var allMembers = [Member]()
-                        for id in membersIds {
-                            FirebaseManager.shared.firestore.collection("Members")
-                                .getDocuments { documentsSnapshot, error in
-                                    if let error = error {
-                                        print("Failed to fetch users: \(error)")
-                                        return
-                                    }
-
-                                    documentsSnapshot?.documents.forEach({ snapshot in
-                                        let data = snapshot.data()
-                                        let member = Member(uid: data["uid"] as? String ?? "", name: data["name"] as? String ?? "noname", role: data["role"] as? String ?? "norole", online: (data["online:"] as? Bool ?? false))
-                                        if id == data["uid"] as! String {
-                                            allMembers.append(member)
+                
+                // only changes
+                snapshot?.documentChanges.forEach({ change in
+                    if change.type == .added {
+                        let data = change.document.data()
+                        if case let membersIds as [String] = data["membersIds"] {
+                            var allMembers = [Member]()
+                            for id in membersIds {
+                                FirebaseManager.shared.firestore.collection("Members")
+                                    .getDocuments { documentsSnapshot, error in
+                                        if let error = error {
+                                            print("Failed to fetch users: \(error)")
+                                            return
                                         }
-                                    })
+
+                                        documentsSnapshot?.documents.forEach({ snapshot in
+                                            let data = snapshot.data()
+                                            let member = Member(uid: data["uid"] as? String ?? "", name: data["name"] as? String ?? "noname", role: data["role"] as? String ?? "norole", online: (data["online:"] as? Bool ?? false))
+                                            if id == data["uid"] as! String {
+                                                allMembers.append(member)
+                                            }
+                                        })
+                                    }
+                                if id == uid { //fixes duplicating ourself onto list
+                                    self.groups.append(Group(uid: data["uid"] as? String ?? "", groupName: data["groupName"] as? String ?? "", members: allMembers, isFavorite: data["isFavorite"] as? Bool ?? false, activeMessages: []))
                                 }
-                            if id == uid { //fixes duplicating ourself onto list
-                                self.groups.append(Group(uid: data["uid"] as? String ?? "", groupName: data["groupName"] as? String ?? "", members: allMembers, isFavorite: data["isFavorite"] as? Bool ?? false, activeMessages: []))
                             }
                         }
                     }
                 })
             }
-        
     }
     
     func fetchMessages() {
@@ -239,9 +244,11 @@ final class MembersViewModel: ObservableObject {
             }
         messageListener?.remove()
         membersListener?.remove()
+        groupsListener?.remove()
         member?.online = false
         self.members = []
         self.messages = []
+        self.groups = []
         isUserCurrentlyLoggedOut.toggle()
      //   try? FirebaseManager.shared.auth.signOut() this should be done here, lets see if it doesnt break anything later
     }
