@@ -18,6 +18,7 @@ final class AudioService: ObservableObject {
     // check if recording has started , we will need it while playing with UI.
     @Published var isRecording : Bool = false
     @Published var isPlaying : Bool = false
+    @Published var numOfItems : Int = 0
 
     init() {
         let session = AVAudioSession.sharedInstance()
@@ -30,29 +31,48 @@ final class AudioService: ObservableObject {
             }
     }
 
+    private var token: NSKeyValueObservation?
+    
     func startPlaying(url : String) {
         if audioQueuePlayer == nil {
-                    audioQueuePlayer = AVQueuePlayer()
-                    audioQueuePlayer?.play()
-                }
+            audioQueuePlayer = AVQueuePlayer()
+            audioQueuePlayer?.play()
+            token = audioQueuePlayer?.observe(\.currentItem) { [weak self] player, _ in
+                self?.updateNumOfItems()
+            }
+        }
+        
+        if audioQueuePlayer?.status == .readyToPlay {
+            audioQueuePlayer?.play()
+        }
 
-                guard let player = audioQueuePlayer else {
-                    print("AVQueuePlayer failed to instantiate!")
-                    return
-                }
-                player.removeAllItems()
+        guard let player = audioQueuePlayer else {
+            print("AVQueuePlayer failed to instantiate!")
+            return
+        }
+        //player.removeAllItems()
 
-                let audioItem = AVPlayerItem(url: URL(string: url)!)
-                player.insert(audioItem, after: nil)
-                print("Played Successfully with AVQueuePlayaer")
+        let audioItem = AVPlayerItem(url: URL(string: url)!)
+        player.insert(audioItem, after: nil)
+        print("Played Successfully with AVQueuePlayaer")
+        updateNumOfItems()
     }
 
     func stopPlaying(url: String) {
         isPlaying = false
         audioQueuePlayer?.pause()
+        updateNumOfItems()
     }
     
     func resetAVPlayer() {
         self.audioQueuePlayer?.removeAllItems()
+        updateNumOfItems()
+    }
+    
+    func updateNumOfItems() {
+        guard let player = audioQueuePlayer else {
+            return
+        }
+        numOfItems = player.items().count
     }
 }

@@ -67,7 +67,7 @@ class LoginViewModel : ObservableObject {
     }
 
     func createNewAccount() {
-        FirebaseManager.shared.auth.createUser(withEmail: email, password: password) { result, err in
+        FirebaseManager.shared.auth.createUser(withEmail: email.trimmingCharacters(in: .whitespacesAndNewlines), password: password) { result, err in
             if let err = err {
                 print("Failed to create user in auth:", err)
                 #warning("User will not be stored in auth if password is less than 6 characters but can move onto HomeView, fix soon")
@@ -90,7 +90,7 @@ class LoginViewModel : ObservableObject {
                     print("caught already made document")
                     return
                 } else {
-                    let userData = ["name": self.name, "role": self.role, "email": self.email, "online:": true, "uid": uid] as [String : Any]
+                    let userData = ["name": self.name.trimmingCharacters(in: .whitespacesAndNewlines), "role": self.role.trimmingCharacters(in: .whitespacesAndNewlines), "email": self.email.trimmingCharacters(in: .whitespacesAndNewlines), "online:": true, "uid": uid] as [String : Any]
                     FirebaseManager.shared.firestore.collection("Members")
                         .document(uid).setData(userData) { err in
                             if let err = err {

@@ -12,16 +12,50 @@ struct CreateGroupView: View {
     @ObservedObject private var vm = CreateGroupViewModel(groupName: "")
     @State var shouldReturnToHome = false
     var countOfChecked = 0
-    @State private var showingAlert = false
+    @State private var showingEmptyNameAlert = false
+    @State private var showingEmptyMemberAlert = false
     
     var body: some View {
         NavigationView {
-            VStack {
-                Text("Create a new Group")
-                TextField("Group Name", text: $vm.groupName)
-                        .padding(5)
-                        .background(.white)
-                Text("Select Members to add to Group")
+            VStack(alignment: .leading) {
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack {
+                        ForEach(vm.membersToAdd.reversed(), id: \.id) { member in
+                            VStack {
+                                ZStack {
+                                    ProfileImage(imgName: "doge", width: 40)
+                                    Button {
+                                        withAnimation {
+                                            vm.handleMemberSelction(member: member)
+                                        }
+                                    } label: {
+                                        Image(systemName: "xmark.circle.fill")
+                                    }
+                                    .foregroundStyle(.primary, .secondary)
+                                    .offset(x:12, y:-12)
+
+                                }
+                                Text(member.name)
+                                    .font(.caption)
+                                    .truncationMode(.tail)
+                            }
+                            .frame(width: 50, height: 65)
+                        }
+                    }
+                }
+                HStack {
+                    Text("Name")
+                        .font(.headline)
+                        .foregroundColor(.secondary)
+                        .frame(width: 80, alignment: .leading)
+                    TextField("Name", text: $vm.groupName)
+                        .textFieldStyle(.roundedBorder)
+                        .disableAutocorrection(true)
+                }
+                Divider()
+                Text("Members")
+                    .font(.headline)
+                    .foregroundColor(.secondary)
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack(alignment: .leading) {
                         ForEach(vm.allMembers) { member in
@@ -31,42 +65,47 @@ struct CreateGroupView: View {
                         }
                     }
                 }
-                Button {
-                    if vm.groupName == "" {
-                        showingAlert.toggle()
-                        return
-                    }
-                    vm.createGroup()
-                    shouldReturnToHome.toggle()
-                } label: {
-                    HStack {
-                        Text("Submit")
-                            .font(.system(size: 16, weight: .bold))
-                    }
-                    .foregroundColor(.white)
-                    .padding(.vertical)
-                        .background(Color.blue)
-                        .cornerRadius(32)
-                        .padding(.horizontal)
-                        .shadow(radius: 15)
-                }
             }
-            .background(Color(.init(white: 0, alpha: 0.05)))
+            .padding()
             .fullScreenCover(isPresented: $shouldReturnToHome) {
                 HomeView()
             }
-            .alert("Group name can't be empty", isPresented: $showingAlert) {
+            .alert("Group name can't be empty", isPresented: $showingEmptyNameAlert) {
+                Button("OK", role: .cancel) { }
+            }
+            .alert("Members can't be empty", isPresented: $showingEmptyMemberAlert) {
                 Button("OK", role: .cancel) { }
             }
             .toolbar {
-                ToolbarItemGroup(placement: .navigationBarLeading) {
+                ToolbarItem(placement: .navigationBarLeading) {
                     Button {
                         presentationMode.wrappedValue.dismiss()
                     } label: {
                         Text("Cancel")
                     }
                 }
+                
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        if vm.groupName == "" {
+                            showingEmptyNameAlert.toggle()
+                            return
+                        }
+                        
+                        if vm.membersToAdd.isEmpty {
+                            showingEmptyMemberAlert.toggle()
+                            return
+                        }
+                        vm.createGroup()
+                        shouldReturnToHome.toggle()
+                    } label: {
+                        HStack {
+                            Text("Save")
+                        }
+                    }
+                }
             }
+            .navigationTitle("New Group")
             .navigationBarTitleDisplayMode(.inline)
         }
     }

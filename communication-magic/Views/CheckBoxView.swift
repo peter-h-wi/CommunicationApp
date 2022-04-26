@@ -13,18 +13,20 @@ struct CheckBoxView: View {
     let onSelect: () -> Void
 
     var body: some View {
-        Button(action: { onSelect() }) {
-            HStack(spacing: 16) {
+        Button(action: {
+            withAnimation {
+                onSelect()
+            }
+        }) {
+            HStack {
+                ProfileImage(imgName: "doge", width: 40)
                 Text(title)
-                    .font(.system(size: 30, weight: .heavy, design: .default))
+                    .font(.headline)
                 Spacer()
                 Image(systemName: checked ? "checkmark.square" : "square")
-                    .resizable()
-                    .frame(width: 25, height: 25)
-                    .foregroundColor(checked ? Color(UIColor.systemBlue) : Color.secondary)
-                    .frame(width: 30)
+                    .font(.headline)
+                    .foregroundColor(checked ? .blue : .secondary)
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
         }
         .foregroundColor(.primary)
     }
