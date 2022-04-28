@@ -11,6 +11,8 @@ struct MembersView: View {
     @State var shouldShowLogOutOptions = false
     @State var shouldShowRecordingScreen = false
     @State var shouldShowCreateGroups = false
+    
+    let profiles = ["doctor1", "doctor2", "doctor3", "doctor4", "doctor5", "nurse1", "nurse2", "nurse3", "nurse4", "nurse5", "profile1", "profile2", "profile3", "profile4", "profile5", "profile6", "profile7", "profile8", "doge"]
 
     var body: some View {
         NavigationView {
@@ -25,7 +27,7 @@ struct MembersView: View {
                         Button {
                             shouldShowCreateGroups.toggle()
                         } label: {
-                            Image(systemName: "plus.app.fill")
+                            Image(systemName: "plus.circle.fill")
                                 .font(.title2)
                                 .foregroundColor(.secondary)
                         }
@@ -37,7 +39,16 @@ struct MembersView: View {
                             shouldShowRecordingScreen.toggle()
                         } label: {
                             HStack {
-                                ProfileImage(imgName: "doges", width: 40)
+                                VStack(spacing: 0) {
+                                    HStack(spacing: 0) {
+                                        ProfileImage(imgName: profiles[group.groupName.count  % 19], width: 25)
+                                        ProfileImage(imgName: profiles[group.groupName.count*2  % 19], width: 25)
+                                    }
+                                    HStack(spacing: 0) {
+                                        ProfileImage(imgName: profiles[group.groupName.count*3  % 19], width: 25)
+                                        ProfileImage(imgName: profiles[group.groupName.count*5  % 19], width: 25)
+                                    }
+                                }
                                 VStack(alignment: .leading) {
                                     Text(group.groupName)
                                         .font(.headline)
@@ -57,7 +68,7 @@ struct MembersView: View {
                             shouldShowRecordingScreen.toggle()
                         } label: {
                             HStack {
-                                ProfileImage(imgName: "doge", width: 40)
+                                ProfileImage(imgName: profiles[(member.name.count*2 + member.role.count*3) % 19], width: 50)
                                 VStack(alignment: .leading) {
                                     Text(member.name)
                                         .font(.headline)
@@ -86,8 +97,8 @@ struct MembersView: View {
                 }
                 .padding(.horizontal)
             }
-            .navigationTitle("Messages")
-            .navigationBarHidden(true)
+            .navigationTitle("Members")
+            .navigationBarTitleDisplayMode(.inline)
             .fullScreenCover(isPresented: $shouldShowRecordingScreen) {
                 RecordVoiceView(vm.memberTo ?? Member(uid: "", name: "", role: "", online: false), vm.groupTo ?? Group(groupName: ""), vm.sendToGroup ?? true)
             }
@@ -96,7 +107,7 @@ struct MembersView: View {
     
     private var customNavBar: some View {
         HStack(spacing: 16) {
-            ProfileImage(imgName: "profile8", width: 50)
+            ProfileImage(imgName: "profile10", width: 50)
             VStack(alignment: .leading, spacing: 4) {
                 Text(vm.member?.name ?? "noname")
                     .font(.headline)
