@@ -25,106 +25,124 @@ struct LoginView: View {
     }
     
     var body: some View {
-        NavigationView {
-            ScrollView {
-                VStack(spacing: 15) {
-                    Image(colorScheme == .dark ? "logoBigBlack-no-bg" : "logoBigWhite-no-bg")
-                        .resizable()
-                        .scaledToFit()
-                        .padding(.horizontal, 50)
-                    Picker(selection: $vm.logIn, label: Text("sign in or sign up")) {
-                        Text("Login")
-                            .tag(true)
-                        Text("Create Account")
-                            .tag(false)
-                    }.pickerStyle(SegmentedPickerStyle())
-                        .padding(.horizontal)
-                    
-                    if !vm.logIn {
-                        HStack {
-                            Text("Name")
-                                .frame(width: 80, alignment: .leading)
-                            TextField("Name", text: $vm.name)
-                                .textFieldStyle(.roundedBorder)
-                                .disableAutocorrection(true)
-                        }
-                        .padding(.horizontal)
-                        HStack {
-                            Text("Role")
-                                .frame(width: 80, alignment: .leading)
-                            TextField("Role", text: $vm.role)
-                                .textFieldStyle(.roundedBorder)
-                        }
-                        .padding(.horizontal)
-                    }
-                    HStack {
-                        Text("Email")
-                            .frame(width: 80, alignment: .leading)
-                        TextField("Email", text: $vm.email)
-                            .textFieldStyle(.roundedBorder)
-                            .disableAutocorrection(true)
-                            .keyboardType(.emailAddress)
-                            .autocapitalization(.none)
-                    }
-                    .padding(.horizontal)
-                    HStack {
-                        Text("Password")
-                            .frame(width: 80, alignment: .leading)
-                        SecureField("Password", text: $vm.password)
-                            .textFieldStyle(.roundedBorder)
-                            .disableAutocorrection(true)
-                            .autocapitalization(.none)
-                    }
-                    .padding(.horizontal)
-                    Button {
-                        if !vm.isValidEmail() {
-                            showingInvalidEmailAlert.toggle()
-                            return
-                        }
-                        if vm.isInvalidPassword() {
-                            showingInvalidPasswordAlert.toggle()
-                            return
-                        }
-                        if !vm.logIn && vm.isEmptyName() {
-                            showingInvalidNameAlert.toggle()
-                            return
-                        }
-                        if !vm.logIn && vm.isEmptyRole() {
-                            showingInvalidRoleAlert.toggle()
-                            return
-                        }
-                        vm.logInOrSignUp()
-                        vm.didCompleteLoginProcess = self.didCompleteLoginProcess
-                    } label: {
+        GeometryReader { geo in
+            NavigationView {
+                ScrollView(.vertical, showsIndicators: false) {
+                    ZStack(alignment: .center) {
                         HStack {
                             Spacer()
-                            Text(vm.logIn ? "Log In" : "Create Account")
-                                .foregroundColor(.white)
-                                .padding(.vertical, 10)
-                                .font(.system(size: 14, weight: .semibold))
+                            RoundedRectangle(cornerRadius: 30, style: .continuous)
+                                .fill(.primary)
+                                .frame(width: geo.size.width*0.95, height: geo.size.height*0.95)
+                                .overlay(
+                                            RoundedRectangle(cornerRadius: 30)
+                                                .stroke(.background, lineWidth: 5)
+                                        )
+                                .shadow(radius:50)
                             Spacer()
                         }
-                        .background(Color.blue)
-                        .cornerRadius(5)
-                        .padding(.horizontal)
+                        .zIndex(1)
+                        VStack(spacing: 15) {
+                            Image(colorScheme == .dark ? "logoBigBlack-no-bg" : "logoBigWhite-no-bg")
+                                .resizable()
+                                .scaledToFit()
+                                .padding(.horizontal, 50)
+                            Picker(selection: $vm.logIn, label: Text("sign in or sign up")) {
+                                Text("Login")
+                                    .tag(true)
+                                Text("Create Account")
+                                    .tag(false)
+                            }.pickerStyle(SegmentedPickerStyle())
+                                .padding(.horizontal)
+                            
+                            if !vm.logIn {
+                                HStack {
+                                    Text("Name")
+                                        .frame(width: 80, alignment: .leading)
+                                    TextField("Name", text: $vm.name)
+                                        .textFieldStyle(.roundedBorder)
+                                        .disableAutocorrection(true)
+                                }
+                                .padding(.horizontal)
+                                HStack {
+                                    Text("Role")
+                                        .frame(width: 80, alignment: .leading)
+                                    TextField("Role", text: $vm.role)
+                                        .textFieldStyle(.roundedBorder)
+                                }
+                                .padding(.horizontal)
+                            }
+                            HStack {
+                                Text("Email")
+                                    .frame(width: 80, alignment: .leading)
+                                TextField("Email", text: $vm.email)
+                                    .textFieldStyle(.roundedBorder)
+                                    .disableAutocorrection(true)
+                                    .keyboardType(.emailAddress)
+                                    .autocapitalization(.none)
+                            }
+                            .padding(.horizontal)
+                            HStack {
+                                Text("Password")
+                                    .frame(width: 80, alignment: .leading)
+                                SecureField("Password", text: $vm.password)
+                                    .textFieldStyle(.roundedBorder)
+                                    .disableAutocorrection(true)
+                                    .autocapitalization(.none)
+                            }
+                            .padding(.horizontal)
+                            Button {
+                                if !vm.isValidEmail() {
+                                    showingInvalidEmailAlert.toggle()
+                                    return
+                                }
+                                if vm.isInvalidPassword() {
+                                    showingInvalidPasswordAlert.toggle()
+                                    return
+                                }
+                                if !vm.logIn && vm.isEmptyName() {
+                                    showingInvalidNameAlert.toggle()
+                                    return
+                                }
+                                if !vm.logIn && vm.isEmptyRole() {
+                                    showingInvalidRoleAlert.toggle()
+                                    return
+                                }
+                                vm.logInOrSignUp()
+                                vm.didCompleteLoginProcess = self.didCompleteLoginProcess
+                            } label: {
+                                HStack {
+                                    Spacer()
+                                    Text(vm.logIn ? "Log In" : "Create Account")
+                                        .foregroundColor(.white)
+                                        .padding(.vertical, 10)
+                                        .font(.system(size: 14, weight: .semibold))
+                                    Spacer()
+                                }
+                                .background(Color.blue)
+                                .cornerRadius(5)
+                                .padding(.horizontal)
+                            }
+                        }
+                        .zIndex(2)
                     }
                 }
-            }
-            .alert("Passwords must be at least 6 characters", isPresented: $showingInvalidPasswordAlert) {
-                Button("OK", role: .cancel) {vm.password = ""}
-                    }
-            .alert("Email is not invalid", isPresented: $showingInvalidEmailAlert) {
-                        Button("OK", role: .cancel) { }
-                    }
-            .alert("Name can't be empty", isPresented: $showingInvalidNameAlert) {
-                        Button("OK", role: .cancel) { }
-                    }
-            .alert("Role can't be empty", isPresented: $showingInvalidRoleAlert) {
-                        Button("OK", role: .cancel) { }
-                    }
-            .navigationBarTitle(vm.logIn ? "Log In" : "Create Account", displayMode: .large)
-            .navigationBarHidden(true)
+                .alert("Passwords must be at least 6 characters", isPresented: $showingInvalidPasswordAlert) {
+                    Button("OK", role: .cancel) {vm.password = ""}
+                        }
+                .alert("Email is not invalid", isPresented: $showingInvalidEmailAlert) {
+                            Button("OK", role: .cancel) { }
+                        }
+                .alert("Name can't be empty", isPresented: $showingInvalidNameAlert) {
+                            Button("OK", role: .cancel) { }
+                        }
+                .alert("Role can't be empty", isPresented: $showingInvalidRoleAlert) {
+                            Button("OK", role: .cancel) { }
+                        }
+                .navigationBarTitle(vm.logIn ? "Log In" : "Create Account", displayMode: .large)
+                .navigationBarHidden(true)
             .background(Color(.init(white: 0, alpha: 0.05)))
+            }
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }

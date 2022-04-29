@@ -166,15 +166,15 @@ final class MembersViewModel: ObservableObject {
                         if change.type == .added {
                             do {
                                 let data = try change.document.data(as: Message.self)
-                                if data?.senderID == uid {
+                                if data.senderID == uid {
                                     return
                                 }
                                 
-                                if data?.timestamp ?? DateFormatter().date(from: "01-01-1900")! < Date().addingTimeInterval(-600) {
+                                if data.timestamp ?? DateFormatter().date(from: "01-01-1900")! < Date().addingTimeInterval(-600) {
                                     return
                                 }
                                 // play audio
-                                AudioService.shared.startPlaying(url: data?.audioURL ?? "")
+                                AudioService.shared.startPlaying(url: data.audioURL ?? "")
                                 self.messages.append(data ?? Message(id: "", audioURL: "", groupID: "", senderID: "", timestamp: DateFormatter().date(from: "01-01-1900")!))
                                 print("Successfully added message")
                             } catch {

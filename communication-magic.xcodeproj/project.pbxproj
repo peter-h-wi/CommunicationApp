@@ -49,6 +49,7 @@
 		FEDCA01427C6D8B300291D70 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FEDCA01327C6D8B300291D70 /* Assets.xcassets */; };
 		FEDCA01727C6D8B300291D70 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FEDCA01627C6D8B300291D70 /* Preview Assets.xcassets */; };
 		FEDCA02B27C6DBF400291D70 /* MembersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDCA02A27C6DBF400291D70 /* MembersView.swift */; };
+		FEF04044281A401200219273 /* FancyLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF04043281A401200219273 /* FancyLoginView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -81,6 +82,7 @@
 		FEDCA01327C6D8B300291D70 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FEDCA01627C6D8B300291D70 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		FEDCA02A27C6DBF400291D70 /* MembersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembersView.swift; sourceTree = "<group>"; };
+		FEF04043281A401200219273 /* FancyLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FancyLoginView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +131,7 @@
 				2C56C06427FA80D900246407 /* HomeView.swift */,
 				2C98975C27FD05F300C2AF79 /* CreateGroupView.swift */,
 				2C98976227FD2DBE00C2AF79 /* CheckBoxView.swift */,
+				FEF04043281A401200219273 /* FancyLoginView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -297,6 +300,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FEF04044281A401200219273 /* FancyLoginView.swift in Sources */,
 				2C56C06527FA80DA00246407 /* HomeView.swift in Sources */,
 				2C5F35A727F8AC5500546247 /* FirebaseManager.swift in Sources */,
 				2C56C04827F8E1C800246407 /* Member.swift in Sources */,
@@ -456,7 +460,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"communication-magic/Preview Content\"";
-				DEVELOPMENT_TEAM = ZAYG7E25NA;
+				DEVELOPMENT_TEAM = 22875T464M;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_EXPAND_BUILD_SETTINGS = YES;
@@ -489,7 +493,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"communication-magic/Preview Content\"";
-				DEVELOPMENT_TEAM = ZAYG7E25NA;
+				DEVELOPMENT_TEAM = 22875T464M;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_EXPAND_BUILD_SETTINGS = YES;
