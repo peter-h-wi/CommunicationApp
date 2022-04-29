@@ -61,6 +61,11 @@ final class MembersViewModel: ObservableObject {
     }
     
     func fetchAllUsers() {
+        guard let uid = FirebaseManager.shared.auth.currentUser?.uid else {
+            print("Could not find firebase uid")
+            return
+        }
+        
         if !members.isEmpty {
             members = []
         }
@@ -78,6 +83,9 @@ final class MembersViewModel: ObservableObject {
                     if change.type == .added {
                         let data = change.document.data()
                         let member = Member(uid: data["uid"] as? String ?? "", name: data["name"] as? String ?? "noname", role: data["role"] as? String ?? "norole", online: (data["online:"] as? Bool ?? false))
+                        if member.uid == uid {
+                            return
+                        }
                         self.members.append(member)
                         print("Successfully added new member")
                         
@@ -85,6 +93,9 @@ final class MembersViewModel: ObservableObject {
                         print("detected modification")
                         let data = change.document.data()
                         let updatedMember = Member(uid: data["uid"] as? String ?? "", name: data["name"] as? String ?? "noname", role: data["role"] as? String ?? "norole", online: (data["online:"] as? Bool ?? false))
+                        if updatedMember.uid == uid {
+                            return
+                        }
                         if let index = self.members.firstIndex(where: {$0.uid == updatedMember.uid}) {
                             print("index found")
                             self.members[index] = updatedMember

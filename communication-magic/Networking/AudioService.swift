@@ -57,6 +57,31 @@ final class AudioService: ObservableObject {
         print("Played Successfully with AVQueuePlayaer")
         updateNumOfItems()
     }
+    
+    func startPlayingRightNow(url : String) {
+        if audioQueuePlayer == nil {
+            audioQueuePlayer = AVQueuePlayer()
+            audioQueuePlayer?.play()
+            token = audioQueuePlayer?.observe(\.currentItem) { [weak self] player, _ in
+                self?.updateNumOfItems()
+            }
+        }
+        
+        if audioQueuePlayer?.status == .readyToPlay {
+            audioQueuePlayer?.play()
+        }
+
+        guard let player = audioQueuePlayer else {
+            print("AVQueuePlayer failed to instantiate!")
+            return
+        }
+        player.removeAllItems()
+
+        let audioItem = AVPlayerItem(url: URL(string: url)!)
+        player.insert(audioItem, after: nil)
+        print("Played Successfully with AVQueuePlayaer")
+        updateNumOfItems()
+    }
 
     func stopPlaying(url: String) {
         isPlaying = false

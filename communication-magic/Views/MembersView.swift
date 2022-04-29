@@ -107,7 +107,7 @@ struct MembersView: View {
     
     private var customNavBar: some View {
         HStack(spacing: 16) {
-            ProfileImage(imgName: "profile10", width: 50)
+            ProfileImage(imgName: profiles[((vm.member?.name.count ?? 10)*2 + (vm.member?.role.count ?? 11)*3) % 19], width: 50)
             VStack(alignment: .leading, spacing: 4) {
                 Text(vm.member?.name ?? "noname")
                     .font(.headline)
