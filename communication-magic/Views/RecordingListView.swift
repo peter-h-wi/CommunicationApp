@@ -74,7 +74,9 @@ struct VoiceCardView2: View {
             VStack {
                 Button(action: {
                     vm.deleteRecordingFromFireStore(url: message.audioURL)
-                    vm.deleteMessage(message: message)
+                    withAnimation {
+                        vm.deleteMessage(message: message)
+                    }
                 }) {
                     Image(systemName:"xmark.circle.fill")
                         .foregroundColor(.white)
