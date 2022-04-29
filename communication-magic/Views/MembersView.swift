@@ -29,7 +29,7 @@ struct MembersView: View {
                         } label: {
                             Image(systemName: "plus.circle.fill")
                                 .font(.title2)
-                                .foregroundColor(.secondary)
+                                .foregroundColor(.green)
                         }
                     }
                     ForEach(vm.groups) { group in

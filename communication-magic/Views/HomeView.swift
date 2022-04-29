@@ -18,7 +18,7 @@ struct HomeView: View {
                 }
             RecordingListView(vm: vm)
                 .tabItem {
-                    Label("Recordings", systemImage: "archivebox")
+                    Label("Messages", systemImage: "archivebox")
                 }
         }
     }
