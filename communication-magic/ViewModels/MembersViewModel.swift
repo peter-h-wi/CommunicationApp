@@ -144,10 +144,10 @@ final class MembersViewModel: ObservableObject {
                                                 allMembers.append(member)
                                             }
                                         })
+                                        if id == uid { //fixes duplicating ourself onto list
+                                            self.groups.append(Group(uid: data["uid"] as? String ?? "", groupName: data["groupName"] as? String ?? "", members: allMembers, isFavorite: data["isFavorite"] as? Bool ?? false, activeMessages: []))
+                                        }
                                     }
-                                if id == uid { //fixes duplicating ourself onto list
-                                    self.groups.append(Group(uid: data["uid"] as? String ?? "", groupName: data["groupName"] as? String ?? "", members: allMembers, isFavorite: data["isFavorite"] as? Bool ?? false, activeMessages: []))
-                                }
                             }
                         }
                     }

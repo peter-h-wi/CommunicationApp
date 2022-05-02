@@ -34,19 +34,35 @@ struct RecordVoiceView: View {
     
     var body: some View {
         NavigationView {
-            VStack {
+            VStack(alignment: .leading) {
                 VStack {
                     if sendToGroup == true {
                         if let groupTo = groupTo {
                             ScrollView(.horizontal, showsIndicators: false) {
-                                ForEach(groupTo.members) { member in
-                                    VStack {
-                                        ProfileImage(imgName: profiles[(member.name.count*2 + member.role.count*3) % 19], width: 40)
-                                        Text(member.name)
-                                            .font(.caption)
-                                            .truncationMode(.tail)
+                                HStack {
+                                    ForEach(groupTo.members) { member in
+                                        VStack {
+                                            ProfileImage(imgName: profiles[(member.name.count*2 + member.role.count*3) % 19], width: 40)
+                                            Text(member.name)
+                                                .font(.caption)
+                                                .truncationMode(.tail)
+                                            if (member.online) {
+                                                Text("online")
+                                                    .font(.system(size: 12))
+                                                    .foregroundColor(Color.green)
+                                                Circle().foregroundColor(.green)
+                                                    .frame(width: 10, height: 10)
+                                            } else {
+                                                Text("offline")
+                                                    .font(.system(size: 12))
+                                                    .foregroundColor(Color.red)
+                                                Circle().foregroundColor(.red)
+                                                    .frame(width: 10, height: 10)
+                                            }
+                                        }
                                     }
                                 }
+                                .padding()
                             }
                             
                         }
