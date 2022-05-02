@@ -25,10 +25,10 @@ The simplest way to communicate.
 - Click the person who you want to talk to.
 - Record your message and send.
 
-Customize your groups.
+Create your own chat groups.
 
-- Add people to be your groups.
-- Send your messages to the groups at once.
+- Easily group your coworkers.
+- Send your messages to the group at once.
 
 ## Reliable and Easy to Use
 
