@@ -29,14 +29,59 @@ struct RecordVoiceView: View {
     let memberTo: Member?
     let groupTo: Group?
     let sendToGroup: Bool?
+    let profiles = ["doctor1", "doctor2", "doctor3", "doctor4", "doctor5", "nurse1", "nurse2", "nurse3", "nurse4", "nurse5", "profile1", "profile2", "profile3", "profile4", "profile5", "profile6", "profile7", "profile8", "doge"]
+
     
     var body: some View {
         NavigationView {
             VStack {
                 VStack {
+                    if sendToGroup == true {
+                        if let groupTo = groupTo {
+                            ScrollView(.horizontal, showsIndicators: false) {
+                                ForEach(groupTo.members) { member in
+                                    VStack {
+                                        ProfileImage(imgName: profiles[(member.name.count*2 + member.role.count*3) % 19], width: 40)
+                                        Text(member.name)
+                                            .font(.caption)
+                                            .truncationMode(.tail)
+                                    }
+                                }
+                            }
+                            
+                        }
+                    } else {
+                        if let member = memberTo {
+                            HStack {
+                                ProfileImage(imgName: profiles[(member.name.count*2 + member.role.count*3) % 19], width: 40)
+                                VStack(alignment: .leading) {
+                                    Text(member.name)
+                                        .font(.headline)
+                                        .foregroundColor(.primary)
+                                    Text(member.role)
+                                        .font(.subheadline)
+                                        .foregroundColor(.secondary)
+                                }
+                                Spacer()
+                                if (member.online) {
+                                    Text("online")
+                                        .font(.system(size: 12))
+                                        .foregroundColor(Color.green)
+                                    Circle().foregroundColor(.green)
+                                        .frame(width: 10, height: 10)
+                                } else {
+                                    Text("offline")
+                                        .font(.system(size: 12))
+                                        .foregroundColor(Color.red)
+                                    Circle().foregroundColor(.red)
+                                        .frame(width: 10, height: 10)
+                                }
+                            }
+                            .padding()
+                        }
+                    }
+                    
                     Spacer()
-                    
-                    
                     
                     if vm.isRecording {
                         recordIndicator

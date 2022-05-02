@@ -40,8 +40,11 @@ struct VoiceCardView2: View {
     
     var body: some View {
         HStack{
-            ProfileImage(imgName: profiles[vm.fetchUser(uid: message.senderID).count*3 % 19], width: 40)
-                .padding(.horizontal)
+            VStack {
+                ProfileImage(imgName: profiles[vm.fetchUser(uid: message.senderID).count*3 % 19], width: 40)
+                    .padding(.horizontal)
+                Spacer()
+            }
             
             VStack(alignment:.leading, spacing: 8) {
                 HStack {
@@ -63,13 +66,8 @@ struct VoiceCardView2: View {
                     Text("\(message.timeAgo)")
                         .font(.caption)
                 }
-                
             }
-            .padding()
-            .background(.secondary)
             .foregroundColor(.white)
-            .cornerRadius(10)
-            .shadow(radius: 5)
             Spacer()
             VStack {
                 Button(action: {

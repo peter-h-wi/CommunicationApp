@@ -10,7 +10,10 @@ import SwiftUI
 struct CheckBoxView: View {
     let title: String
     let checked: Bool
+    let profileImg: String
+
     let onSelect: () -> Void
+
 
     var body: some View {
         Button(action: {
@@ -19,7 +22,7 @@ struct CheckBoxView: View {
             }
         }) {
             HStack {
-                ProfileImage(imgName: "doge", width: 40)
+                ProfileImage(imgName: profileImg, width: 40)
                 Text(title)
                     .font(.headline)
                 Spacer()
@@ -34,7 +37,7 @@ struct CheckBoxView: View {
 
 struct CheckBoxView_Previews: PreviewProvider {
     static var previews: some View {
-        CheckBoxView(title: "title here", checked: true) {
+        CheckBoxView(title: "title here", checked: true, profileImg: "doge") {
             print("something")
         }
     }

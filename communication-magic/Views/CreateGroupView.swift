@@ -14,6 +14,8 @@ struct CreateGroupView: View {
     var countOfChecked = 0
     @State private var showingEmptyNameAlert = false
     @State private var showingEmptyMemberAlert = false
+    let profiles = ["doctor1", "doctor2", "doctor3", "doctor4", "doctor5", "nurse1", "nurse2", "nurse3", "nurse4", "nurse5", "profile1", "profile2", "profile3", "profile4", "profile5", "profile6", "profile7", "profile8", "doge"]
+
     
     var body: some View {
         NavigationView {
@@ -23,7 +25,7 @@ struct CreateGroupView: View {
                         ForEach(vm.membersToAdd.reversed(), id: \.id) { member in
                             VStack {
                                 ZStack {
-                                    ProfileImage(imgName: "doge", width: 40)
+                                    ProfileImage(imgName: profiles[(member.name.count*2 + member.role.count*3) % 19], width: 40)
                                     Button {
                                         withAnimation {
                                             vm.handleMemberSelction(member: member)
@@ -59,7 +61,7 @@ struct CreateGroupView: View {
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack(alignment: .leading) {
                         ForEach(vm.allMembers) { member in
-                            CheckBoxView(title: member.name, checked: vm.checkedArray[vm.allMembers.firstIndex(of: member)!], onSelect: {
+                            CheckBoxView(title: member.name, checked: vm.checkedArray[vm.allMembers.firstIndex(of: member)!], profileImg: profiles[(member.name.count*2 + member.role.count*3) % 19], onSelect: {
                                 vm.handleMemberSelction(member: member)
                             })
                         }
