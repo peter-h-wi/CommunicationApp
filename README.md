@@ -42,6 +42,16 @@ Free from too many messages.
 - Messages will be stored only for 10 mins.
 - Simply remove the messages.
 
+## Getting Started
+Prerequisites: Before developing or running this software, you have to be running MacOS and have Xcode downloaded.
+
+Installing: 
+Open Xcode
+Clone the repository from Github onto your computer.
+Done
+Running locally: In order to run the app locally, you can build the app for the iPhone. Once the build has succeeded, click the play button in the top left corner of the Xcode window and it should create an emulator of the device selected at the top and present the app as if it was installed on the device.
+In order to push any new changes onto the github repo, you must give Xcode the access to your Github account by going to Xcode -> Preferences -> Accounts tab and then adding your Github account with your Github token.
+
 ### **Support**
 
 We don’t offer traditional support, but you can email us ([@contacts](https://tarheels.live/comp523grouph/team/team-members/)) with any inquiries. Thanks!
