@@ -54,7 +54,7 @@ Installing:
 - In order to push any new changes onto the github repo, you must give Xcode the access to your Github account by going to Xcode -> Preferences -> Accounts tab and then adding your Github account with your Github token.
 
 ## Technologies Used
-We are making use of the Xcode IDE, Firebase iOS SDK, and Firebase products such as Firebase Auth, Firestore and Storage.
+We are making use of the Xcode IDE, coding entirely in Swift, Firebase iOS SDK, and Firebase products such as Firebase Auth, Firestore and Storage.
 
 ### **Support**
 
