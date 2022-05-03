@@ -55,6 +55,11 @@ Installing:
 ## Technologies Used
 We are making use of the Xcode IDE, coding entirely in Swift, Firebase iOS SDK, and Firebase products such as Firebase Auth, Firestore and Storage.
 
+## Database Models
+
+![PNG image](https://user-images.githubusercontent.com/69488629/166410460-74dab2b5-9dd0-4437-b6df-b6bbcc0867c6.jpeg)
+
+
 ### **Support**
 
 We don’t offer traditional support, but you can email us ([@contacts](https://tarheels.live/comp523grouph/team/team-members/)) with any inquiries. Thanks!
