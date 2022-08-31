@@ -1,4 +1,4 @@
-# CommunicationApp
+# Clinic Communication App
 
 <img src="Screenshots/logo.png" width=80px>
 
